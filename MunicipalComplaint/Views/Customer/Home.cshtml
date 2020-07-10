@@ -1,0 +1,310 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+<style>
+    .banner-area {
+        background: url('../../Content/Images/khyber-gate.jpg') center;
+        background-size: cover;
+    }
+</style>
+<section class="banner-area relative" id="home" style="height:550px">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center ">
+            <div class="banner-content col-lg-7 col-md-6 ">
+                <h6 class="text-white ">the Royal Essence of Journey</h6>
+                <h2 class="text-white text-uppercase">
+                    Municipal Complaint Cell
+                </h2>
+                <p class="pt-20 pb-20 text-white">
+                    We offer every type of municipility complaints to our Customers 
+                </p>
+                <a href="@Url.Action("Index","AdminPanel")" class="primary-btn text-uppercase">Register Complaints</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start feature Area -->
+<section class="feature-area section-gap" id="service">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 pb-40 header-text">
+                <h1>What Services we offer to our clients</h1>
+                <p>
+                    Who are in extremely love with eco friendly system.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-user"></span>Expert Technicians</h4>
+                    <p style="text-align:justify;">
+                        We have Expert Technicians available in different areas of Pakistan. You can visit any of our branch to have the best maintenance ever.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-license"></span>Professional Service</h4>
+                    <p>
+                        <ul class="list-group-item">
+                            <li class="list">1. Luxury Transport</li>
+                            <li class="list">2. Expert Drivers</li>
+                            <li class="list">3. Expert Technicians</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-phone"></span>Great Support</h4>
+                    <p style="text-align:justify;">
+                        For the support of our valuable customers, our service center is 24/7 availiable to assist them and solve their grievance.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-rocket"></span>Technical Skills</h4>
+                    <p>
+                        <ul class="list-group-item">
+                            <li class="list">1. Engine Service</li>
+                            <li class="list">2. Electrical Work</li>
+                            <li class="list">3. Dental Repair</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-diamond"></span>Highly Recomended</h4>
+                    <p style="text-align:justify;">
+                        With our best serices in Rawalpindi and Islamabad we are higly recommended to be the first choice for your comfort journey by our customers.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-bubble"></span>Positive Reviews</h4>
+                    <p style="text-align:justify;">
+                        We have completed many trips successfully so far and has been ranked number one on the basis of these reviews given by our customers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End feature Area -->
+<!-- Start home-about Area -->
+<section class="home-about-area" id="about">
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-6 no-padding home-about-left">
+                <img class="img-fluid" src="~/Content/Images/minare pakistan.jpg" />
+            </div>
+            <div class="col-lg-6 no-padding home-about-right">
+                <h1>
+                    Locally Connected <br>
+                    by Large Network
+                </h1>
+                <p>
+                    <span>Different Cars in different Models are availiable for Rental Basis</span>
+                </p>
+                <p style="text-align:justify;">
+                    We are offering new models of Suzuki, Toyata, Honda, Lexus, BMW and many other brands vehicle on a very reasonable prices with differet
+                    serivces along with like Drivers and Workshops for Techinical assistance.
+                </p>
+                <a class="text-uppercase primary-btn" href="#abc">Check Cars</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End home-about Area -->
+<!-- Start model Area -->
+
+<section class="model-area section-gap" id="cars">
+    <div class="container">
+        <a name="abc"></a>
+        <div class="row d-flex justify-content-center pb-40">
+            <div class="col-md-8 pb-40 header-text">
+                <h1 class="text-center pb-10">Choose your Desired Car Model</h1>
+                <p class="text-center">
+                    with Car Rental
+                </p>
+            </div>
+        </div>
+        <div class="active-model-carusel">
+
+            <div class="row align-items-center single-model item">
+                <div class="col-lg-6 model-left">
+                    <div class="title justify-content-between d-flex">
+
+                    </div>
+
+
+                </div>
+                <div class="col-lg-6 model-right">
+                    <img src="~/Content/Images/khyber-gate.jpg" style="height:500px;width:100%;" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+</section>
+<!-- End model Area -->
+<!-- Start reviews Area -->
+<section class="reviews-area section-gap" id="review">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 pb-40 header-text text-center">
+                <h1>Some Features that Made us Unique</h1>
+                <p class="mb-10 text-center">
+                    Who are in extremely love with eco friendly system.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="single-review">
+                    <h4>Variety in Model</h4>
+                    <p>
+                        Varieties Here you can find the best Varieties in Models for almost every brand whether local or imported.
+                    </p>
+                    <div class="star">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-review">
+                    <h4>Pricing</h4>
+                    <p>
+                        Our packages are quite reasonable in comparison with the other competitors in the market.
+                    </p>
+                    <div class="star">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-review">
+                    <h4>
+                        A Leading Car Hire Service in
+                        Islamabad
+                    </h4>
+                    <p>
+                        Car Rental Islamabad team members are professionally trained to ensure. All of Rent A Car Pakistan customers are served
+                        with the Best Car Booking Services In Pakistan.
+                    </p>
+                    <div class="star">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-review">
+                    <h4>Companies and VIPs in Town</h4>
+                    <p>
+                        . If you’re looking for multiple vehicles then, Car Rental Islamabad is the one you should be reaching out for. Moreover,
+                        Car Rental Islamabad Pakistan also provide significant discounts in the rates
+                    </p>
+                    <div class="star">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-review">
+                    <h4>Simple and Easy Rental Procedures</h4>
+                    <p>
+                        we Car Rental Islamabad have always worked towards making the booking process easier, and after so much hard work, today,
+                        we provide the easiest booking method to our Car Rental Islamabad Clients.
+                    </p>
+                    <div class="star">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End reviews Area -->
+<!-- Start callaction Area -->
+<section class="callaction-area relative section-gap">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h1 class="text-white">Experience Great Support</h1>
+                <p>
+                    Traffic jams, bumpy roads and countless other factors make it really hard to drive on the roads of Islamabad. Rent A Car Pakistan Customer Care and Rent A Car Islamabad Pakistan Customer Care Services make sure our local as well as foreign clients can travel around the city with ease and comfort.
+
+                    Currently, Rent A Car Islamabad is providing more than fifty different types of vehicles to their clients with appropriate Rent A Car Islamabad Packages. Providing our clients a topnotch Car Hire Islamabad Services has helped our team to be reckoned as one of the best Rent A Car Islamabad group.
+                </p>
+                <a class="callaction-btn text-uppercase" href="#contact">Reach Our Support Team</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End callaction Area -->
+<script>
+    function DateValidationStart() {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = mm + '/' + dd + '/' + yyyy;
+        var date1 = document.getElementById("datepicker").value;
+        if (date1 < today) {
+            alert("Please Select a Valid Date");
+            document.getElementById("datepicker").value = "";
+        }
+    }
+    function DateValidationEnd() {
+        var date1 = document.getElementById("datepicker").value;
+        var date2 = document.getElementById("datepicker2").value;
+        if (date2 < date1) {
+            alert("Please Select a Valid Date");
+            document.getElementById("datepicker2").value = "";
+            document.getElementById("days").value = "";
+        }
+        d1 = date1.substring(3, 5);
+        d2 = date2.substring(3, 5);
+        var date = d2 - d1;
+        if (date > 1) {
+            document.getElementById("days").value = date;
+        } else {
+            document.getElementById("days").value = "";
+        }
+    }
+</script>

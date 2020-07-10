@@ -1,0 +1,163 @@
+﻿
+@{
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" name="viewport">
+    <title>Admin Panel</title>
+    <style>
+        .imgAvatar {
+            height: 56px !important;
+            width: 56px !important;
+        }
+    </style>
+    @Styles.Render("~/Content/AdminCss")
+</head>
+<body>
+    <div id="app">
+        <div class="main-wrapper">
+            <div class="navbar-bg" style="background:#212330;height:60px"></div>
+            <nav class="navbar navbar-expand-lg main-navbar">
+                <form class="form-inline mr-auto">
+                    <ul class="navbar-nav mr-3">
+                        <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="ion ion-navicon-round" style="color:#ffffff"></i></a></li>
+                        <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="ion ion-search"></i></a></li>
+                    </ul>
+
+                </form>
+                <ul class="navbar-nav navbar-right">
+                    <li class="dropdown dropdown-list-toggle">
+                        <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="ion ion-ios-bell-outline" style="color:#ffffff"></i></a>
+                        <div class="dropdown-menu dropdown-list dropdown-menu-right">
+                            <div class="dropdown-header">
+                                Notifications
+                                <div class="float-right">
+                                    <a href="#">View All</a>
+                                </div>
+                            </div>
+                            <div class="dropdown-list-content">
+                                <a href="#" class="dropdown-item dropdown-item-unread">
+                                    <img alt="image" src=@Url.Content("~/Content/img/AdminPanel/avatar-1.jpeg") class="rounded-circle dropdown-item-img imgAvatar">
+                                    <div class="dropdown-item-desc">
+                                        <b>Kusnaedi</b> has moved task <b>Fix bug header</b> to <b>Done</b>
+                                        <div class="time">10 Hours Ago</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg" style="color:#ffffff">
+                            <i class="ion ion-android-person d-lg-none"></i>
+                            <div class="d-sm-none d-lg-inline-block">Hi,Hamza</div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <!-- <a href="profile.html" class="dropdown-item has-icon">
+                                 <i class="ion ion-android-person"></i> Profile
+                             </a>
+                                -->
+                            <a href="/AdminPanel/Logout" class="dropdown-item has-icon">
+                                <i class="ion ion-log-out"></i> Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="main-sidebar">
+                <aside id="sidebar-wrapper">
+                    <div class="sidebar-brand">
+                        <a href="index.html">   Complaint Cell</a>
+                    </div>
+                    <div class="sidebar-user">
+                        <div class="sidebar-user-picture">
+                            <img alt="image" class="imgAvatar" src="~/Content/avatar-png-1.png" />
+                        </div>
+                        <div class="sidebar-user-details">
+                            <div class="user-name">Hamza</div>
+                            <div class="user-role">
+                                Administrator
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="sidebar-menu">
+                        <li class="menu-header">Dashboard</li>
+                        <li class="active">
+                            <a href="/AdminPanel/Dashboard"><i class="ion ion-speedometer"></i><span>Dashboard</span></a>
+                        </li>
+                        <li class="menu-header">Components</li>
+                        <li>
+                            <a href="@Url.Action("Register","AdminPanel")"><i class="ion ion-ios-albums-outline"></i><span>Add Detail</span></a>
+                            @*<ul class="menu-dropdown">
+                                    <li><a href="/Cars/addCars"><i class="ion ion-ios-circle-outline"></i> Add New Car</a></li>
+                                    <li><a href="/Cars/SearchCar"><i class="ion ion-ios-circle-outline"></i> Search Cars</a></li>
+
+                                </ul>*@
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Register","AdminPanel")"><i class="ion ion-ios-albums-outline"></i><span>Registration</span></a>
+                            @*<ul class="menu-dropdown">
+                                    <li><a href="/Cars/addCars"><i class="ion ion-ios-circle-outline"></i> Add New Car</a></li>
+                                    <li><a href="/Cars/SearchCar"><i class="ion ion-ios-circle-outline"></i> Search Cars</a></li>
+
+                                </ul>*@
+                        </li>
+                        <li>
+                            <a href="" class="has-dropdown"><i class="ion ion-android-person"></i><span>Employees</span></a>
+                            <ul class="menu-dropdown">
+                                <li><a href="/Customer/AddCustomer"><i class=""></i>Manage Employee</a></li>
+                                <li><a href="/Customer/ViewCustomer"><i class="ion ion-ios-circle-outline"></i>Report</a></li>
+                            </ul>
+                        </li>
+                        @*  <li>
+                                <a href="" class="has-dropdown"><i class="ion ion-ios-albums-outline"></i><span>Driver Managment</span></a>
+                                <ul class="menu-dropdown">
+                                    <li><a href="/Driver/AddDriver"><i class="ion ion-ios-circle-outline"></i>Add Driver</a></li>
+                                    <li><a href="/Driver/ViewDriver"><i class="ion ion-ios-circle-outline"></i>View Driver</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="" class="has-dropdown"><i class="ion ion-ios-albums-outline"></i><span>Booking Managment</span></a>
+                                <ul class="menu-dropdown">
+                                    <li><a href="/Booking/Index"><i class="ion ion-ios-circle-outline"></i>Add Booking</a></li>
+                                    <li><a href="/Booking/ViewBooking"><i class="ion ion-ios-circle-outline"></i>View Bookings</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="" class="has-dropdown"><i class="ion ion-ios-albums-outline"></i><span>Expense Managment</span></a>
+                                <ul class="menu-dropdown">
+                                    <li><a href="/Expense/Index"><i class="ion ion-ios-circle-outline"></i>Add Expense</a></li>
+                                    <li><a href="/Expense/ViewExpense"><i class="ion ion-ios-circle-outline"></i>View Expense</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/AdminPanel/Message"><i class="ion ion-clipboard"></i><span>Messages</span></a>
+                            </li>
+                            <li>
+                                <a href="/Register/Index"><i class="ion ion-clipboard"></i><span>Register Account</span></a>
+                            </li>
+                            <li>
+                                <a href="/AdminPanel/Credits"><i class="ion ion-ios-information-outline"></i> Credits</a>
+                            </li>*@
+                    </ul>
+                </aside>
+            </div>
+            <div class="main-content">
+
+                @RenderBody()
+
+            </div>
+            <footer class="main-footer">
+                <div class="footer-left">
+                    Copyright &copy; 2020 <div class="bullet"></div> Design By Zahid Ullah
+                </div>
+                <div class="footer-right"></div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
+@Scripts.Render("~/bundles/AdminJS")
+@RenderSection("scripts", required: false)
