@@ -383,6 +383,8 @@
     <Content Include="Models\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\alertFile\alerting.js" />
+    <Content Include="Scripts\AreasAjax\areaAjax.js" />
+    <Content Include="Scripts\AreasAjax\AreaDel.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

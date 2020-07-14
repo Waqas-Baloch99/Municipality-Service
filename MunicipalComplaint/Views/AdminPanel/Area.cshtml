@@ -37,15 +37,15 @@
                                         </tr>
                                         @foreach (var data in Model.provinces)
                                         {
-                                            <tr>
-                                                <td>@data.ProvinceId</td>
-                                                <td>@data.ProvinceName</td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-sm" type="button" onclick="getProForUp(@data.ProvinceId)"><span><i class="fa fa-edit "></i></span></button>
-                                                    <button class="btn btn-danger btn-sm" type="button" onclick="deleteProvince(@data.ProvinceId)"><span><i class="fa fa-trash "></i></span></button>
+                                        <tr>
+                                            <td>@data.ProvinceId</td>
+                                            <td>@data.ProvinceName</td>
+                                            <td>
+                                                <button class="btn btn-primary btn-sm" type="button" onclick="getProForUp(@data.ProvinceId)"><span><i class="fa fa-edit "></i></span></button>
+                                                <button class="btn btn-danger btn-sm" type="button" onclick="deleteProvince(@data.ProvinceId)"><span><i class="fa fa-trash "></i></span></button>
 
-                                                </td>
-                                            </tr>
+                                            </td>
+                                        </tr>
                                         }
                                     </table>
                                 </div>
@@ -57,7 +57,7 @@
                         <div class="img-thumbnail p-3">
                             <div class="row ">
                                 <div class="offset-6 col-sm-6 offset-md-10 col-md-2">
-                                    <a href="#District" data-target="#District" class="btn btn-primary btn-sm" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add District</a>
+                                    <a href="#District" data-target="#District" class="btn btn-primary btn-sm" id="AddDistrictBtn" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add District</a>
                                 </div>
                             </div>
                             <div class="row">
@@ -79,24 +79,24 @@
                                         </tr>
                                         @foreach (var data in Model.cities)
                                         {
-                                            <tr>
-                                                <td>@data.DistrictId</td>
-                                                <td>@data.DistrictName</td>
-                                                @foreach (var chkPro in Model.provinces)
+                                        <tr>
+                                            <td>@data.DistrictId</td>
+                                            <td>@data.DistrictName</td>
+                                            @foreach (var chkPro in Model.provinces)
                                                 {
                                                     if (data.ProvinceId == chkPro.ProvinceId)
                                                     {
-                                                        <td>
-                                                            @chkPro.ProvinceName
-                                                        </td>
+                                                <td>
+                                                    @chkPro.ProvinceName
+                                                </td>
                                                     }
                                                 }
-                                                <td>
-                                                    <button class="btn btn-primary btn-sm" type="button" onclick="getDistForUp(@data.DistrictId)"><span><i class="fa fa-edit "></i></span></button>
-                                                    <button class="btn btn-danger btn-sm" type="button" onclick="deleteDistrict(@data.DistrictId)"><span><i class="fa fa-trash "></i></span></button>
+                                            <td>
+                                                <button class="btn btn-primary btn-sm" type="button" onclick="getDistForUp(@data.DistrictId)"><span><i class="fa fa-edit "></i></span></button>
+                                                <button class="btn btn-danger btn-sm" type="button" onclick="deleteDistrict(@data.DistrictId)"><span><i class="fa fa-trash "></i></span></button>
 
-                                                </td>
-                                            </tr>
+                                            </td>
+                                        </tr>
                                         }
                                     </table>
                                 </div>
@@ -108,7 +108,7 @@
                         <div class="img-thumbnail p-3">
                             <div class="row ">
                                 <div class="offset-6 col-sm-6 offset-md-10 col-md-2">
-                                    <a href="#Tehsil" data-target="#Tehsil" class="btn btn-primary btn-sm" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add Tehsil</a>
+                                    <a href="#Tehsil" data-target="#Tehsil" id="AddTehsilBtn" class="btn btn-primary btn-sm" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add Tehsil</a>
                                 </div>
                             </div>
                             <div class="row">
@@ -171,7 +171,7 @@
                         <div class="img-thumbnail p-3">
                             <div class="row ">
                                 <div class="offset-md-10 col-md-2 offset-6 col-sm-6">
-                                    <a href="#UC" data-target="#UC" class="btn btn-primary btn-sm" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add UC</a>
+                                    <a href="#UC" data-target="#UC" class="btn btn-primary btn-sm" id="AddUcBtn" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add UC</a>
                                 </div>
                             </div>
                             <div class="row">
@@ -242,7 +242,7 @@
                             </div>
                         </div>
                     </div>
-                    </div>
+                </div>
 
             </div>
         </div>
@@ -259,6 +259,7 @@
         <div class="modal-content" style="border:1px solid gray;border-radius:10px;">
             <div class="modal-header">
                 <h5 class="modal-title" id="H1" style="font-weight:500;color:#1e90ff">Add Province</h5>
+                <h5 class="modal-title" id="H2" style="font-weight:500;color:#1e90ff">Update Province</h5>
 
                 <asp:LinkButton ID="myBtn" runat="server" aria-hidden="true" style="color:black;font-size:25px;cursor:pointer">
                     &times;
@@ -276,14 +277,16 @@
                                 <div class="row">
                                     <div class="offset-1 col-md-10">
                                         <div class="form-group">
-                                            <input type="text" name="ProvinceName" placeholder="Province" class="form-control" id="pName"/>
+                                            <input type="text" class="form-control" id="pId" hidden />
+                                            <input type="text" name="ProvinceName" placeholder="Province" class="form-control" id="pName" />
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="row">
                                     <div class="offset-3 col-md-6">
-                                        <input type="button" value="Submit" class="btn btn-success btn-block" id="subProvince" onclick="sendProData()"/>
+                                        <input type="button" value="Submit" class="btn btn-success btn-block" id="subProvince" onclick="sendProData()" />
+                                        <input type="button" value="Update" class="btn btn-success btn-block" id="upProvince" onclick="updateProvince()" />
                                     </div>
                                 </div>
 
@@ -303,7 +306,9 @@
     <div class="modal-dialog modal-md">
         <div class="modal-content" style="border:1px solid gray;border-radius:10px;">
             <div class="modal-header">
-                <h5 class="modal-title" id="H1" style="font-weight:500;color:#1e90ff">Add District</h5>
+                <h5 class="modal-title" id="H1Dist" style="font-weight:500;color:#1e90ff">Add District</h5>
+                <h5 class="modal-title" id="H2Dist" style="font-weight:500;color:#1e90ff">Update District</h5>
+
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="myBtn">
                     &times;
                 </button>
@@ -316,33 +321,36 @@
                             @using (Html.BeginForm("AreaDistrict", "AdminPanel", FormMethod.Post))
                             {
 
-                                <div class="row">
-                                    <div class="offset-1 col-md-10">
-                                        <div class="form-group">
-                                            <select class="form-control" name="ProvinceNames" id="proI">
-                                                <option selected disabled>-- Select Provinve --</option>
-                                                @foreach (var data in Model.provinces)
+                            <div class="row">
+                                <div class="offset-1 col-md-10">
+                                    <div class="form-group">
+                                        <select class="form-control" name="ProvinceNames" id="proI">
+                                            <option selected disabled>-- Select Provinve --</option>
+                                            @foreach (var data in Model.provinces)
                                                 {
-                                                    <option value="@data.ProvinceId">@data.ProvinceName</option>
+                                                <option value="@data.ProvinceId">@data.ProvinceName</option>
                                                 }
-                                            </select>
-                                        </div>
+                                        </select>
                                     </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="offset-1 col-md-10">
+                                    <div class="form-group">
+                                        <input type="text" hidden id="disIdModel" />
+                                        <input type="text" name="DistrictName" placeholder="District" class="form-control" id="districtName" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="offset-3 col-md-6">
+                                    <input type="button" value="Submit" class="btn btn-success btn-block" onclick="send()" id="subDistrict" />
+                                    <input type="button" value="Update" class="btn btn-success btn-block" onclick="updateDistrict()" id="upDistrict" />
 
                                 </div>
-                                <div class="row">
-                                    <div class="offset-1 col-md-10">
-                                        <div class="form-group">
-                                            <input type="text" name="DistrictName" placeholder="District" class="form-control" id="districtName" />
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="offset-3 col-md-6">
-                                        <input type="button" value="Submit" class="btn btn-success btn-block" onclick="send()" id="subDistrict" />
-                                    </div>
-                                </div>
+                            </div>
 
                             }
                         </div>
@@ -361,7 +369,9 @@
     <div class="modal-dialog modal-md">
         <div class="modal-content" style="border:1px solid gray;border-radius:10px;">
             <div class="modal-header">
-                <h5 class="modal-title" id="H1" style="font-weight:500;color:#1e90ff">Add Tehsil</h5>
+                <h5 class="modal-title" id="H1Teh" style="font-weight:500;color:#1e90ff">Add Tehsil</h5>
+                <h5 class="modal-title" id="H2Teh" style="font-weight:500;color:#1e90ff">Update Tehsil</h5>
+
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="myBtn">
                     &times;
                 </button>
@@ -402,6 +412,7 @@
                                 <div class="row">
                                     <div class="offset-1 col-md-10">
                                         <div class="form-group">
+                                            <input type="text" hidden id="TehIdForUp" />
                                             <input type="text" name="TehsilName" placeholder="Tehsil" class="form-control" id="TehsilName" />
                                         </div>
                                     </div>
@@ -409,7 +420,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="offset-3 col-md-6">
-                                        <input type="button" value="Submit" class="btn btn-success btn-block" onclick="sendTehsil()" />
+                                        <input type="button" value="Submit" class="btn btn-success btn-block" onclick="sendTehsil()" id="subTeh"/>
+                                        <input type="button" value="Update" class="btn btn-success btn-block" onclick="UpdateTehsil()" id="upTeh"/>
+
                                     </div>
                                 </div>
 
@@ -430,7 +443,9 @@
     <div class="modal-dialog modal-md">
         <div class="modal-content" style="border:1px solid gray;border-radius:10px;">
             <div class="modal-header">
-                <h5 class="modal-title" id="H1" style="font-weight:500;color:#1e90ff">Add UC</h5>
+                <h5 class="modal-title" id="H1Uc" style="font-weight:500;color:#1e90ff">Add UC</h5>
+                <h5 class="modal-title" id="H2Uc" style="font-weight:500;color:#1e90ff">Update UC</h5>
+
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="myBtnuc">
                     &times;
                 </button>
@@ -482,6 +497,7 @@
                                 <div class="row">
                                     <div class="offset-1 col-md-10">
                                         <div class="form-group">
+                                            <input type="text" hidden id="txtUcId"/>
                                             <input type="text" name="UCName" placeholder="UC" class="form-control" id="UCName" />
                                         </div>
                                     </div>
@@ -489,7 +505,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="offset-3 col-md-6">
-                                        <input type="button" value="Submit" class="btn btn-success btn-block" onclick="sendUC()" />
+                                        <input type="button" value="Submit" id="subUc" class="btn btn-success btn-block" onclick="sendUC()" />
+                                        <input type="button" value="Update" id="upUc" class="btn btn-success btn-block" onclick="UpdateUC()" />
+
                                     </div>
                                 </div>
 
@@ -512,236 +530,7 @@
     })
 </script>
 
-<script>
-    // Fill District Dropdown in Tehsil form
 
-    $(document).ready(function () {
-        $(".sidebar-menu .active").removeClass('active');
-        $('#area').addClass("active");
-        $("#proTehI").change(function () {
-            var id = $(this).val();
-            $.ajax({
-                //type: "GET",
-                url: "/AdminPanel/drop",
-                cache: false,
-                type: "POST",
-                //data: data,
-                data: { id: id },
-                success: function (re) {
-
-                    console.log(re);
-                    var s = '<option value="-1">-- Select District --</option>';
-                    for (var i = 0; i < re.length; i++) {
-                        s += '<option value="' + re[i].Value + '">' + re[i].Text + '</option>';
-                    }
-                    $("#districtDrop").html(s);
-
-                }
-            })
-        });
-    });
-
-    //End of Fill District Dropdown in Tehsil form
-    // Fill District Dropdown in UC form
-
-    $(document).ready(function () {
-        $("#proUcI").change(function () {
-            var id = $(this).val();
-            $.ajax({
-                //type: "GET",
-                url: "/AdminPanel/drop",
-                cache: false,
-                type: "POST",
-                //data: data,
-                data: { id: id },
-                success: function (re) {
-
-                    console.log(re);
-                    var s = '<option value="-1">-- Select District --</option>';
-                    for (var i = 0; i < re.length; i++) {
-                        s += '<option value="' + re[i].Value + '">' + re[i].Text + '</option>';
-                    }
-                    $("#districtUcDrop").html(s);
-
-                }
-            })
-        });
-    });
-
-    //End of Fill District Dropdown in UC form
-
-    // Fill Tehsil Dropdown in UC form
-    $(document).ready(function () {
-        $("#districtUcDrop").change(function () {
-            var id = $(this).val();
-            $.ajax({
-                //type: "GET",
-                url: "/AdminPanel/dropUC",
-                cache: false,
-                type: "POST",
-                //data: data,
-                data: { id: id },
-                success: function (re) {
-
-                    console.log(re); 
-                    var s = '<option value="-1">-- Select Distric --</option>';
-                    for (var i = 0; i < re.length; i++) {
-                        s += '<option value="' + re[i].Value + '">' + re[i].Text + '</option>';
-                    }
-                    $("#tehsilUcDrop").html(s);
-
-                }
-            })
-        });
-    });
-
-    //End of Fill Tehsil Dropdown in UC form
-</script>
 @Scripts.Render("~/bundles/alertFile/alert")
-<script>
-    // Province Ajax Start
-    function sendProData() {
-        var proName = $('#pName').val();
-        $.ajax({
-            type: "POST",
-            url: "/AdminPanel/Area",
-            //data: data,
-            data: {
-                ProvinceName: proName
-    },
-            success: function (re) {
-                swal({
-                    title: "Good job!",
-                    text: "Successfully Inserted!",
-                    icon: "success",
-                    button: true,
-
-                }).then((value) => {
-                    
-                    location.reload();
-                });
-            }
-            
-        })
-
-    }
-
-    //Province Ajax End
-
-    // District Ajax start
-
-    function send() {
-        debugger
-        var disName = $('#districtName').val();
-        var proId = $("#proI :selected").val();
-        console.log(proId);
-        $.ajax({
-            type: "POST",
-            url: "/AdminPanel/AreaDistrict",
-            //data: data,
-            data: {
-                DistrictName: disName,
-                ProvinceId: proId
-            },
-            success: function (re) {
-                
-                swal({
-                    title: "Good job!",
-                    text: "Successfully Inserted!",
-                    icon: "success",
-                    button: true,
-
-                }).then((value) => {
-
-                    location.reload();
-                });
-            }
-        })
-
-    }
-
-    //District Ajax End
-
-    //Tehsil Ajax Start
-    function sendTehsil() {
-        debugger
-        var tehName = $('#TehsilName').val();
-        var disId = $("#districtDrop :selected").val();
-
-        $.ajax({
-            type: "POST",
-            url: "/AdminPanel/AreaTehsil",
-            //data: data,
-            data: {
-                TehsilName: tehName,
-                DistrictId: disId
-            },
-            success: function (re) {
-
-                swal({
-                    title: "Good job!",
-                    text: "Successfully Inserted!",
-                    icon: "success",
-                    button: true,
-
-                }).then((value) => {
-
-                    location.reload();
-                });
-            }
-        })
-
-    }
-    //Tehsil Ajax End
-
-    //UC Ajax Start
-    function sendUC() {
-        debugger
-        var ucName = $('#UCName').val();
-        var tehId = $("#tehsilUcDrop :selected").val();
-
-        $.ajax({
-            type: "POST",
-            url: "/AdminPanel/AreaUC",
-            //data: data,
-            data: {
-                UCName: ucName,
-                TehsilId: tehId
-            },
-            success: function (re) {
-
-                swal({
-                    title: "Good job!",
-                    text: "Successfully Inserted!",
-                    icon: "success",
-                    button: true,
-
-                }).then((value) => {
-
-                    location.reload();
-                });
-            }
-        })
-
-    }
-    //UC Ajax End
-    function getProForUp(id) {
-        var id = id;
-        $.ajax({
-            type: "GET",
-            url: "/AdminPanel/chkProvince",
-            //data: data,
-            data: {
-               // id=id
-            },
-            success: function (re) {
-                console.log(re);
-                $("#pName").val(re.ProvinceName);
-                $('#addProvince').click();
-            }
-        })
-
-    }
-
-
-</script>
+<script src="~/Scripts/AreasAjax/areaAjax.js"></script>
+<script src="~/Scripts/AreasAjax/AreaDel.js"></script>
