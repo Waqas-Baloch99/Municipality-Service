@@ -16,7 +16,7 @@ namespace MunicipalComplaint
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Customer", action = "Home", id = UrlParameter.Optional }
+                defaults: new { controller = "AdminPanel", action = "Area", id = UrlParameter.Optional }
             );
         }
     }

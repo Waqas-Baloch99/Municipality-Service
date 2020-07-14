@@ -1,4 +1,5 @@
-﻿@{
+﻿@model MunicipalComplaint.ViewModel.viewModel
+@{
     ViewBag.Title = "CustomerSignUp";
     Layout = "~/Views/Shared/CustomerLayout.cshtml";
 }
@@ -32,7 +33,7 @@
         }
 
         .card {
-            height: 400px;
+            height: 440px;
             margin-top: auto;
             margin-bottom: auto;
             width: 400px;
@@ -117,6 +118,7 @@
                 text-decoration: none;
             }
     </style>
+    
 </head>
 <body>
 
@@ -130,8 +132,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12">
-                            <h4 id="sigin">Sign Up</h4>
+                        <div class="col-lg-6">
+                            <h4 id="sigin" >Sign Up</h4>
+                        </div>
+                        <div class="offset-lg-2 col-lg-4">
+                            <h5 id="msg" style="color:white"></h5>
                         </div>
                     </div>
 
@@ -152,7 +157,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Name" name="UserName" maxlength="25">
+                                    <input type="text" class="form-control" placeholder="Name" id="Username" name="Username" maxlength="25">
 
                                 </div>
                             </div>
@@ -161,7 +166,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Email" name="UserEmail" maxlength="25">
+                                    <input type="text" class="form-control" placeholder="Email" name="Email" id="Email" maxlength="25">
                                 </div>
                             </div>
 
@@ -172,7 +177,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Contact" name="UserContact" maxlength="25">
+                                    <input type="text" class="form-control" placeholder="Contact" id="Contact" name="Contact" maxlength="25">
 
                                 </div>
                             </div>
@@ -181,68 +186,76 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="CNIC" name="UserCnic" maxlength="25">
+                                    <input type="text" class="form-control" placeholder="CNIC" name="CNIC" id="CNIC" maxlength="25">
                                 </div>
                             </div>
 
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                    </div>
-                                    <input type="password" class="form-control" placeholder="Passsword" name="UserPassword" maxlength="25">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                        </div>
+                                        <input type="password" class="form-control" placeholder="Passsword" id="Password" name="Password" maxlength="25">
 
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-repeat"></i></span>
+                                        </div>
+                                        <input type="password" class="form-control" placeholder="Confirm Password" name="UserConfim" maxlength="25">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-home"></i></span>
+                                        </div>
+                                        <select class="form-control" name="DropDownProvince" id="provinceDrop">
+                                            <option selected disabled>-- Select Province --</option>
+                                          
+                                           @foreach (var data in Model.provinces) {
+                                              <option value="@data.ProvinceId">@data.ProvinceName</option>
+                                           }
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-home"></i></span>
+                                        </div>
+                                        <select class="form-control" name="District" id="districtDrop">
+                                            <option selected disabled>-- Select District --</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                               
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-home"></i></span>
+                                        </div>
+                                        <input type="text" name="Address" id="Address" placeholder="Address" class="form-control" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-repeat"></i></span>
-                                    </div>
-                                    <input type="password" class="form-control" placeholder="Confirm Password" name="UserConfim" maxlength="25">
-                                </div>
+                            <div class="form-group">
+                                <a href="@Url.Action("Login","Customer")" class="float-left">Already have an account ?</a>
+
+                                <input name="BtnSignUp" type="button" value="Sign Up" onclick="sendForm()" class="btn float-right login_btn">
                             </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-home"></i></span>
-                                    </div>
-                                    <select class="form-control" name="DropDownProvince">
-                                        <option>-- Select Province --</option>
-                                        <option>Punjab</option>
-                                        <option>KPK</option>
-                                        <option>Sindh</option>
-                                        <option>Balochistan</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-home"></i></span>
-                                    </div>
-                                    <select class="form-control" name="UserCity">
-                                        <option>-- Select City --</option>
-                                        <option>Rawalpindi</option>
-                                        <option>Islamabad</option>
-                                        <option>Lahore</option>
-                                        <option>Karachi</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-                            <a href="@Url.Action("Index","AdminPanel")" class="float-left">Already have an account ?</a>
-
-                            <input name="BtnSignUp" type="submit" value="Sign Up" class="btn float-right login_btn">
-                        </div>
                     }
                 </div>
                 <div class="card-footer">
@@ -260,3 +273,71 @@
     </div>
 </body>
 </html>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    // Fill Tehsil Dropdown in UC form
+    $(document).ready(function () {
+        $("#provinceDrop").change(function () {
+            var id = $(this).val();
+            $.ajax({
+                //type: "GET",
+                url: "/Customer/drop",
+                cache: false,
+                type: "POST",
+                //data: data,
+                data: { id: id },
+                success: function (re) {
+
+                    console.log(re);
+                    var s = '<option value= "-1" > --Select District --</option>';
+                    for (var i = 0; i < re.length; i++) {
+                        s += '<option value= "' + re[i].Value + '" > ' + re[i].Text + '</option> ';
+                    }
+                    $("#districtDrop").html(s);
+
+                }
+            })
+        });
+    });
+
+    //End of Fill Tehsil Dropdown in UC form
+    function sendForm() {
+        debugger
+        var Username = $('#Username').val();
+        var disId = $("#districtDrop :selected").val();
+        var Email = $('#Email').val();
+        var CNIC = $('#CNIC').val();
+        var Contact = $('#Contact').val();
+        var Password = $('#Password').val();
+        var Address = $('#Address').val();
+
+        $.ajax({
+            type: "POST",
+            url: "/Customer/CustomerSignUp",
+            //data: data,
+            data: {
+                Username: Username,
+                DistrictId: disId,
+                Contact: Contact,
+                Password: Password,
+                CNIC: CNIC,
+                Email: Email,
+                Address: Address
+            },
+            success: function (re) {
+
+                if (re == "done") {
+                    $('#msg').html("Successfully Inserted");
+                    $('#msg').fadeOut(4000);
+
+                }
+            }
+        })
+
+    }
+</script>
+
+
+
+
+

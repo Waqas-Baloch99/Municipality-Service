@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/CustomerLayout.cshtml";
 }
@@ -9,7 +10,7 @@
     }
 </style>
 <section class="banner-area relative" id="home" style="height:550px">
-    <div class="overlay overlay-bg"></div>
+    <div class="overlay overlay-bg" ></div>
     <div class="container">
         <div class="row fullscreen d-flex align-items-center ">
             <div class="banner-content col-lg-7 col-md-6 ">
@@ -22,7 +23,7 @@
                 </p>
                 <a href="@Url.Action("Index","AdminPanel")" class="primary-btn text-uppercase">Register Complaints</a>
             </div>
-
+            
         </div>
     </div>
 </section>
@@ -104,7 +105,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center">
             <div class="col-lg-6 no-padding home-about-left">
-                <img class="img-fluid" src="~/Content/Images/minare pakistan.jpg" />
+                <img class="img-fluid"  src="~/Content/Images/minare pakistan.jpg" />
             </div>
             <div class="col-lg-6 no-padding home-about-right">
                 <h1>
@@ -139,19 +140,19 @@
         </div>
         <div class="active-model-carusel">
 
-            <div class="row align-items-center single-model item">
-                <div class="col-lg-6 model-left">
-                    <div class="title justify-content-between d-flex">
-
+                    <div class="row align-items-center single-model item">
+                        <div class="col-lg-6 model-left">
+                            <div class="title justify-content-between d-flex">
+                               
+                            </div>
+                            
+                            
+                        </div>
+                        <div class="col-lg-6 model-right">
+                            <img src="~/Content/Images/khyber-gate.jpg" style="height:500px;width:100%;" class="img-fluid"/>
+                        </div>
                     </div>
-
-
-                </div>
-                <div class="col-lg-6 model-right">
-                    <img src="~/Content/Images/khyber-gate.jpg" style="height:500px;width:100%;" class="img-fluid" />
-                </div>
             </div>
-        </div>
 </section>
 <!-- End model Area -->
 <!-- Start reviews Area -->
@@ -308,3 +309,9 @@
         }
     }
 </script>
+
+
+
+
+
+

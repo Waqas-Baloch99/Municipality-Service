@@ -8,12 +8,14 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" name="viewport">
     <title>Admin Panel</title>
+    <link rel="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" type="text/css" />
     <style>
         .imgAvatar {
             height: 56px !important;
             width: 56px !important;
         }
     </style>
+    <link href="~/Content/DataTable/dtb.css" rel="stylesheet" />
     @Styles.Render("~/Content/AdminCss")
 </head>
 <body>
@@ -23,14 +25,14 @@
             <nav class="navbar navbar-expand-lg main-navbar">
                 <form class="form-inline mr-auto">
                     <ul class="navbar-nav mr-3">
-                        <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="ion ion-navicon-round" style="color:#ffffff"></i></a></li>
+                        <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fa fa-bars" style="color:#ffffff"></i></a></li>
                         <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="ion ion-search"></i></a></li>
                     </ul>
 
                 </form>
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown dropdown-list-toggle">
-                        <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="ion ion-ios-bell-outline" style="color:#ffffff"></i></a>
+                        <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="fa fa-bell" style="color:#ffffff"></i></a>
                         <div class="dropdown-menu dropdown-list dropdown-menu-right">
                             <div class="dropdown-header">
                                 Notifications
@@ -85,11 +87,19 @@
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
                         <li class="active">
-                            <a href="/AdminPanel/Dashboard"><i class="ion ion-speedometer"></i><span>Dashboard</span></a>
+                            <a href="/AdminPanel/Dashboard"><i class="fa fa-tachometer"></i><span>Dashboard</span></a>
                         </li>
                         <li class="menu-header">Components</li>
-                        <li>
-                            <a href="@Url.Action("Register","AdminPanel")"><i class="ion ion-ios-albums-outline"></i><span>Add Detail</span></a>
+                        <li id="area">
+                            <a href="@Url.Action("Area","AdminPanel")"><i class="fa fa-plus-circle"></i><span>Add Area</span></a>
+                            @*<ul class="menu-dropdown">
+                                    <li><a href="/Cars/addCars"><i class="ion ion-ios-circle-outline"></i> Add New Car</a></li>
+                                    <li><a href="/Cars/SearchCar"><i class="ion ion-ios-circle-outline"></i> Search Cars</a></li>
+
+                                </ul>*@
+                        </li>
+                        <li id="register">
+                            <a href="@Url.Action("Register","AdminPanel")"><i class="fa fa-user-plus"></i><span>Registration</span></a>
                             @*<ul class="menu-dropdown">
                                     <li><a href="/Cars/addCars"><i class="ion ion-ios-circle-outline"></i> Add New Car</a></li>
                                     <li><a href="/Cars/SearchCar"><i class="ion ion-ios-circle-outline"></i> Search Cars</a></li>
@@ -97,18 +107,10 @@
                                 </ul>*@
                         </li>
                         <li>
-                            <a href="@Url.Action("Register","AdminPanel")"><i class="ion ion-ios-albums-outline"></i><span>Registration</span></a>
-                            @*<ul class="menu-dropdown">
-                                    <li><a href="/Cars/addCars"><i class="ion ion-ios-circle-outline"></i> Add New Car</a></li>
-                                    <li><a href="/Cars/SearchCar"><i class="ion ion-ios-circle-outline"></i> Search Cars</a></li>
-
-                                </ul>*@
-                        </li>
-                        <li>
-                            <a href="" class="has-dropdown"><i class="ion ion-android-person"></i><span>Employees</span></a>
+                            <a href="" class="has-dropdown"><i class="fa fa-user"></i><span>Employees</span></a>
                             <ul class="menu-dropdown">
-                                <li><a href="/Customer/AddCustomer"><i class=""></i>Manage Employee</a></li>
-                                <li><a href="/Customer/ViewCustomer"><i class="ion ion-ios-circle-outline"></i>Report</a></li>
+                                <li><a href="/Customer/AddCustomer"><i class="fa fa-folder"></i>Manage Employee</a></li>
+                                <li><a href="/Customer/ViewCustomer"><i class="fa fa-mail-forward"></i>Report</a></li>
                             </ul>
                         </li>
                         @*  <li>
@@ -161,3 +163,4 @@
 </html>
 @Scripts.Render("~/bundles/AdminJS")
 @RenderSection("scripts", required: false)
+<script src="~/Content/DataTable/dt.js"></script>

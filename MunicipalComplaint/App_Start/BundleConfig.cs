@@ -11,6 +11,9 @@ namespace MunicipalComplaint
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/alertFile/alert").Include(
+                        "~/Scripts/alertFile/alerting.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/alljs").Include(
                        "~/Scripts/js/easing.min.js",
                        "~/Scripts/js/hoverIntent.js",
@@ -33,7 +36,7 @@ namespace MunicipalComplaint
 
                 ));
             bundles.Add(new ScriptBundle("~/bundles/AdminJS").Include(
-                     "~/Scripts/AdminJS/jquery.min.js",
+                     "~/Scripts/jquery.min.js",
                      "~/Scripts/AdminJS/popper.js",
                      "~/Scripts/AdminJS/tooltip.js",
                      "~/Scripts/AdminJS/bootstrap.min.js",

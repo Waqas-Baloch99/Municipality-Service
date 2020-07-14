@@ -1,99 +1,289 @@
-﻿@model MunicipalComplaint.ViewModal.AreasModal
-
+﻿@model MunicipalComplaint.ViewModel.viewModel
 @{
     ViewBag.Title = "Area";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<section class="section">
-    <div class="container mt-5">
-        <div class="row">
 
+<section class="section">
+    <div class="container">
+        <div class="row">
             <div class="col-12 col-sm-10 offset-sm-1 col-md-12 offset-md-0 col-lg-12 offset-lg-0 col-xl-12 offset-xl-0">
                 <div class="login-brand">
-                    Register User
+                    Area Managment
                 </div>
-                <div class="card card-success">
-                    <div class="card-header">
-
-                    </div>
-
-
+                <div class="card card-primary">
                     <div class="card-body">
-                       
-                           
-                            <div class="row ">
-                                <div class="offset-10 col-md-2">
-                                    <a href="#Province" data-target="#Province" class="btn btn-success" data-toggle="modal"> Add Province</a>
+
+                        @*Province*@
+                        <h3 class="text-center text-primary text-uppercase">Manage Provinces</h3>
+                        <div class="img-thumbnail p-3">
+                            <div class="row">
+                                <div class="offset-6 col-sm-6 offset-md-10 col-md-2">
+                                    <a href="#Province" data-target="#Province" class="btn btn-primary btn-sm" id="addProvince" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add Province</a>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
-                                <table class="table tab-bordered table-hover">
-                                    <tr>
-                                        <th>
-                                            Id
-                                        </th>
-                                        <th>
-                                            Name
-                                        </th>
-                                    </tr>
-                                   
-                                    <tr>
-                                        <td>
-                                           
-                                        </td>
-                                        <td>
-                                          
-                                        </td>
-                                    </tr>
-                                    
-                                </table>
+                                <div class="mt-1 col-md-12 col-sm-12">
+                                    <table class="table table-bordered table-hover" id="provinceTable">
+                                        <tr class="bg-dark text-white">
+                                            <th>
+                                                Id
+                                            </th>
+                                            <th>
+                                                Province
+                                            </th>
+                                            <th>Action</th>
+                                        </tr>
+                                        @foreach (var data in Model.provinces)
+                                        {
+                                            <tr>
+                                                <td>@data.ProvinceId</td>
+                                                <td>@data.ProvinceName</td>
+                                                <td>
+                                                    <button class="btn btn-primary btn-sm" type="button" onclick="getProForUp(@data.ProvinceId)"><span><i class="fa fa-edit "></i></span></button>
+                                                    <button class="btn btn-danger btn-sm" type="button" onclick="deleteProvince(@data.ProvinceId)"><span><i class="fa fa-trash "></i></span></button>
+
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
                                 </div>
                             </div>
+                        </div>
+                        <hr style="width: 70%;color: #3F52E3;background: #3F52E3;height: 2px;" />
+                        @*District*@
+                        <h3 class="text-center text-primary text-uppercase">Manage District</h3>
+                        <div class="img-thumbnail p-3">
+                            <div class="row ">
+                                <div class="offset-6 col-sm-6 offset-md-10 col-md-2">
+                                    <a href="#District" data-target="#District" class="btn btn-primary btn-sm" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add District</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mt-1 col-md-12 col-sm-12">
+                                    <table class="table table-bordered table-hover" id="districtTable">
+                                        <tr class="text-white bg-dark">
+                                            <th>
+                                                Id
+                                            </th>
+                                            <th>
+                                                District
+                                            </th>
+                                            <th>
+                                                Province
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                        @foreach (var data in Model.cities)
+                                        {
+                                            <tr>
+                                                <td>@data.DistrictId</td>
+                                                <td>@data.DistrictName</td>
+                                                @foreach (var chkPro in Model.provinces)
+                                                {
+                                                    if (data.ProvinceId == chkPro.ProvinceId)
+                                                    {
+                                                        <td>
+                                                            @chkPro.ProvinceName
+                                                        </td>
+                                                    }
+                                                }
+                                                <td>
+                                                    <button class="btn btn-primary btn-sm" type="button" onclick="getDistForUp(@data.DistrictId)"><span><i class="fa fa-edit "></i></span></button>
+                                                    <button class="btn btn-danger btn-sm" type="button" onclick="deleteDistrict(@data.DistrictId)"><span><i class="fa fa-trash "></i></span></button>
 
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr style="width: 70%;color: #3F52E3;background: #3F52E3;height: 2px;" />
+                        @*Tehsil*@
+                        <h3 class="text-center text-primary text-uppercase">Manage Tehsil</h3>
+                        <div class="img-thumbnail p-3">
+                            <div class="row ">
+                                <div class="offset-6 col-sm-6 offset-md-10 col-md-2">
+                                    <a href="#Tehsil" data-target="#Tehsil" class="btn btn-primary btn-sm" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add Tehsil</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mt-1 col-md-12 col-sm-12">
+                                    <table class="table table-bordered table-hover" id="tehsilTable">
+                                        <tr class="text-white bg-dark">
+                                            <th>
+                                                Id
+                                            </th>
+                                            <th>
+                                                Tehsil
+                                            </th>
+                                            <th>
+                                                District
+                                            </th>
+                                            <th>
+                                                Province
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                        @foreach (var data in Model.tehsiles)
+                                        {
+                                            <tr>
+                                                <td>@data.TehsilId</td>
+                                                <td>@data.TehsilName</td>
+                                                @foreach (var chkDist in Model.cities)
+                                                {
+                                                    if (data.DistrictId == chkDist.DistrictId)
+                                                    {
+                                                        <td>
+                                                            @chkDist.DistrictName
+                                                        </td>
+                                                        foreach (var chkPro in Model.provinces)
+                                                        {
+                                                            if (chkDist.ProvinceId == chkPro.ProvinceId)
+                                                            {
+                                                                <td>
+                                                                    @chkPro.ProvinceName
+                                                                </td>
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                <td>
+                                                    <button class="btn btn-primary btn-sm" type="button" onclick="getTehForUp(@data.TehsilId)"><span><i class="fa fa-edit "></i></span></button>
+                                                    <button class="btn btn-danger btn-sm" type="button" onclick="deleteTehsil(@data.TehsilId)"><span><i class="fa fa-trash "></i></span></button>
 
-                           
-                        
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr style="width: 70%;color: #3F52E3;background: #3F52E3;height: 2px;" />
+                        @*UC*@
+                        <h3 class="text-center text-primary text-uppercase">Manage UC</h3>
+                        <div class="img-thumbnail p-3">
+                            <div class="row ">
+                                <div class="offset-md-10 col-md-2 offset-6 col-sm-6">
+                                    <a href="#UC" data-target="#UC" class="btn btn-primary btn-sm" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add UC</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mt-1 col-md-12 col-sm-12">
+                                    <table class="table table-bordered table-hover" id="UCTable">
+                                        <tr class="bg-dark text-white">
+                                            <th>
+                                                Id
+                                            </th>
+                                            <th>
+                                                UC
+                                            </th>
+                                            <th>
+                                                Tehsil
+                                            </th>
+                                            <th>
+                                                District
+                                            </th>
+                                            <th>
+                                                Province
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                        @foreach (var data in Model.ucs)
+                                        {
+                                            <tr>
+                                                <td>@data.UcId</td>
+                                                <td>@data.UCName</td>
+                                                @foreach (var chkTeh in Model.tehsiles)
+                                                {
+                                                    if (data.TehsilId == chkTeh.TehsilId)
+                                                    {
+                                                        <td>
+                                                            @chkTeh.TehsilName
+                                                        </td>
+                                                        foreach (var chkDist in Model.cities)
+                                                        {
+                                                            if (chkTeh.DistrictId == chkDist.DistrictId)
+                                                            {
+                                                                <td>
+                                                                    @chkDist.DistrictName
+                                                                </td>
+                                                                foreach (var chkPro in Model.provinces)
+                                                                {
+                                                                    if (chkDist.ProvinceId == chkPro.ProvinceId)
+                                                                    {
+                                                                        <td>
+                                                                            @chkPro.ProvinceName
+                                                                        </td>
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                }
+                                                <td>
+                                                    <button class="btn btn-primary btn-sm" type="button" onclick="getUcForUp(@data.UcId)"><span><i class="fa fa-edit "></i></span></button>
+                                                    <button class="btn btn-danger btn-sm" type="button" onclick="deleteUc(@data.UcId)"><span><i class="fa fa-trash "></i></span></button>
+
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    </div>
 
             </div>
         </div>
+
     </div>
 
 </section>
-@*Provice Modal Start*@
+
+@*Province Modal Start*@
 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 <div class="modal fade" id="Province" runat="server" tabindex="-1" role="dialog" aria-labelledby="Province"
      aria-hidden="true">
     <div class="modal-dialog modal-md">
-        <div class="modal-content" style="margin-top:115px;border:1px solid gray;border-radius:20px;">
+        <div class="modal-content" style="border:1px solid gray;border-radius:10px;">
             <div class="modal-header">
-                <h5 class="modal-title" id="H1" style="font-weight:500;color:#be1c1c">Add Province</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="myBtn">
+                <h5 class="modal-title" id="H1" style="font-weight:500;color:#1e90ff">Add Province</h5>
+
+                <asp:LinkButton ID="myBtn" runat="server" aria-hidden="true" style="color:black;font-size:25px;cursor:pointer">
                     &times;
-                </button>
+                </asp:LinkButton>
+
             </div>
             <div class="modal-body modal-body-sub">
                 <div class="row">
                     <div class="col-md-12 modal_body_left modal_body_left1">
                         <div class="sap_tabs">
 
-                            @using (Html.BeginForm())
+                            @using (Html.BeginForm("Area", "AdminPanel", FormMethod.Post))
                             {
-                                @Html.AntiForgeryToken()
 
                                 <div class="row">
                                     <div class="offset-1 col-md-10">
                                         <div class="form-group">
-                                         </div>
+                                            <input type="text" name="ProvinceName" placeholder="Province" class="form-control" id="pName"/>
+                                        </div>
                                     </div>
 
                                 </div>
                                 <div class="row">
                                     <div class="offset-3 col-md-6">
-                                        <input type="submit" value="Submit" class="btn btn-success btn-block" />
+                                        <input type="button" value="Submit" class="btn btn-success btn-block" id="subProvince" onclick="sendProData()"/>
                                     </div>
                                 </div>
 
@@ -107,3 +297,451 @@
     </div>
 </div>
 @*Provice Modal End*@
+@*City Model start *@
+<div class="modal fade" id="District" runat="server" tabindex="-1" role="dialog" aria-labelledby="District"
+     aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content" style="border:1px solid gray;border-radius:10px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="H1" style="font-weight:500;color:#1e90ff">Add District</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="myBtn">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body modal-body-sub">
+                <div class="row">
+                    <div class="col-md-12 modal_body_left modal_body_left1">
+                        <div class="sap_tabs">
+
+                            @using (Html.BeginForm("AreaDistrict", "AdminPanel", FormMethod.Post))
+                            {
+
+                                <div class="row">
+                                    <div class="offset-1 col-md-10">
+                                        <div class="form-group">
+                                            <select class="form-control" name="ProvinceNames" id="proI">
+                                                <option selected disabled>-- Select Provinve --</option>
+                                                @foreach (var data in Model.provinces)
+                                                {
+                                                    <option value="@data.ProvinceId">@data.ProvinceName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="offset-1 col-md-10">
+                                        <div class="form-group">
+                                            <input type="text" name="DistrictName" placeholder="District" class="form-control" id="districtName" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="offset-3 col-md-6">
+                                        <input type="button" value="Submit" class="btn btn-success btn-block" onclick="send()" id="subDistrict" />
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@*City modal end*@
+
+@*tehsil Modal Start *@
+<div class="modal fade" id="Tehsil" runat="server" tabindex="-1" role="dialog" aria-labelledby="Tehsil"
+     aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content" style="border:1px solid gray;border-radius:10px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="H1" style="font-weight:500;color:#1e90ff">Add Tehsil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="myBtn">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body modal-body-sub">
+                <div class="row">
+                    <div class="col-md-12 modal_body_left modal_body_left1">
+                        <div class="sap_tabs">
+
+                            @using (Html.BeginForm("AreaTehsil", "AdminPanel", FormMethod.Post))
+                            {
+
+                                <div class="row">
+                                    <div class="offset-1 col-md-10">
+                                        <div class="form-group">
+                                            <select class="form-control" name="ProvinceNames" id="proTehI">
+                                                <option selected disabled>-- Select Provinve --</option>
+                                                @foreach (var data in Model.provinces)
+                                                {
+                                                    <option value="@data.ProvinceId">@data.ProvinceName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="offset-1 col-md-10">
+                                        <div class="form-group">
+                                            <select class="form-control" name="DistrictNames" id="districtDrop">
+                                                <option selected disabled>-- District --</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="offset-1 col-md-10">
+                                        <div class="form-group">
+                                            <input type="text" name="TehsilName" placeholder="Tehsil" class="form-control" id="TehsilName" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="offset-3 col-md-6">
+                                        <input type="button" value="Submit" class="btn btn-success btn-block" onclick="sendTehsil()" />
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@*tehsil Modal End *@
+
+@*UC Modal Start *@
+<div class="modal fade" id="UC" runat="server" tabindex="-1" role="dialog" aria-labelledby="UC"
+     aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content" style="border:1px solid gray;border-radius:10px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="H1" style="font-weight:500;color:#1e90ff">Add UC</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="myBtnuc">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body modal-body-sub">
+                <div class="row">
+                    <div class="col-md-12 modal_body_left modal_body_left1">
+                        <div class="sap_tabs">
+
+                            @using (Html.BeginForm("AreaTehsil", "AdminPanel", FormMethod.Post))
+                            {
+
+                                <div class="row">
+                                    <div class="offset-1 col-md-10">
+                                        <div class="form-group">
+                                            <select class="form-control" name="ProvinceNames" id="proUcI">
+                                                <option selected disabled>-- Select Province --</option>
+                                                @foreach (var data in Model.provinces)
+                                                {
+                                                    <option value="@data.ProvinceId">@data.ProvinceName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="offset-1 col-md-10">
+                                        <div class="form-group">
+                                            <select class="form-control" name="DistrictNames" id="districtUcDrop">
+                                                <option selected disabled>-- District --</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="offset-1 col-md-10">
+                                        <div class="form-group">
+                                            <select class="form-control" name="TehsilNames" id="tehsilUcDrop">
+                                                <option selected disabled>-- Tehsil --</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="offset-1 col-md-10">
+                                        <div class="form-group">
+                                            <input type="text" name="UCName" placeholder="UC" class="form-control" id="UCName" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="offset-3 col-md-6">
+                                        <input type="button" value="Submit" class="btn btn-success btn-block" onclick="sendUC()" />
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@*UC Modal End *@
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Content/DataTable/dt.js"></script>
+<link href="~/Content/DataTable/dtb.css" rel="stylesheet" />
+<script type="text/javascript">
+    $('#myBtn').on('click', function () {
+        $('#Province').hide();
+    })
+</script>
+
+<script>
+    // Fill District Dropdown in Tehsil form
+
+    $(document).ready(function () {
+        $(".sidebar-menu .active").removeClass('active');
+        $('#area').addClass("active");
+        $("#proTehI").change(function () {
+            var id = $(this).val();
+            $.ajax({
+                //type: "GET",
+                url: "/AdminPanel/drop",
+                cache: false,
+                type: "POST",
+                //data: data,
+                data: { id: id },
+                success: function (re) {
+
+                    console.log(re);
+                    var s = '<option value="-1">-- Select District --</option>';
+                    for (var i = 0; i < re.length; i++) {
+                        s += '<option value="' + re[i].Value + '">' + re[i].Text + '</option>';
+                    }
+                    $("#districtDrop").html(s);
+
+                }
+            })
+        });
+    });
+
+    //End of Fill District Dropdown in Tehsil form
+    // Fill District Dropdown in UC form
+
+    $(document).ready(function () {
+        $("#proUcI").change(function () {
+            var id = $(this).val();
+            $.ajax({
+                //type: "GET",
+                url: "/AdminPanel/drop",
+                cache: false,
+                type: "POST",
+                //data: data,
+                data: { id: id },
+                success: function (re) {
+
+                    console.log(re);
+                    var s = '<option value="-1">-- Select District --</option>';
+                    for (var i = 0; i < re.length; i++) {
+                        s += '<option value="' + re[i].Value + '">' + re[i].Text + '</option>';
+                    }
+                    $("#districtUcDrop").html(s);
+
+                }
+            })
+        });
+    });
+
+    //End of Fill District Dropdown in UC form
+
+    // Fill Tehsil Dropdown in UC form
+    $(document).ready(function () {
+        $("#districtUcDrop").change(function () {
+            var id = $(this).val();
+            $.ajax({
+                //type: "GET",
+                url: "/AdminPanel/dropUC",
+                cache: false,
+                type: "POST",
+                //data: data,
+                data: { id: id },
+                success: function (re) {
+
+                    console.log(re); 
+                    var s = '<option value="-1">-- Select Distric --</option>';
+                    for (var i = 0; i < re.length; i++) {
+                        s += '<option value="' + re[i].Value + '">' + re[i].Text + '</option>';
+                    }
+                    $("#tehsilUcDrop").html(s);
+
+                }
+            })
+        });
+    });
+
+    //End of Fill Tehsil Dropdown in UC form
+</script>
+@Scripts.Render("~/bundles/alertFile/alert")
+<script>
+    // Province Ajax Start
+    function sendProData() {
+        var proName = $('#pName').val();
+        $.ajax({
+            type: "POST",
+            url: "/AdminPanel/Area",
+            //data: data,
+            data: {
+                ProvinceName: proName
+    },
+            success: function (re) {
+                swal({
+                    title: "Good job!",
+                    text: "Successfully Inserted!",
+                    icon: "success",
+                    button: true,
+
+                }).then((value) => {
+                    
+                    location.reload();
+                });
+            }
+            
+        })
+
+    }
+
+    //Province Ajax End
+
+    // District Ajax start
+
+    function send() {
+        debugger
+        var disName = $('#districtName').val();
+        var proId = $("#proI :selected").val();
+        console.log(proId);
+        $.ajax({
+            type: "POST",
+            url: "/AdminPanel/AreaDistrict",
+            //data: data,
+            data: {
+                DistrictName: disName,
+                ProvinceId: proId
+            },
+            success: function (re) {
+                
+                swal({
+                    title: "Good job!",
+                    text: "Successfully Inserted!",
+                    icon: "success",
+                    button: true,
+
+                }).then((value) => {
+
+                    location.reload();
+                });
+            }
+        })
+
+    }
+
+    //District Ajax End
+
+    //Tehsil Ajax Start
+    function sendTehsil() {
+        debugger
+        var tehName = $('#TehsilName').val();
+        var disId = $("#districtDrop :selected").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/AdminPanel/AreaTehsil",
+            //data: data,
+            data: {
+                TehsilName: tehName,
+                DistrictId: disId
+            },
+            success: function (re) {
+
+                swal({
+                    title: "Good job!",
+                    text: "Successfully Inserted!",
+                    icon: "success",
+                    button: true,
+
+                }).then((value) => {
+
+                    location.reload();
+                });
+            }
+        })
+
+    }
+    //Tehsil Ajax End
+
+    //UC Ajax Start
+    function sendUC() {
+        debugger
+        var ucName = $('#UCName').val();
+        var tehId = $("#tehsilUcDrop :selected").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/AdminPanel/AreaUC",
+            //data: data,
+            data: {
+                UCName: ucName,
+                TehsilId: tehId
+            },
+            success: function (re) {
+
+                swal({
+                    title: "Good job!",
+                    text: "Successfully Inserted!",
+                    icon: "success",
+                    button: true,
+
+                }).then((value) => {
+
+                    location.reload();
+                });
+            }
+        })
+
+    }
+    //UC Ajax End
+    function getProForUp(id) {
+        var id = id;
+        $.ajax({
+            type: "GET",
+            url: "/AdminPanel/chkProvince",
+            //data: data,
+            data: {
+               // id=id
+            },
+            success: function (re) {
+                console.log(re);
+                $("#pName").val(re.ProvinceName);
+                $('#addProvince').click();
+            }
+        })
+
+    }
+
+
+</script>
