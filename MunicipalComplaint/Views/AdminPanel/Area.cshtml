@@ -23,7 +23,7 @@
                                     <a href="#Province" data-target="#Province" class="btn btn-primary btn-sm" id="addProvince" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add Province</a>
                                 </div>
                             </div>
-                            <div class="row mt-2" >
+                            <div class="row mt-2">
                                 <div class="mt-1 col-md-12 col-sm-12">
                                     <table class="table table-bordered table-hover " id="provinceTable">
                                         <thead>
@@ -90,14 +90,14 @@
                                                     <td>@data.DistrictId</td>
                                                     <td>@data.DistrictName</td>
                                                     @foreach (var chkPro in Model.provinces)
-                                                {
-                                                    if (data.ProvinceId == chkPro.ProvinceId)
                                                     {
-                                            <td>
-                                                @chkPro.ProvinceName
-                                            </td>
+                                                        if (data.ProvinceId == chkPro.ProvinceId)
+                                                        {
+                                                            <td>
+                                                                @chkPro.ProvinceName
+                                                            </td>
+                                                        }
                                                     }
-                                                }
                                                     <td>
                                                         <button class="btn btn-primary btn-sm" type="button" onclick="getDistForUp(@data.DistrictId)"><span><i class="fa fa-edit "></i></span></button>
                                                         <button class="btn btn-danger btn-sm" type="button" onclick="deleteDistrict(@data.DistrictId)"><span><i class="fa fa-trash "></i></span></button>
@@ -148,23 +148,23 @@
                                                     <td>@data.TehsilId</td>
                                                     <td>@data.TehsilName</td>
                                                     @foreach (var chkDist in Model.cities)
-                                                {
-                                                    if (data.DistrictId == chkDist.DistrictId)
                                                     {
-                                                <td>
-                                                    @chkDist.DistrictName
-                                                </td>
-                                                        foreach (var chkPro in Model.provinces)
+                                                        if (data.DistrictId == chkDist.DistrictId)
                                                         {
-                                                            if (chkDist.ProvinceId == chkPro.ProvinceId)
+                                                            <td>
+                                                                @chkDist.DistrictName
+                                                            </td>
+                                                            foreach (var chkPro in Model.provinces)
                                                             {
-                                                <td>
-                                                    @chkPro.ProvinceName
-                                                </td>
+                                                                if (chkDist.ProvinceId == chkPro.ProvinceId)
+                                                                {
+                                                                    <td>
+                                                                        @chkPro.ProvinceName
+                                                                    </td>
+                                                                }
                                                             }
                                                         }
                                                     }
-                                                }
                                                     <td>
                                                         <button class="btn btn-primary btn-sm" type="button" onclick="getTehForUp(@data.TehsilId)"><span><i class="fa fa-edit "></i></span></button>
                                                         <button class="btn btn-danger btn-sm" type="button" onclick="deleteTehsil(@data.TehsilId)"><span><i class="fa fa-trash "></i></span></button>
@@ -218,33 +218,33 @@
                                                     <td>@data.UcId</td>
                                                     <td>@data.UCName</td>
                                                     @foreach (var chkTeh in Model.tehsiles)
-                                                {
-                                                    if (data.TehsilId == chkTeh.TehsilId)
                                                     {
-                                                <td>
-                                                    @chkTeh.TehsilName
-                                                </td>
-                                                        foreach (var chkDist in Model.cities)
+                                                        if (data.TehsilId == chkTeh.TehsilId)
                                                         {
-                                                            if (chkTeh.DistrictId == chkDist.DistrictId)
+                                                            <td>
+                                                                @chkTeh.TehsilName
+                                                            </td>
+                                                            foreach (var chkDist in Model.cities)
                                                             {
-                                                <td>
-                                                    @chkDist.DistrictName
-                                                </td>
-                                                                foreach (var chkPro in Model.provinces)
+                                                                if (chkTeh.DistrictId == chkDist.DistrictId)
                                                                 {
-                                                                    if (chkDist.ProvinceId == chkPro.ProvinceId)
+                                                                    <td>
+                                                                        @chkDist.DistrictName
+                                                                    </td>
+                                                                    foreach (var chkPro in Model.provinces)
                                                                     {
-                                                <td>
-                                                    @chkPro.ProvinceName
-                                                </td>
+                                                                        if (chkDist.ProvinceId == chkPro.ProvinceId)
+                                                                        {
+                                                                            <td>
+                                                                                @chkPro.ProvinceName
+                                                                            </td>
+                                                                        }
                                                                     }
                                                                 }
                                                             }
                                                         }
-                                                    }
 
-                                                }
+                                                    }
                                                     <td>
                                                         <button class="btn btn-primary btn-sm" type="button" onclick="getUcForUp(@data.UcId)"><span><i class="fa fa-edit "></i></span></button>
                                                         <button class="btn btn-danger btn-sm" type="button" onclick="deleteUc(@data.UcId)"><span><i class="fa fa-trash "></i></span></button>
@@ -325,9 +325,9 @@
                 <h5 class="modal-title" id="H1Dist" style="font-weight:500;color:#1e90ff">Add District</h5>
                 <h5 class="modal-title" id="H2Dist" style="font-weight:500;color:#1e90ff">Update District</h5>
 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="myBtn">
+                <asp:LinkButton ID="btnCityModalClose" runat="server" aria-hidden="true" style="color:black;font-size:25px;cursor:pointer">
                     &times;
-                </button>
+                </asp:LinkButton>
             </div>
             <div class="modal-body modal-body-sub">
                 <div class="row">
@@ -337,36 +337,36 @@
                             @using (Html.BeginForm("AreaDistrict", "AdminPanel", FormMethod.Post))
                             {
 
-                            <div class="row">
-                                <div class="offset-1 col-md-10">
-                                    <div class="form-group">
-                                        <select class="form-control" name="ProvinceNames" id="proI">
-                                            <option selected disabled>-- Select Provinve --</option>
-                                            @foreach (var data in Model.provinces)
+                                <div class="row">
+                                    <div class="offset-1 col-md-10">
+                                        <div class="form-group">
+                                            <select class="form-control" name="ProvinceNames" id="proI">
+                                                <option selected disabled>-- Select Provinve --</option>
+                                                @foreach (var data in Model.provinces)
                                                 {
-                                                <option value="@data.ProvinceId">@data.ProvinceName</option>
+                                                    <option value="@data.ProvinceId">@data.ProvinceName</option>
                                                 }
-                                        </select>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="offset-1 col-md-10">
+                                        <div class="form-group">
+                                            <input type="text" hidden id="disIdModel" />
+                                            <input type="text" name="DistrictName" placeholder="District" class="form-control" id="districtName" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="offset-3 col-md-6">
+                                        <input type="button" value="Submit" class="btn btn-success btn-block" onclick="send()" id="subDistrict" />
+                                        <input type="button" value="Update" class="btn btn-success btn-block" onclick="updateDistrict()" id="upDistrict" />
+
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="offset-1 col-md-10">
-                                    <div class="form-group">
-                                        <input type="text" hidden id="disIdModel" />
-                                        <input type="text" name="DistrictName" placeholder="District" class="form-control" id="districtName" />
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="offset-3 col-md-6">
-                                    <input type="button" value="Submit" class="btn btn-success btn-block" onclick="send()" id="subDistrict" />
-                                    <input type="button" value="Update" class="btn btn-success btn-block" onclick="updateDistrict()" id="upDistrict" />
-
-                                </div>
-                            </div>
 
                             }
                         </div>
@@ -388,9 +388,9 @@
                 <h5 class="modal-title" id="H1Teh" style="font-weight:500;color:#1e90ff">Add Tehsil</h5>
                 <h5 class="modal-title" id="H2Teh" style="font-weight:500;color:#1e90ff">Update Tehsil</h5>
 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="myBtn">
+                <asp:LinkButton ID="btnTehsilModalClose" runat="server" aria-hidden="true" style="color:black;font-size:25px;cursor:pointer">
                     &times;
-                </button>
+                </asp:LinkButton>
             </div>
             <div class="modal-body modal-body-sub">
                 <div class="row">
@@ -436,8 +436,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="offset-3 col-md-6">
-                                        <input type="button" value="Submit" class="btn btn-success btn-block" onclick="sendTehsil()" id="subTeh"/>
-                                        <input type="button" value="Update" class="btn btn-success btn-block" onclick="UpdateTehsil()" id="upTeh"/>
+                                        <input type="button" value="Submit" class="btn btn-success btn-block" onclick="sendTehsil()" id="subTeh" />
+                                        <input type="button" value="Update" class="btn btn-success btn-block" onclick="UpdateTehsil()" id="upTeh" />
 
                                     </div>
                                 </div>
@@ -461,10 +461,9 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="H1Uc" style="font-weight:500;color:#1e90ff">Add UC</h5>
                 <h5 class="modal-title" id="H2Uc" style="font-weight:500;color:#1e90ff">Update UC</h5>
-
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="myBtnuc">
+                <asp:LinkButton ID="btnUcModalClose" runat="server" aria-hidden="true" style="color:black;font-size:25px;cursor:pointer">
                     &times;
-                </button>
+                </asp:LinkButton>
             </div>
             <div class="modal-body modal-body-sub">
                 <div class="row">
@@ -513,7 +512,7 @@
                                 <div class="row">
                                     <div class="offset-1 col-md-10">
                                         <div class="form-group">
-                                            <input type="text" hidden id="txtUcId"/>
+                                            <input type="text" hidden id="txtUcId" />
                                             <input type="text" name="UCName" placeholder="UC" class="form-control" id="UCName" />
                                         </div>
                                     </div>
@@ -542,8 +541,18 @@
 <link href="~/Content/DataTable/dtb.css" rel="stylesheet" />
 <script type="text/javascript">
     $('#myBtn').on('click', function () {
-        $('#Province').hide();
-    })
+        $('#Province').modal('hide');
+    });
+    
+    $('#btnUcModalClose').on('click', function () {
+        $('#UC').modal('hide');
+    });
+    $('#btnTehsilModalClose').on('click', function () {
+        $('#Tehsil').modal('hide');
+    });
+    $('#btnCityModalClose').on('click', function () {
+        $('#District').modal('hide');
+    });
 </script>
 
 
