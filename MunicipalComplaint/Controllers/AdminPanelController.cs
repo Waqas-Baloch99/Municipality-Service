@@ -33,7 +33,6 @@ namespace MunicipalComplaint.Controllers
         public ActionResult Register(CustomerSignup cus)
         {
             cus.Status = "Active";
-            cus.Type = "Employee";
             cus.createdat = System.DateTime.Today.ToString("dd/MM/yyyy");
             Random pass = new Random();
             int Password = pass.Next(600001, 999998);
@@ -45,6 +44,54 @@ namespace MunicipalComplaint.Controllers
             return Json(cs);
         }
 
+        [HttpGet]
+        public ActionResult ManageEmployee()
+        {
+            List<CustomerSignup> li = _context.customer.Where(X => X.Type == "Employee").ToList();
+            List<Province> pv = _context.province.ToList();
+            List<City> cv = _context.city.ToList();
+            viewModel vm = new viewModel
+            {
+                provinces = pv,
+                signup = li,
+                cities = cv
+
+
+            };
+            return View(vm);
+        }
+        [HttpPost]
+        public ActionResult ChkUpdateUser(int id)
+        {
+            CustomerSignup cs = _context.customer.Single(x => x.UserId == id);
+            return Json(cs);
+        }
+        [HttpPost]
+        public ActionResult UpdateUser(CustomerSignup cs)
+        {
+            CustomerSignup cus = _context.customer.Single(x => x.UserId == cs.UserId);
+            TryUpdateModel(cus);
+            _context.SaveChanges();
+            return Json("done");
+        }
+        [HttpPost]
+        public ActionResult BlockUser(int id)
+        {
+            CustomerSignup cus = _context.customer.Single(x => x.UserId == id);
+            cus.Status = "Block";
+            TryUpdateModel(cus);
+            _context.SaveChanges();
+            return Json("done");
+        }
+        [HttpPost]
+        public ActionResult UnblockUser(int id)
+        {
+            CustomerSignup cus = _context.customer.Single(x => x.UserId == id);
+            cus.Status = "Active";
+            TryUpdateModel(cus);
+            _context.SaveChanges();
+            return Json("done");
+        }
 
         [HttpGet]
         public ActionResult Area()

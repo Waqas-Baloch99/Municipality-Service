@@ -23,30 +23,34 @@
                                     <a href="#Province" data-target="#Province" class="btn btn-primary btn-sm" id="addProvince" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add Province</a>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mt-2" >
                                 <div class="mt-1 col-md-12 col-sm-12">
-                                    <table class="table table-bordered table-hover" id="provinceTable">
-                                        <tr class="bg-dark text-white">
-                                            <th>
-                                                Id
-                                            </th>
-                                            <th>
-                                                Province
-                                            </th>
-                                            <th>Action</th>
-                                        </tr>
-                                        @foreach (var data in Model.provinces)
-                                        {
-                                        <tr>
-                                            <td>@data.ProvinceId</td>
-                                            <td>@data.ProvinceName</td>
-                                            <td>
-                                                <button class="btn btn-primary btn-sm" type="button" onclick="getProForUp(@data.ProvinceId)"><span><i class="fa fa-edit "></i></span></button>
-                                                <button class="btn btn-danger btn-sm" type="button" onclick="deleteProvince(@data.ProvinceId)"><span><i class="fa fa-trash "></i></span></button>
+                                    <table class="table table-bordered table-hover " id="provinceTable">
+                                        <thead>
+                                            <tr class="bg-dark text-white">
+                                                <th>
+                                                    Id
+                                                </th>
+                                                <th>
+                                                    Province
+                                                </th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var data in Model.provinces)
+                                            {
+                                                <tr>
+                                                    <td>@data.ProvinceId</td>
+                                                    <td>@data.ProvinceName</td>
+                                                    <td>
+                                                        <button class="btn btn-primary btn-sm" type="button" onclick="getProForUp(@data.ProvinceId)"><span><i class="fa fa-edit "></i></span></button>
+                                                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteProvince(@data.ProvinceId)"><span><i class="fa fa-trash "></i></span></button>
 
-                                            </td>
-                                        </tr>
-                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -60,44 +64,48 @@
                                     <a href="#District" data-target="#District" class="btn btn-primary btn-sm" id="AddDistrictBtn" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add District</a>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mt-2">
                                 <div class="mt-1 col-md-12 col-sm-12">
                                     <table class="table table-bordered table-hover" id="districtTable">
-                                        <tr class="text-white bg-dark">
-                                            <th>
-                                                Id
-                                            </th>
-                                            <th>
-                                                District
-                                            </th>
-                                            <th>
-                                                Province
-                                            </th>
-                                            <th>
-                                                Action
-                                            </th>
-                                        </tr>
-                                        @foreach (var data in Model.cities)
-                                        {
-                                        <tr>
-                                            <td>@data.DistrictId</td>
-                                            <td>@data.DistrictName</td>
-                                            @foreach (var chkPro in Model.provinces)
+                                        <thead>
+                                            <tr class="text-white bg-dark">
+                                                <th>
+                                                    Id
+                                                </th>
+                                                <th>
+                                                    District
+                                                </th>
+                                                <th>
+                                                    Province
+                                                </th>
+                                                <th>
+                                                    Action
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var data in Model.cities)
+                                            {
+                                                <tr>
+                                                    <td>@data.DistrictId</td>
+                                                    <td>@data.DistrictName</td>
+                                                    @foreach (var chkPro in Model.provinces)
                                                 {
                                                     if (data.ProvinceId == chkPro.ProvinceId)
                                                     {
-                                                <td>
-                                                    @chkPro.ProvinceName
-                                                </td>
+                                            <td>
+                                                @chkPro.ProvinceName
+                                            </td>
                                                     }
                                                 }
-                                            <td>
-                                                <button class="btn btn-primary btn-sm" type="button" onclick="getDistForUp(@data.DistrictId)"><span><i class="fa fa-edit "></i></span></button>
-                                                <button class="btn btn-danger btn-sm" type="button" onclick="deleteDistrict(@data.DistrictId)"><span><i class="fa fa-trash "></i></span></button>
+                                                    <td>
+                                                        <button class="btn btn-primary btn-sm" type="button" onclick="getDistForUp(@data.DistrictId)"><span><i class="fa fa-edit "></i></span></button>
+                                                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteDistrict(@data.DistrictId)"><span><i class="fa fa-trash "></i></span></button>
 
-                                            </td>
-                                        </tr>
-                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -111,56 +119,60 @@
                                     <a href="#Tehsil" data-target="#Tehsil" id="AddTehsilBtn" class="btn btn-primary btn-sm" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add Tehsil</a>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mt-2">
                                 <div class="mt-1 col-md-12 col-sm-12">
                                     <table class="table table-bordered table-hover" id="tehsilTable">
-                                        <tr class="text-white bg-dark">
-                                            <th>
-                                                Id
-                                            </th>
-                                            <th>
-                                                Tehsil
-                                            </th>
-                                            <th>
-                                                District
-                                            </th>
-                                            <th>
-                                                Province
-                                            </th>
-                                            <th>
-                                                Action
-                                            </th>
-                                        </tr>
-                                        @foreach (var data in Model.tehsiles)
-                                        {
-                                            <tr>
-                                                <td>@data.TehsilId</td>
-                                                <td>@data.TehsilName</td>
-                                                @foreach (var chkDist in Model.cities)
+                                        <thead>
+                                            <tr class="text-white bg-dark">
+                                                <th>
+                                                    Id
+                                                </th>
+                                                <th>
+                                                    Tehsil
+                                                </th>
+                                                <th>
+                                                    District
+                                                </th>
+                                                <th>
+                                                    Province
+                                                </th>
+                                                <th>
+                                                    Action
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var data in Model.tehsiles)
+                                            {
+                                                <tr>
+                                                    <td>@data.TehsilId</td>
+                                                    <td>@data.TehsilName</td>
+                                                    @foreach (var chkDist in Model.cities)
                                                 {
                                                     if (data.DistrictId == chkDist.DistrictId)
                                                     {
-                                                        <td>
-                                                            @chkDist.DistrictName
-                                                        </td>
+                                                <td>
+                                                    @chkDist.DistrictName
+                                                </td>
                                                         foreach (var chkPro in Model.provinces)
                                                         {
                                                             if (chkDist.ProvinceId == chkPro.ProvinceId)
                                                             {
-                                                                <td>
-                                                                    @chkPro.ProvinceName
-                                                                </td>
+                                                <td>
+                                                    @chkPro.ProvinceName
+                                                </td>
                                                             }
                                                         }
                                                     }
                                                 }
-                                                <td>
-                                                    <button class="btn btn-primary btn-sm" type="button" onclick="getTehForUp(@data.TehsilId)"><span><i class="fa fa-edit "></i></span></button>
-                                                    <button class="btn btn-danger btn-sm" type="button" onclick="deleteTehsil(@data.TehsilId)"><span><i class="fa fa-trash "></i></span></button>
+                                                    <td>
+                                                        <button class="btn btn-primary btn-sm" type="button" onclick="getTehForUp(@data.TehsilId)"><span><i class="fa fa-edit "></i></span></button>
+                                                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteTehsil(@data.TehsilId)"><span><i class="fa fa-trash "></i></span></button>
 
-                                                </td>
-                                            </tr>
-                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -174,55 +186,58 @@
                                     <a href="#UC" data-target="#UC" class="btn btn-primary btn-sm" id="AddUcBtn" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add UC</a>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mt-2">
                                 <div class="mt-1 col-md-12 col-sm-12">
                                     <table class="table table-bordered table-hover" id="UCTable">
-                                        <tr class="bg-dark text-white">
-                                            <th>
-                                                Id
-                                            </th>
-                                            <th>
-                                                UC
-                                            </th>
-                                            <th>
-                                                Tehsil
-                                            </th>
-                                            <th>
-                                                District
-                                            </th>
-                                            <th>
-                                                Province
-                                            </th>
-                                            <th>
-                                                Action
-                                            </th>
-                                        </tr>
-                                        @foreach (var data in Model.ucs)
-                                        {
-                                            <tr>
-                                                <td>@data.UcId</td>
-                                                <td>@data.UCName</td>
-                                                @foreach (var chkTeh in Model.tehsiles)
+                                        <thead>
+                                            <tr class="bg-dark text-white">
+                                                <th>
+                                                    Id
+                                                </th>
+                                                <th>
+                                                    UC
+                                                </th>
+                                                <th>
+                                                    Tehsil
+                                                </th>
+                                                <th>
+                                                    District
+                                                </th>
+                                                <th>
+                                                    Province
+                                                </th>
+                                                <th>
+                                                    Action
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var data in Model.ucs)
+                                            {
+                                                <tr>
+                                                    <td>@data.UcId</td>
+                                                    <td>@data.UCName</td>
+                                                    @foreach (var chkTeh in Model.tehsiles)
                                                 {
                                                     if (data.TehsilId == chkTeh.TehsilId)
                                                     {
-                                                        <td>
-                                                            @chkTeh.TehsilName
-                                                        </td>
+                                                <td>
+                                                    @chkTeh.TehsilName
+                                                </td>
                                                         foreach (var chkDist in Model.cities)
                                                         {
                                                             if (chkTeh.DistrictId == chkDist.DistrictId)
                                                             {
-                                                                <td>
-                                                                    @chkDist.DistrictName
-                                                                </td>
+                                                <td>
+                                                    @chkDist.DistrictName
+                                                </td>
                                                                 foreach (var chkPro in Model.provinces)
                                                                 {
                                                                     if (chkDist.ProvinceId == chkPro.ProvinceId)
                                                                     {
-                                                                        <td>
-                                                                            @chkPro.ProvinceName
-                                                                        </td>
+                                                <td>
+                                                    @chkPro.ProvinceName
+                                                </td>
                                                                     }
                                                                 }
                                                             }
@@ -230,13 +245,14 @@
                                                     }
 
                                                 }
-                                                <td>
-                                                    <button class="btn btn-primary btn-sm" type="button" onclick="getUcForUp(@data.UcId)"><span><i class="fa fa-edit "></i></span></button>
-                                                    <button class="btn btn-danger btn-sm" type="button" onclick="deleteUc(@data.UcId)"><span><i class="fa fa-trash "></i></span></button>
+                                                    <td>
+                                                        <button class="btn btn-primary btn-sm" type="button" onclick="getUcForUp(@data.UcId)"><span><i class="fa fa-edit "></i></span></button>
+                                                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteUc(@data.UcId)"><span><i class="fa fa-trash "></i></span></button>
 
-                                                </td>
-                                            </tr>
-                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -534,3 +550,37 @@
 @Scripts.Render("~/bundles/alertFile/alert")
 <script src="~/Scripts/AreasAjax/areaAjax.js"></script>
 <script src="~/Scripts/AreasAjax/AreaDel.js"></script>
+<script>
+    $('#provinceTable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+    });
+    $('#districtTable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+    });
+    $('#tehsilTable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+    });
+    $('#UCTable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+    });
+</script>

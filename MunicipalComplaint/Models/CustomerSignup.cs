@@ -10,7 +10,7 @@ namespace MunicipalComplaint.Models
     public class CustomerSignup
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key,Column(Order = 0)]
+        [Key, Column(Order = 0)]
         public int UserId { get; set; }
 
         [Required]

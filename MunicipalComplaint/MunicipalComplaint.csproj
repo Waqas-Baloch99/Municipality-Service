@@ -160,9 +160,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007131050092_FirstMig.cs" />
-    <Compile Include="Migrations\202007131050092_FirstMig.Designer.cs">
-      <DependentUpon>202007131050092_FirstMig.cs</DependentUpon>
+    <Compile Include="Migrations\202007151154518_newDb.cs" />
+    <Compile Include="Migrations\202007151154518_newDb.Designer.cs">
+      <DependentUpon>202007151154518_newDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
@@ -621,6 +621,7 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\Shared\CustomerLayout.cshtml" />
+    <Content Include="Views\AdminPanel\ManageEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -645,12 +646,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007131050092_FirstMig.resx">
-      <DependentUpon>202007131050092_FirstMig.cs</DependentUpon>
-    </EmbeddedResource>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <EmbeddedResource Include="Migrations\202007151154518_newDb.resx">
+      <DependentUpon>202007151154518_newDb.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
