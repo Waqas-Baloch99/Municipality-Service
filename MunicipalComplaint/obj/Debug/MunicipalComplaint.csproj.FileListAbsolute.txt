@@ -219,3 +219,5 @@ C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debu
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.csproj.GenerateResource.Cache
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.dll
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.pdb
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\bin\itextsharp.dll
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\bin\itextsharp.xml
