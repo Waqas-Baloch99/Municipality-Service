@@ -1,43 +1,31 @@
 ﻿
 @{
-    ViewBag.Title = "Home";
+    ViewBag.Title = "Services";
     Layout = "~/Views/Shared/CustomerLayout.cshtml";
 }
-<style>
-    .banner-area {
-        background: url('../../Content/Images/khyber-gate.jpg') center;
-        background-size: cover;
-    }
-</style>
-<section class="banner-area relative" id="home" style="height:550px">
-    <div class="overlay overlay-bg" ></div>
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
     <div class="container">
-        <div class="row fullscreen d-flex align-items-center ">
-            <div class="banner-content col-lg-7 col-md-6 ">
-                <h6 class="text-white ">
-                    It is the State which educates its citizens in civic virtue, gives them a consciousness of their mission and welds them into unity.
-                </h6>
-                <h2 class="text-white text-uppercase">
-                    Municipal Complaint Cell
-                </h2>
-                <p class="pt-20 pb-20 text-white">
-                    For Betterment of local governance, this portal is the solution to the problem faced by local public in lodging any kind of complain that directly falls under municipility services.
-                </p>
-                <a href="@Url.Action("Index","AdminPanel")" class="primary-btn text-uppercase">Register Complaints</a>
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Services
+                </h1>
+                <p class="text-white link-nav"><a href="/Customer/Home">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="/Customer/Services"> Services</a></p>
             </div>
-            
         </div>
     </div>
 </section>
+
 <!-- End banner Area -->
 <!-- Start feature Area -->
-<section class="feature-area section-gap" id="service">
+<section class="feature-area section-gap mt-5" id="service">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-md-8 pb-40 header-text">
                 <h1>What Services we offer to our public</h1>
                 <p>
-                   We are here to help our people with full dedication.
+                    We are here to help our people with full dedication.
                 </p>
             </div>
         </div>
@@ -128,30 +116,7 @@
 </section>
 <!-- End feature Area -->
 <!-- Start home-about Area -->
-<section class="home-about-area" id="about">
-    <div class="container-fluid">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-lg-6 no-padding home-about-left">
-                <img class="img-fluid"  src="~/Content/Images/minare pakistan.jpg" />
-            </div>
-            <div class="col-lg-6 no-padding home-about-right">
-                <h1>
-                    Offering Online Services <br>
-                    For Public Convenience
-                </h1>
-                <p>
-                    <span>The main purpose behind designing this portal is the convenience of public</span>
-                </p>
-                <p style="text-align:justify;">
-                    Beside convenience this portal offers a great way of doing work to both public servants and respective departments, also it will
-                    help top management to check performance of each district in a very efficient way. The top management can view pending and completed complaints of 
-                    each district just in a matter of seconds through our designed portal.
-                </p>
-                <a class="text-uppercase primary-btn" href="/Customer/Login">Register Complaint</a>
-            </div>
-        </div>
-    </div>
-</section>
+
 <!-- End home-about Area -->
 <section class="reviews-area section-gap" id="review">
     <div class="container">
@@ -159,7 +124,7 @@
             <div class="col-md-8 pb-40 header-text text-center">
                 <h1>Features that Made this Portal Unique</h1>
                 <p class="mb-10 text-center">
-                 Convenience, Performance, Dedication & Management
+                    Convenience, Performance, Dedication & Management
                 </p>
             </div>
         </div>
@@ -201,7 +166,7 @@
                         Designed for Local Bodies
                     </h4>
                     <p>
-                       One of its core function is that it is designed for local bodies not at national level like citizen portal application
+                        One of its core function is that it is designed for local bodies not at national level like citizen portal application
                     </p>
                     <div class="star">
                         <span class="fa fa-star checked"></span>
@@ -216,68 +181,3 @@
     </div>
 </section>
 <!-- End reviews Area -->
-<!-- Start callaction Area -->
-<section class="callaction-area relative section-gap">
-    <div class="overlay overlay-bg"></div>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <h1 class="text-white">Breif Introduction</h1>
-                <p>
-                    This Application will help the common people under the jurisdiction of a municipal corporation to register their
-                    grievances about day to day problems in their ward through a web application. It will provide a common man
-                    to deliver his complaints and problems to municipal authority as well as let the municipal authorities to address
-                    the problem in a short period of time. This application provides an interface to register one’s complained and
-                    follow it up. It provides a camera module which help clicking up a picture of any problem that people are facing
-                    and upload its image along with the complaint.
-                </p>
-                <a class="callaction-btn text-uppercase" href="/Customer/CustomerSignUp">Register Today</a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End callaction Area -->
-<script>
-    function DateValidationStart() {
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth() + 1; //January is 0!
-        var yyyy = today.getFullYear();
-        if (dd < 10) {
-            dd = '0' + dd
-        }
-        if (mm < 10) {
-            mm = '0' + mm
-        }
-
-        today = mm + '/' + dd + '/' + yyyy;
-        var date1 = document.getElementById("datepicker").value;
-        if (date1 < today) {
-            alert("Please Select a Valid Date");
-            document.getElementById("datepicker").value = "";
-        }
-    }
-    function DateValidationEnd() {
-        var date1 = document.getElementById("datepicker").value;
-        var date2 = document.getElementById("datepicker2").value;
-        if (date2 < date1) {
-            alert("Please Select a Valid Date");
-            document.getElementById("datepicker2").value = "";
-            document.getElementById("days").value = "";
-        }
-        d1 = date1.substring(3, 5);
-        d2 = date2.substring(3, 5);
-        var date = d2 - d1;
-        if (date > 1) {
-            document.getElementById("days").value = date;
-        } else {
-            document.getElementById("days").value = "";
-        }
-    }
-</script>
-
-
-
-
-
-

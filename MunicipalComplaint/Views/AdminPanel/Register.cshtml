@@ -3,7 +3,7 @@
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
-@Scripts.Render("~/bundles/AdminJS")
+@* @Scripts.Render("~/bundles/AdminJS") *@
 <section class="section">
     <div class="container mt-5">
         <div class="row">
@@ -100,11 +100,11 @@
                                                     }
 
                                                 </td>
-                                                <td></td>
+                                                
                                             </tr>
                                         }
                                     </tbody>
-                                    @*<tfoot>
+                                    <tfoot>
                                         <tr>
                                             <th>
                                                 Name
@@ -135,7 +135,7 @@
                                             </th>
                                         </tr>
 
-                                    </tfoot>*@
+                                    </tfoot>
                                 </table>
 
                             </div>
@@ -157,9 +157,9 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="H1" style="font-weight:500;color:#1e90ff">Register User</h5>
                 <h5 class="modal-title" id="H2" style="font-weight:500;color:#1e90ff">Update User</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="myBtn">
+                <asp:LinkButton ID="btnUserModalClose" runat="server" aria-hidden="true" style="color:black;font-size:25px;cursor:pointer">
                     &times;
-                </button>
+                </asp:LinkButton>
             </div>
             <div class="modal-body modal-body-sub">
                 <div class="row">
@@ -202,35 +202,33 @@
                                     </div>
 
                                 </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="d-block"><b>Province</b></label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="d-block"><b>Province</b></label>
 
-                                                <select class="form-control" name="DropDownProvince" id="provinceDrop">
-                                                    <option selected disabled>-- Select Province --</option>
+                                            <select class="form-control" name="DropDownProvince" id="provinceDrop">
+                                                <option selected disabled>-- Select Province --</option>
 
-                                                    @foreach (var data in Model.provinces)
-                                                    {
-                                                        <option value="@data.ProvinceId">@data.ProvinceName</option>
-                                                    }
+                                                @foreach (var data in Model.provinces)
+                                                {
+                                                    <option value="@data.ProvinceId">@data.ProvinceName</option>
+                                                }
 
-                                                </select>
-                                            </div>
+                                            </select>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="d-block"><b>District</b></label>
-
-                                                <select class="form-control" name="District" id="districtDrop">
-                                                    <option selected disabled>-- Select District --</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="d-block"><b>District</b></label>
+                                            <select class="form-control" name="District" id="districtDrop">
+                                                <option selected disabled>-- Select District --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -264,214 +262,13 @@
         </div>
     </div>
 </div>
-@Scripts.Render("~/bundles/alertFile/alert")
+
 @*Register Model End*@
-
-
-<script>
-    // Fill Tehsil Dropdown in UC form
-    $(document).ready(function () {
-        $('#BtnUpdate').hide();
-        $('#H2').hide();
-        //Datatable
-        $(".sidebar-menu .active").removeClass('active');
-        $('#register').addClass("active");
-        $('#usertbl').DataTable({
-            "paging": true,
-            "lengthChange": true,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-            "autoWidth": true,
-        });
-
-
-        $("#provinceDrop").change(function () {
-            var id = $(this).val();
-            $.ajax({
-                //type: "GET",
-                url: "/AdminPanel/drop",
-                cache: false,
-                type: "POST",
-                //data: data,
-                data: { id: id },
-                success: function (re) {
-
-                    console.log(re);
-                    var s = '<option value= "-1" > --Select District --</option>';
-                    for (var i = 0; i < re.length; i++) {
-                        s += '<option value= "' + re[i].Value + '" > ' + re[i].Text + '</option> ';
-                    }
-                    $("#districtDrop").html(s);
-
-                }
-            })
-        });
-    });
-    //End of Fill Tehsil Dropdown in UC form
-    function sendForm() {
-        var Username = $('#Username').val();
-        var disId = $("#districtDrop :selected").val();
-        var Email = $('#Email').val();
-        var CNIC = $('#CNIC').val();
-        var Contact = $('#Contact').val();
-        var Address = $('#Address').val();
-        var Type = $("#roleDrop :selected").val();
-
-        $.ajax({
-            type: "POST",
-            url: "/AdminPanel/Register",
-            //data: data,
-            data: {
-                Username: Username,
-                DistrictId: disId,
-                Contact: Contact,
-                CNIC: CNIC,
-                Email: Email,
-                Address: Address,
-                Type: Type
-            },
-            success: function (re) {
-
-                swal({
-                    title: "Good job!",
-                    text: "Successfully Inserted!",
-                    icon: "success",
-                    button: true,
-
-                }).then((value) => {
-                    //swal("Reloading Informtion, Please wait...");
-                    location.reload();
-                });
-            }
-        });
-
-    }
-    function updateuser(id) {
-        $('#BtnRegister').hide();
-        $('#BtnUpdate').show();
-        $('#H2').show();
-        $('#H1').hide();
-        var id = id;
-        $.ajax({
-            type: "POST",
-            url: "/AdminPanel/ChkUpdateUser",
-            data: { id: id },
-            success: function (re) {
-                $('#userid').val(re.UserId);
-                $('#Username').val(re.Username);
-                $("#districtDrop").val(re.DistrictId);
-                $('#Email').val(re.Email);
-                $('#CNIC').val(re.CNIC);
-                $('#Contact').val(re.Contact);
-                $('#Address').val(re.Address);
-                $("#roleDrop ").val(re.Type);
-                $("#usermodel").click()
-            }
-        });
-    }
-    $('#usermodel').click(function () {
-        $('#BtnUpdate').hide();
-        $('#H2').hide();
-        $('#BtnRegister').show();
-        $('#H1').show();
-        var Username = $('#Username').val("");
-        var disId = $("#districtDrop ").val("");
-        var Email = $('#Email').val("");
-        var CNIC = $('#CNIC').val("");
-        var Contact = $('#Contact').val("");
-        var Address = $('#Address').val("");
-        var Type = $("#roleDrop ").val("");
-    });
-
-
-    function sendUpdateForm() {
-        var Uid = $('#userid').val();
-        var Username = $('#Username').val();
-        var disId = $("#districtDrop :selected").val();
-        var Email = $('#Email').val();
-        var CNIC = $('#CNIC').val();
-        var Contact = $('#Contact').val();
-        var Address = $('#Address').val();
-        var Type = $("#roleDrop :selected").val();
-
-        $.ajax({
-            type: "POST",
-            url: "/AdminPanel/UpdateUser",
-            //data: data,
-            data: {
-                UserId: Uid,
-                Username: Username,
-                DistrictId: disId,
-                Contact: Contact,
-                CNIC: CNIC,
-                Email: Email,
-                Address: Address,
-                Type: Type
-            },
-            success: function (re) {
-
-                swal({
-                    title: "Good job!",
-                    text: "Successfully Updated!",
-                    icon: "success",
-                    button: true,
-
-                }).then((value) => {
-                    //swal("Reloading Informtion, Please wait...");
-                    location.reload();
-                });
-            }
-        });
-
-    }
-    function suspenduser(id) {
-        $.ajax({
-            type: "POST",
-            url: "/AdminPanel/BlockUser",
-            //data: data,
-            data: {
-                id: id
-            },
-            success: function (re) {
-                swal({
-                    title: "Good job!",
-                    text: "Successfully Blocked!",
-                    icon: "success",
-                    button: true,
-                }).then((value) => {
-                    //swal("Reloading Informtion, Please wait...");
-                    location.reload();
-                });
-            }
-        });
-    }
-
-    function unblockuser(id) {
-        $.ajax({
-            type: "POST",
-            url: "/AdminPanel/UnblockUser",
-            data:
-            {
-                id: id
-            },
-            success: function (re) {
-                swal({
-                    title: "Good job!",
-                    text: "Successfully Unblocked",
-                    icon: "success",
-                    button: true,
-                }).then((value) => {
-                    //swal("Reloading Informtion, Please wait...");
-                    location.reload();
-                });
-            }
-        })
-    }
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Content/DataTable/dt.js"></script>
+<link href="~/Content/DataTable/dtb.css" rel="stylesheet" />
+@Scripts.Render("~/bundles/alertFile/alert")
+<script src="~/Scripts/RegisterAjax/RegisterAjax.js"></script>
 
 
 

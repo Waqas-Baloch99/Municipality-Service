@@ -61,6 +61,11 @@ namespace MunicipalComplaint.Controllers
             return View(vm);
         }
         [HttpPost]
+        public ActionResult FillReport(int id) {
+            List<CustomerSignup> licus = _context.customer.Where(x => x.DistrictId == id).ToList();
+            return Json(licus);
+        }
+        [HttpPost]
         public ActionResult ChkUpdateUser(int id)
         {
             CustomerSignup cs = _context.customer.Single(x => x.UserId == id);

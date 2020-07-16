@@ -26,7 +26,7 @@
                             <div class="col-sm-12 col-md-12">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <select class="form-control" name="DistrictNames" id="districtDrop">
+                                        <select class="form-control" name="DistrictNames" id="selectDistrict">
                                             @foreach (var data in Model.cities)
                                             {
                                                 <option value="@data.DistrictId">@data.DistrictName</option>
@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                                 <div class="row"></div>
-                                <table class="table table-hover table-bordered">
+                                <table class="table table-hover table-bordered" id="#userReportTbl">
                                     <thead>
                                         <tr>
                                             <th>
@@ -168,7 +168,7 @@
         //Datatable
         $(".sidebar-menu .active").removeClass('active');
         $('#register').addClass("active");
-        $('#usertbl').DataTable({
+        $('#userReportTbl').DataTable({
             "paging": true,
             "lengthChange": true,
             "searching": true,
@@ -178,31 +178,29 @@
         });
     });
 
-    $('#districtDrop').change(function () {
-        {
-            var tehId = $("#districtDrop :selected").val();
-            console.log(tehId);
-            $.ajax({
-                type: "POST",
-                url: "/AdminPanel/FillReport",
-                //data: data,
-                data: {
-                    id: tehId
-                },
-                success: function (re) {
-                    console.log(re);
-                    $('#usertbl').empty();
-                    $('#usertbl').append('<tr class="table table-hover table-bordered"><th>UserName</th><th>Email</th><th>CNIC</th><th>Contact</th><th>Status</th><th>Address</th><th>City</th></tr>');
-                    for (var i = 0; i < re.length; i++) {
-                        var id = re[i].DistrictId;
-                        var row = '<tr><td>' + re[i].Username + '</td><td>' + re[i].Email + '</td><td>' + re[i].CNIC + '</td><td>' + re[i].Contact + '</td><td>' + re[i].Status + '</td><td>' + re[i].Address + '</td>';
-                        row = row + '<td>' + getCity(re[i].DistrictId) + '</td></tr>';
-                        $('#usertbl').append(row);
-                    }
-
-
-
+    $('#selectDistrict').change(function () {
+        var tehId = $("#selectDistrict :selected").val();
+        console.log(tehId);
+        $.ajax({
+            type: "POST",
+            url: "/AdminPanel/FillReport",
+            //data: data,
+            data: {
+                id: tehId
+            },
+            success: function (re) {
+                console.log(re);
+                if (re){ 
+                $('#userReportTbl').empty();
+                $('#userReportTbl').append('<tr class="table table-hover table-bordered"><th>UserName</th><th>Email</th><th>CNIC</th><th>Contact</th><th>Status</th><th>Address</th><th>City</th></tr>');
+                for (var i = 0; i < re.length; i++) {
+                    var id = re[i].DistrictId;
+                    var row = '<tr><td>' + re[i].Username + '</td><td>' + re[i].Email + '</td><td>' + re[i].CNIC + '</td><td>' + re[i].Contact + '</td><td>' + re[i].Status + '</td><td>' + re[i].Address + '</td></tr>';
+                    $('#userReportTbl').append(row);
                 }
+                }
+            }
 
-            });
+        });
+    });
 </script>

@@ -82,7 +82,6 @@ namespace MunicipalComplaint
             bundles.Add(new StyleBundle("~/Content/AdminCss").Include(
                      "~/Content/AdminCss/bootstrap.min.css",
                      "~/Content/AdminCss/demo.css",
-                     "~/Content/AdminCss/ModalStlyes.css",
                      "~/Content/AdminCss/flag-icon.min.css",
                      "~/Content/AdminCss/fontawesome-all.min.css",
                      "~/Content/AdminCss/ionicons.min.css",

@@ -15,8 +15,31 @@ namespace MunicipalComplaint.Controllers
         // GET: Customer
         public ActionResult Home()
         {
-            
             return View();
+        }
+        public ActionResult About()
+        {
+            return View();
+        }
+        public ActionResult Services()
+        {
+            return View();
+        }
+        public ActionResult Contact() => View(); 
+        [HttpPost]
+        public ActionResult contactUs(ContactForm form)
+        {
+            form.AddedOn = DateTime.Now;
+            _context.ContactMessage.Add(form);
+            _context.SaveChanges();
+            return View("Contact");
+        }
+        public ActionResult Complaint() => View();
+        public ActionResult ManageComplaint() => View();
+        [HttpPost]
+        public ActionResult AddComplaint()
+        {
+            return View("Complaint");
         }
         public ActionResult CustomerSignUp()
         {
