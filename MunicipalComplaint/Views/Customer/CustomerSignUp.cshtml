@@ -206,7 +206,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-repeat"></i></span>
                                         </div>
-                                        <input type="password" class="form-control" placeholder="Confirm Password" name="UserConfim" maxlength="25">
+                                        <input type="password" class="form-control" id="CPassword" placeholder="Confirm Password" name="UserConfim" maxlength="25">
                                     </div>
                                 </div>
 
@@ -274,6 +274,7 @@
 </body>
 </html>
 <script src="~/Scripts/jquery-1.10.2.js"></script>
+@Scripts.Render("~/bundles/alertFile/alert")
 <script>
     // Fill Tehsil Dropdown in UC form
     $(document).ready(function () {
@@ -327,8 +328,22 @@
             success: function (re) {
 
                 if (re == "done") {
-                    $('#msg').html("Successfully Inserted");
-                    $('#msg').fadeOut(4000);
+                    swal({
+                        title: "Good job!",
+                        text: "Successfully Registered!",
+                        icon: "success",
+                        
+
+                    }).then((value) => {
+                        $('#Username').val('');
+                         $("#districtDrop").val();
+                        $('#Email').val('');
+                        $('#CNIC').val('');
+                        $('#Contact').val('');
+                        $('#Password').val('');
+                        $('#CPassword').val('');
+                        $('#Address').val('');
+                    });
 
                 }
             }

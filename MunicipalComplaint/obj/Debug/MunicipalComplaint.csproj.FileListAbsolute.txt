@@ -224,3 +224,4 @@ C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\bin\itextsharp.dll
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\bin\itextsharp.xml
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.newDb.resources
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations._new.resources
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations._new.resources

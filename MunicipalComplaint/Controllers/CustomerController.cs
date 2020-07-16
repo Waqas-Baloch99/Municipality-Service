@@ -34,7 +34,15 @@ namespace MunicipalComplaint.Controllers
             _context.SaveChanges();
             return View("Contact");
         }
-        public ActionResult Complaint() => View();
+        [HttpGet]
+        public ActionResult Complaint() {
+            List<UC> u = _context.uc.ToList();
+            viewModel vm = new viewModel
+            {
+               ucs=u
+            };
+            return View(vm);
+        }
         public ActionResult ManageComplaint() => View();
         [HttpPost]
         public ActionResult AddComplaint()

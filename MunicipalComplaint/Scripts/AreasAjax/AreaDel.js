@@ -124,7 +124,7 @@ function deleteUc(id) {
 
     swal({
         title: "Are you sure?",
-        text: "Once deleted, you'r all record related to Uc will be delete!",
+        text: "Once deleted, you'r all record related to Town will be delete!",
         icon: "warning",
         buttons: true,
         dangerMode: true,
