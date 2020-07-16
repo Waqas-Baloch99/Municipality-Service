@@ -107,11 +107,7 @@
                                 </ul>*@
                         </li>
                         <li>
-                            <a href="" class="has-dropdown"><i class="fa fa-user"></i><span>Employees</span></a>
-                            <ul class="menu-dropdown">
-                                <li><a href="/Customer/AddCustomer"><i class="fa fa-folder"></i>Manage Employee</a></li>
-                                <li><a href="/Customer/ViewCustomer"><i class="fa fa-mail-forward"></i>Report</a></li>
-                            </ul>
+                            <a href="@Url.Action("ManageEmployee","AdminPanel")"><i class="fa fa-user"></i><span>Manage Employee</span></a>
                         </li>
                         @*  <li>
                                 <a href="" class="has-dropdown"><i class="ion ion-ios-albums-outline"></i><span>Driver Managment</span></a>
@@ -153,7 +149,7 @@
             </div>
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; 2020 <div class="bullet"></div> Design By Zahid Ullah
+                    Copyright &copy; 2020 <div class="bullet"></div>
                 </div>
                 <div class="footer-right"></div>
             </footer>

@@ -7,13 +7,13 @@ namespace MunicipalComplaint.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class FirstMig : IMigrationMetadata
+    public sealed partial class _new : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FirstMig));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_new));
         
         string IMigrationMetadata.Id
         {
-            get { return "202007131050092_FirstMig"; }
+            get { return "202007160521102_new"; }
         }
         
         string IMigrationMetadata.Source

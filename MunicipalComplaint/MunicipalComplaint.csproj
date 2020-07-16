@@ -52,6 +52,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -157,12 +160,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007131050092_FirstMig.cs" />
-    <Compile Include="Migrations\202007131050092_FirstMig.Designer.cs">
-      <DependentUpon>202007131050092_FirstMig.cs</DependentUpon>
+    <Compile Include="Migrations\202007151154518_newDb.cs" />
+    <Compile Include="Migrations\202007151154518_newDb.Designer.cs">
+      <DependentUpon>202007151154518_newDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007160521102_new.cs" />
+    <Compile Include="Migrations\202007160521102_new.Designer.cs">
+      <DependentUpon>202007160521102_new.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\ContactForm.cs" />
     <Compile Include="Models\CustomerSignup.cs" />
     <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\Province.cs" />
@@ -369,6 +377,7 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\Linearicons-Free.svg" />
+    <Content Include="Content\Images\callaction-bg.JPG" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\Faisla Masjid.jpg" />
     <Content Include="Content\Images\khyber-gate.jpg" />
@@ -594,6 +603,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\RegisterAjax\RegisterAjax.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config" />
@@ -618,6 +628,12 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\Shared\CustomerLayout.cshtml" />
+    <Content Include="Views\AdminPanel\ManageEmployee.cshtml" />
+    <Content Include="Views\Customer\About.cshtml" />
+    <Content Include="Views\Customer\Services.cshtml" />
+    <Content Include="Views\Customer\Contact.cshtml" />
+    <Content Include="Views\Customer\Complaint.cshtml" />
+    <Content Include="Views\Customer\ManageComplaint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -642,8 +658,14 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007131050092_FirstMig.resx">
-      <DependentUpon>202007131050092_FirstMig.cs</DependentUpon>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007151154518_newDb.resx">
+      <DependentUpon>202007151154518_newDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007160521102_new.resx">
+      <DependentUpon>202007160521102_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

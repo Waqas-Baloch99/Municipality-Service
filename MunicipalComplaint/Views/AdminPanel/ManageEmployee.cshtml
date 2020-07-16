@@ -1,0 +1,206 @@
+﻿@model MunicipalComplaint.ViewModel.viewModel
+
+@{
+    ViewBag.Title = "ManageEmployee";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@Scripts.Render("~/bundles/AdminJS")
+<section class="section">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 col-sm-12  col-md-12  col-lg-12 col-xl-12 ">
+                <div class="card card-primary">
+                    <div class="card-primary">
+                        <h1 class="text-primary text-center text-uppercase">Manage Employees</h1>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="offset-8 offset-sm-8 col-sm-4 offset-md-10 col-md-2">
+                                <button onclick="DistDrop()" id="Download" class="btn btn-success btn-sm" style="color:white"><span><i class="fa fa-download" style="color:white"></i></span>Download</button>
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row" style="overflow:auto">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" name="DistrictNames" id="selectDistrict">
+                                            @foreach (var data in Model.cities)
+                                            {
+                                                <option value="@data.DistrictId">@data.DistrictName</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <table class="table table-hover table-bordered" id="#userReportTbl">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Name
+                                            </th>
+                                            <th>
+                                                Email
+                                            </th>
+                                            <th>
+                                                CNIC
+                                            </th>
+                                            <th>
+                                                Contact
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                            @*<th>
+                                                    District
+                                                </th>*@
+                                            <th>
+                                                Address
+                                            </th>
+                                            @*<th>
+                                                    Update
+                                                </th>
+                                                <th>
+                                                    Block/Unblock
+                                                </th>*@
+                                        </tr>
+                                    </thead>
+                                    <tbody id="usertbl">
+                                        @foreach (var data in Model.signup)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @data.Username
+                                                </td>
+                                                <td>
+                                                    @data.Email
+                                                </td>
+                                                <td>
+                                                    @data.CNIC
+                                                </td>
+                                                <td>
+                                                    @data.Contact
+                                                </td>
+                                                <td>
+                                                    @data.Status
+                                                </td>
+                                                @*<td>
+                                                        @foreach (var chkdist in Model.cities)
+                                                        {
+                                                            if (data.DistrictId == chkdist.DistrictId)
+                                                            {
+                                                                @chkdist.DistrictName
+                                                            }
+                                                        }
+                                                    </td>*@
+                                                <td>
+                                                    @data.Address
+                                                </td>
+                                                @*<td>
+                                                        <button class="btn btn-primary btn-sm" type="button" onclick="updateuser(@data.UserId)"><span><i class="fa fa-edit "></i></span></button>
+                                                    </td>
+                                                    <td>
+                                                        @if (data.Status == "Active")
+                                                        {
+                                                            <button class="btn btn-danger btn-sm" data-toggle="tooltip" title="Block User!" type="button" onclick="suspenduser(@data.UserId)"><span><i class="fa fa-ban "></i></span></button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button class="btn btn-success btn-sm" data-toggle="tooltip" title="UnBlock User!" type="button" onclick="unblockuser(@data.UserId)"><span><i class="fa fa-check-circle "></i></span></button>
+                                                        }
+
+                                                    </td>*@
+                                                <td></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                    @*<tfoot>
+                                            <tr>
+                                                <th>
+                                                    Name
+                                                </th>
+                                                <th>
+                                                    Email
+                                                </th>
+                                                <th>
+                                                    CNIC
+                                                </th>
+                                                <th>
+                                                    Contact
+                                                </th>
+                                                <th>
+                                                    Status
+                                                </th>
+                                                <th>
+                                                    District
+                                                </th>
+                                                <th>
+                                                    Address
+                                                </th>
+                                                <th>
+                                                    Update
+                                                </th>
+                                                <th>
+                                                    Block/Unblock
+                                                </th>
+                                            </tr>
+
+                                        </tfoot>*@
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+@Scripts.Render("~/bundles/alertFile/alert")
+<script>
+    $(document).ready(function () {
+        //Datatable
+        $(".sidebar-menu .active").removeClass('active');
+        $('#register').addClass("active");
+        $('#userReportTbl').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+        });
+    });
+
+    $('#selectDistrict').change(function () {
+        var tehId = $("#selectDistrict :selected").val();
+        console.log(tehId);
+        $.ajax({
+            type: "POST",
+            url: "/AdminPanel/FillReport",
+            //data: data,
+            data: {
+                id: tehId
+            },
+            success: function (re) {
+                console.log(re);
+                if (re){ 
+                $('#userReportTbl').empty();
+                $('#userReportTbl').append('<tr class="table table-hover table-bordered"><th>UserName</th><th>Email</th><th>CNIC</th><th>Contact</th><th>Status</th><th>Address</th><th>City</th></tr>');
+                for (var i = 0; i < re.length; i++) {
+                    var id = re[i].DistrictId;
+                    var row = '<tr><td>' + re[i].Username + '</td><td>' + re[i].Email + '</td><td>' + re[i].CNIC + '</td><td>' + re[i].Contact + '</td><td>' + re[i].Status + '</td><td>' + re[i].Address + '</td></tr>';
+                    $('#userReportTbl').append(row);
+                }
+                }
+            }
+
+        });
+    });
+</script>

@@ -140,7 +140,6 @@ C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\bin\Microsoft.AI.Se
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\bin\Microsoft.AI.Web.xml
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\obj\Debug\MunicipalComplaint.csprojAssemblyReference.cache
-C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.FirstMig.resources
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\obj\Debug\MunicipalComplaint.csproj.GenerateResource.cache
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\obj\Debug\MunicipalComplaint.csproj.CoreCompileInputs.cache
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\obj\Debug\MunicipalComplaint.csproj.CopyComplete
@@ -215,7 +214,13 @@ C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\bin\Micr
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\bin\Microsoft.AI.Web.xml
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.csprojResolveAssemblyReference.cache
-C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.FirstMig.resources
-C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.csproj.GenerateResource.Cache
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.dll
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.pdb
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\bin\itextsharp.dll
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\bin\itextsharp.xml
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.newDb.resources
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.csproj.GenerateResource.Cache
+C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\bin\itextsharp.dll
+C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\bin\itextsharp.xml
+C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.newDb.resources
+C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations._new.resources

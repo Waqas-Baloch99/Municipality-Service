@@ -12,9 +12,6 @@ nav ul li:hover {
     border-radius: 5px;
 }
 
-header {
-    border-bottom: 2px dashed #1e90ff;
-}
 
 ::-moz-selection {
     /* Code for Firefox */
@@ -735,6 +732,85 @@ td, th {
 
 .dark {
     color: #222;
+}
+
+.admission-form {
+    padding: 26px;
+    z-index: 15;
+    position: relative;
+}
+
+.admission-box {
+    background: rgba(255, 253, 253);
+    border: 2px solid #eaeff5;
+    border-radius: 20px;
+}
+
+.declaration-padding {
+    padding: 20px;
+    background-color: #38428c;
+    font-size: 15px;
+    border-radius: 10px;
+    text-align: justify;
+}
+
+.checkbox input[type="checkbox"] {
+    opacity: 0;
+}
+
+.checkbox label {
+    position: relative;
+    display: inline-block;
+    /*16px width of fake checkbox + 6px distance between fake checkbox and text*/
+    padding-left: 22px;
+}
+
+    .checkbox label::before,
+    .checkbox label::after {
+        position: absolute;
+        content: "";
+        /*Needed for the line-height to take effect*/
+        display: inline-block;
+    }
+
+    /*Outer box of the fake checkbox*/
+    .checkbox label::before {
+        height: 16px;
+        width: 16px;
+        border: 1px solid #38428c;
+        border-radius: 4px;
+        left: 0px;
+        /*(24px line-height - 16px height of fake checkbox) / 2 - 1px for the border
+     *to vertically center it.
+     */
+        top: 3px;
+    }
+
+    /*Checkmark of the fake checkbox*/
+    .checkbox label::after {
+        height: 5px;
+        width: 9px;
+        border-left: 2px solid;
+        border-bottom: 2px solid;
+        color: #38428c;
+        transform: rotate(-45deg);
+        left: 4px;
+        top: 7px;
+    }
+
+/*Hide the checkmark by default*/
+.checkbox input[type="checkbox"] + label::after {
+    content: none;
+}
+
+/*Unhide on the checked state*/
+.checkbox input[type="checkbox"]:checked + label::after {
+    content: "";
+}
+
+/*Adding focus styles on the outer-box of the fake checkbox*/
+.checkbox input[type="checkbox"]:focus + label::before {
+    outline: #38428c auto 0px;
 }
 
 .relative {
@@ -2507,7 +2583,7 @@ body.mobile-nav-active {
         }
 
         .single-feature:hover h4 {
-            color: #fab700;
+            color: dodgerblue;
         }
 
     .single-feature h4 {
@@ -2646,7 +2722,7 @@ body.mobile-nav-active {
     }
 
     .single-review .star .checked {
-        color: orange;
+        color: dodgerblue;
     }
 
     .single-review:hover {
@@ -2657,7 +2733,7 @@ body.mobile-nav-active {
     }
 
 .callaction-area {
-    background: url(../img/callaction-bg.jpg) center;
+    background: url('../Images/callaction-bg.JPG');
     background-size: cover;
     text-align: center;
     color: #fff;
@@ -2903,7 +2979,7 @@ body.mobile-nav-active {
 }
 
     .footer-text a, .footer-text i {
-        color: #fab700;
+        color: dodgerblue;
     }
 
 .whole-wrap {

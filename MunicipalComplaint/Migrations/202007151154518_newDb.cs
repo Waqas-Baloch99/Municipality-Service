@@ -3,7 +3,7 @@ namespace MunicipalComplaint.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FirstMig : DbMigration
+    public partial class newDb : DbMigration
     {
         public override void Up()
         {
