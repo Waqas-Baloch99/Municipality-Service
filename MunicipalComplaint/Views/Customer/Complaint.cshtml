@@ -1,0 +1,233 @@
+﻿
+@{
+    ViewBag.Title = "Complaint";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Register Complaints
+                </h1>
+                <p class="text-white link-nav"><a href="/Customer/Home">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="/Customer/Complaint"> Contact Us</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<div class="admission-form">
+    <div class="row admission-box">
+        <div class="col-md-11">
+            <h2>Personal Information</h2>
+            <hr />
+            <h3><p class="text-red">Note: Please Do Check Your Identity.</p></h3>
+        </div>
+        <div class="col-md-12">
+            @using (Html.BeginForm("AddComplaint", "Customer", FormMethod.Post, new { @class = "form-area contact-form" }))
+            {
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="fullname" class="">Full Name<span class="text-red">*</span></label>
+                        <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Your Full Name" maxlength="35" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fathername">Father's Name<span class="text-red">*</span></label>
+                        <input type="text" id="fathername" name="fathername" class="form-control" placeholder="Your Father's Name" maxlength="35" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="email">Gender<span class="text-red">*</span></label>
+                        <select id="gender" name="gender" class="form-control" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <label for="dob">Date of Birth<span class="text-red">*</span></label>
+                        <input type="date" id="dob" name="dob" class="form-control" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fathercnic">CNIC<span class="text-red">*</span></label>
+                        <input type="text" id="fathercnic" name="fathercnic" class="form-control" placeholder="Your Father's CNIC" required>
+                    </div>
+                </div>
+                <div class="row form-group padding-0">
+                    <div class="col-md-11">
+                        <h2>Contact Info</h2>
+                        <hr />
+                        <h5><p class="text-red">Please enter your correct phone number and email address as this will be used to communicate if necessary.</p></h5>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <label for="mobile">Mobile No.<span class="text-red">*</span></label>
+                        <input type="text" id="mobile" name="mobile" class="form-control" placeholder="Your Mobile Number" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="email">Email<span class=""> <small>(optional)</small></span></label>
+                        <input type="text" id="email" name="email" class="form-control" placeholder="Your Email" maxlength="45" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="address">Address<span class="text-red">*</span></label>
+                        <input type="text" id="address" name="address" class="form-control" placeholder="Your Address" maxlength="105" required>
+                    </div>
+                </div>
+                <div class="row form-group padding-0">
+                    <div class="col-md-11">
+                        <h2>Complaint Type</h2>
+                        <hr />
+                    </div>
+                </div>
+                <div class="form-group row">
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-8">
+                        <p class="text-white bg-primary declaration-padding">
+                            I declare that,<br>
+                            I am applying in this class with the expressed consent of my parents/guardians. if, admitted, i shall observe rules of college and shall be liable to any penalty, including rustication/expulsion, in case of any violation.The particulars given by me in this form are correct to the best of my knowledge.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox" id="chckbox">
+                            <input type="checkbox" id="checkbox_dec" required>
+                            <label for="checkbox_dec">I accept and confirm the mentioned terms and conditions</label><br>
+                        </div>
+                        <div style="margin-top:25px;">
+                            <Button class="btn btn-danger" onclick="javascript:location.reload()">Cancel</Button>&nbsp;&nbsp;
+                            <input id="btnsend" type="button" class="btn btn-primary" onclick="javascript:admissionRequest();" value="Submit">
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+    </div>
+</div>
+<script>
+      $(document).ready(function(){
+         $("#checkbox_dec").click(function(){
+            $("#checkbox_dec").toggleClass("checked");
+        });
+
+        //Masking of Textfields
+         $("#fathercnic").inputmask("99999-9999999-9");
+         $("#mobile").inputmask("0999-9999999");
+         $("#obtainedmarks").inputmask("9999");
+         $("#totalmarks").inputmask("9999");
+         $("#boardrollnumber").inputmask("9999999");
+         $("#ssc2RollNumber").inputmask("9999999");
+         $("#guardiancontact").inputmask("0999-9999999");
+
+      });
+    function admissionRequest(){
+        if( $("#checkbox_dec").hasClass("checked")){
+            if(checkforEmpty()){
+                $("#btnsend").attr("disabled","true");
+                var name    = $("#fullname").val();
+                var fname   = $("#fathername").val();
+                var fnic    = $("#fathercnic").val();
+                var dob     = $("#dob").val();
+                var gender  = $("#gender").val();
+                var mobile  = $("#mobile").val();
+                var email   = $("#email").val();
+                var address = $("#address").val();
+                var lstexam = $("#lastexampassed").val();
+                var ps_year = $("#passingyear").val();
+                var board   = $("#board").val();
+                var group   = $("#group").val();
+                var ob_mark = $("#obtainedmarks").val();
+                var t_marks = $("#totalmarks").val();
+                var b_roll  = $("#boardrollnumber").val();
+                var instute = $("#institute").val();
+                var grd_con = $("#guardiancontact").val();
+                var grd_nme = $("#guadianame").val();
+                var progrm  = $("#programme").val();
+                var r_n_10  = $("#ssc2RollNumber").val();
+                $.ajax({
+			        method: 'POST',
+                    url: 'API/addNewAdmission.php',
+                    enctype: 'multipart/form-data',
+                    data: {name:name,fname:fname,fnic:fnic,dob:dob,gender:gender,mobile:mobile,email:email,
+                    address:address,lstexam:lstexam,ps_year:ps_year,board:board,group:group,ob_mark:ob_mark
+                    ,t_marks:t_marks,b_roll:b_roll,instute:instute,grd_con:grd_con,grd_nme:grd_nme,progrm:progrm,r_n_10:r_n_10},
+                    success: function(response) {
+                       response = JSON.parse(response);
+                        $("#btnsend").removeAttr("disabled");
+                       if(response.status == "done"){
+                            $("#modal_body").empty();
+                            $("#modal_body").append("You have applied for online admission successfully, Your admission id is "+response.id);
+                            $("#messageBox").click();
+                            setTimeout(function(){
+                                location.reload();
+                            }, 3000);
+                       }
+                       else if(response.status == "not done"){
+                            $("#modal_body").empty();
+                          $("#modal_body").append("Data Insertion Failed, please Try again");
+                          $("#messageBox").click();
+                       }
+
+                    }
+
+                });
+
+            }else{
+                 $("#modal_body").empty();
+                  $("#modal_body").append("Please Re-Fill highlighted fields and use correct format in each case");
+                  $("#messageBox").click();
+                return false;
+            }
+        }
+        else{
+            alert("Please Accept Terms and Conditions");
+            return false;
+        }
+    }
+    function checkforEmpty(){
+        var elements = $("input,select");
+        var boolean  = true;
+        for(var i = 0; i < elements.length; i++){
+            var id = elements[i]["id"];
+            if(id != "email"){
+             if($('#'+id).val() == ""){
+                    $("#"+id).css("border","1px solid red");
+                     boolean = false;
+             }
+            }
+        }
+        if(boolean){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+</script>
+
+
+
+<!-- Modal -->
+<!-- Button trigger modal -->
+<button id="messageBox" style="display:none;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"></button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div style="padding:20px;">
+                <h3 class="modal-title text-center" id="exampleModalLongTitle">Message!</h3>
+            </div>
+            <div class="modal-body" id="modal_body">
+            </div>
+            <center> <button style="margin-bottom: 26px;" type="button" class="button btn-primary" data-dismiss="modal">Close</button> </center>
+        </div>
+    </div>
+</div>
