@@ -90,6 +90,12 @@
                             <a href="/AdminPanel/Dashboard"><i class="fa fa-tachometer"></i><span>Dashboard</span></a>
                         </li>
                         <li class="menu-header">Components</li>
+                        @if (Session.Count>0) {
+                            if (Session["user_type"].ToString()=="Admin") {
+
+
+                            
+
                         <li id="area">
                             <a href="@Url.Action("Area","AdminPanel")"><i class="fa fa-plus-circle"></i><span>Add Area</span></a>
                             @*<ul class="menu-dropdown">
@@ -109,6 +115,8 @@
                         <li id="manageEmp">
                             <a href="@Url.Action("ManageEmployee","AdminPanel")"><i class="fa fa-user"></i><span>Manage Employee</span></a>
                         </li>
+                            }
+                        }
                         @*  <li>
                                 <a href="" class="has-dropdown"><i class="ion ion-ios-albums-outline"></i><span>Driver Managment</span></a>
                                 <ul class="menu-dropdown">

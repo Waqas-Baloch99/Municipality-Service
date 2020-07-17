@@ -49,7 +49,22 @@
             transition: 0.5s ease-in-out;
             border-radius: 5px;
         }
-
+        nav ul li select:hover {
+            background-color: #1e90ff;
+            transition: 0.5s ease-in-out;
+            border-radius: 5px;
+        }
+        nav ul li select:hover>option {
+            background-color: black;
+            transition: 0.5s ease-in-out;
+            border-radius: 5px;
+        }
+        nav ul li select{
+            color:white;
+            background-color: black;
+            transition: 0.5s ease-in-out;
+            
+        }
         nav ul li a:hover {
             color: white;
             text-decoration: none;
@@ -84,10 +99,25 @@
                         <li><a href="/Customer/About">About</a></li>
                         <li><a href="/Customer/Services">Service</a></li>
                         <li><a href="/Customer/Contact">Contact</a></li>
-                        <li><a href="/Customer/Complaint">Register Complaint</a></li>
-                        <li><a href="/Customer/ManageComplaint">Manage Complaint</a></li>
-                        <li><a href="@Url.Action("Login","Customer")">Login</a></li>
-                        <li><a href="@Url.Action("CustomerSignUp","Customer")">Sign Up</a></li>
+                        @if (Session.Count  > 0)
+                        {
+                            <li><a href="/Customer/Complaint">Register Complaint</a></li>
+                            <li><a href="/Customer/ManageComplaint">Manage Complaint</a></li>
+                            <li>
+                                <select style="border:none" class="mt-1" id="logout">
+                                    <option selected disabled>Hello Hamza</option>
+                                    <option value="logout">logout</option>
+                                    <option value="profile">Profile</option>
+                                </select>
+                                    
+                            </li>
+                        }
+                       @if (Session.Count <= 0)
+                       {
+                        <li><a href="@Url.Action("Login", "Customer")">Login</a></li>
+                        <li><a href="@Url.Action("CustomerSignUp", "Customer")">Sign Up</a></li>
+                       }
+
                         <!--<li><a href="/Home/contact">Register</a></li>-->
                         <!--   <li class="menu-has-children">
            <a href="">Pages</a>
@@ -171,5 +201,29 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+<script>
+    $('#logout').change(function () {
+        var lo = $('#logout :selected').val();
+        if (lo == "profile") {
+            location.reload();
+        }
+        else if (lo=="logout") {
+            $.ajax({
+                url: "/Customer/Logout",
+                cache: false,
+                type: "POST",
+                //data: data,
+               
+                success: function (re) {
 
+                    if (re == 'logs') {
+                        location.href = "/Customer/Home";  
+                    }
+                }
+            });
+        }
+
+
+    })
+</script>
 

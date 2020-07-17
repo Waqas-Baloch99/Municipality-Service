@@ -80,11 +80,70 @@ namespace MunicipalComplaint.Controllers
             return Json(cityy);
 
         }
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
 
+        [HttpPost]
+        public string Logout()
+        {
+            Session.RemoveAll();
+            return "logs";
+        }
+        [HttpPost]
+        public string Login(string email,string pass)
+        {
+            List<CustomerSignup> a=_context.customer.Where(x =>x.Email == email && x.Password == pass).ToList();
+            if(a.Count()>0)
+            {
+                if (a[0].Type=="User") {
+                    if (a[0].Status == "Active")
+                    {
+                        Session["user_type"]= a[0].Type;
+                        Session["user_id"] = a[0].UserId;
+                        return "user";
+                    }
+                    else {
+                        return "block";
+                    }
+                }
+                 else if (a[0].Type == "Admin")
+                {
+                    if (a[0].Status == "Active")
+                    {
+                        Session["user_type"] = a[0].Type;
+                        Session["user_id"] = a[0].UserId;
+
+                        return "admin";
+                    }
+                    else
+                    {
+                        return "block";
+                    }
+
+                }
+                else if (a[0].Type == "Employee")
+                {
+                    if (a[0].Status == "Active")
+                    {
+                        Session["user_type"] = a[0].Type;
+                        Session["user_id"] = a[0].UserId;
+
+                        return "emp";
+                    }
+                    else
+                    {
+                        return "block";
+                    }
+
+                }
+
+
+            }
+            return "error";
+        }
         protected override void Dispose(bool disposing)
         {
             if (_context == null)
