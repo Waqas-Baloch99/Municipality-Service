@@ -36,5 +36,11 @@ namespace MunicipalComplaint.Models
         public string createdby { get; set; }
         public string updatedat { get; set; }
         public string updatedby { get; set; }
+        public string Image { get; set; }
+        [NotMapped]
+        public HttpPostedFileWrapper ImageFile { get; set; }
+        public string DOB { get; set; }
+
+        public string Gender { get; set; }
     }
 }

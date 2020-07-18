@@ -1,0 +1,691 @@
+﻿@model MunicipalComplaint.ViewModel.viewModel
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+
+@if (Session.Count <= 0)
+{
+    Response.Redirect("/Customer/Home");
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+<style>
+    #imageupload:hover{
+        cursor:pointer;
+        opacity:0.5;
+    }
+    .input {
+        font-size: 12px
+    }
+
+    b, sup, sub, u, del {
+        color: grey;
+        font-size: 13px;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif
+    }
+    /* Made with love by Mutiullah Samim*/
+    html, body {
+        background-image: url('../../Content/img/back.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        font-family: 'Numans', sans-serif;
+    }
+
+    .container {
+        height: 100%;
+        align-content: center;
+    }
+
+    .card {
+        height: auto margin-top: auto;
+        margin-bottom: auto;
+        background-color: rgba(0,0,0,0.5) !important;
+    }
+
+    .social_icon span {
+        font-size: 60px;
+        margin-left: 10px;
+        color: #FFC312;
+    }
+
+        .social_icon span:hover {
+            color: white;
+            cursor: pointer;
+        }
+
+    .card-header h3, h4 {
+        color: white;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    }
+
+
+    .social_icon {
+        position: absolute;
+        right: 20px;
+        top: -45px;
+    }
+
+    .input-group-prepend span {
+        width: 50px;
+        background-color: #1e90ff;
+        color: white;
+        border: 0 !important;
+    }
+
+    input:focus {
+        outline: 0 0 0 0 !important;
+        box-shadow: 0 0 0 0 !important;
+    }
+
+    .remember {
+        color: white;
+    }
+
+        .remember input {
+            width: 20px;
+            height: 20px;
+            margin-left: 15px;
+            margin-right: 5px;
+        }
+
+    #sigin {
+        color: #1e90ff;
+    }
+
+    .login_btn {
+        color: white;
+        background-color: #1e90ff;
+        width: 100px;
+    }
+
+        .login_btn:hover {
+            color: black;
+            background-color: white;
+        }
+
+    .links {
+        color: white;
+    }
+
+        .links a {
+            margin-left: 4px;
+        }
+
+    a {
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+    body {
+        /*background: -webkit-linear-gradient(left, #3931af, #00c6ff);*/
+    }
+
+    .emp-profile {
+        padding: 3%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        border-radius: 0.5rem;
+        background: #fff;
+    }
+
+    .profile-img {
+        text-align: center;
+        width: 80%;
+        height: 150px;
+        border: 1px solid,
+    }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .profile-img .file {
+            position: relative;
+            overflow: hidden;
+            /*margin-top: -20%;*/
+            width: 70%;
+            border: none;
+            border-radius: 0;
+            font-size: 15px;
+            background: #212529b8;
+        }
+
+            .profile-img .file input {
+                position: absolute;
+                opacity: 0;
+                right: 0;
+                top: 0;
+            }
+
+    .profile-head h5 {
+        color: dodgerblue;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif
+    }
+
+    .profile-head h6 {
+        color: dimgrey;
+    }
+
+    .profile-edit-btn {
+        border: none;
+        border-radius: 1.5rem;
+        width: 70%;
+        padding: 2%;
+        font-weight: 600;
+        color: #6c757d;
+        cursor: pointer;
+    }
+
+    .proile-rating {
+        font-size: 12px;
+        color: #818182;
+        margin-top: 5%;
+    }
+
+        .proile-rating span {
+            color: #495057;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+    .profile-head .nav-tabs {
+        margin-bottom: 5%;
+    }
+
+        .profile-head .nav-tabs .nav-link {
+            font-weight: 600;
+            border: none;
+        }
+
+            .profile-head .nav-tabs .nav-link.active {
+                border: none;
+                border-bottom: 2px solid #0062cc;
+            }
+
+    .profile-work {
+        padding: 14%;
+        margin-top: -15%;
+    }
+
+        .profile-work p {
+            font-size: 12px;
+            color: #818182;
+            font-weight: 600;
+            margin-top: 10%;
+        }
+
+        .profile-work a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .profile-work ul {
+            list-style: none;
+        }
+
+    .profile-tab label {
+        font-weight: 300;
+        color: grey;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif
+    }
+
+    label1 {
+        font-weight: 200;
+        color: dodgerblue;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif
+    }
+
+    .profile-tab p {
+        font-weight: 600;
+        color: #0062cc;
+    }
+</style>
+<section class="reviews-area" id="review">
+    <div class="container">
+        <div class="d-flex justify-content-center h-20">
+            <div class="card col-md-12 mt-5">
+
+                <div class="card-body">
+                    <div class="container emp-profile">
+                        <div class="row">
+                            <div class="col-md-4">
+                                @using (Html.BeginForm("UploadImage", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="profile-img">
+                                        @foreach (var data in Model.signup)
+                                        {
+                                            if (data.UserId == Convert.ToInt32(Session["user_id"]))
+                                            {
+                                                <img id="imageupload" src="~/Content/Images/@data.Image" alt="" onclick="openImageDialog();"  />
+                                            }
+                                        }
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-1" style="display:block;"> <i class="fa fa-upload"></i> Upload</button>
+                                    <input type="file" id="ImageFile" value="Change Photo" name="ImageFile" style="display:none;" required/>
+                                    <input type="hidden" value="3" name="UserId" />
+                                }
+                                        
+                            </div>
+                            <div class="col-md-6">
+                                <div class="profile-head">
+                                    <h5>
+                                        @Session["name"]
+                                    </h5>
+                                    <h6>
+                                        User
+                                    </h6>
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#UpdatePro" id="editprofile" data-target="#UpdatePro" class="btn btn-primary btn-sm" data-toggle="modal"><span><i class="fa fa-edit"></i></span> Edit Profile</a>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-4">
+                                <div class="profile-work">
+                                    <p style="color:#1390ff">Welcome to Municiple Complaint Cell!</p>
+                                    @*<a href="">Website Link</a><br />
+                                        <a href="">Bootsnipp Profile</a><br />
+                                        <a href="">Bootply Profile</a>*@
+                                    <p>The system will  help you gain a better understanding of the behavior, actions, and interests of your municipility complains. </p>
+                                    <a href="#ChangePassword" id="changePassword" data-target="#ChangePassword" class="btn btn-primary btn-sm" data-toggle="modal" style="color:white"><span><i class="fa fa-key"></i></span> Change Password</a>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                @foreach (var data in Model.signup)
+                                {
+                                    if (data.UserId == Convert.ToInt32(Session["user_id"]))
+                                    {
+                                        <div class="tab-content profile-tab" id="myTabContent">
+                                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="label1">User Name</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label id="UserName">@data.Username</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Email</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label id="Email">@data.Email</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Contact</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label id="CNIC">@data.CNIC</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>DOB</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label id="DOB">@data.DOB</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Gender</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label id="Gender">@data.Gender</label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                                @foreach (var da in Model.cities)
+                                                {
+                                                    if (da.DistrictId == data.DistrictId)
+                                                    {
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label>District</label>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label id="District">@da.DistrictName</label>
+                                                            </div>
+
+                                                        </div>
+                                                        foreach (var pro in Model.provinces)
+                                                        {
+                                                            if (pro.ProvinceId == da.ProvinceId)
+                                                            {
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label>Provience</label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label id="provience">@pro.ProvinceName</label>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Address</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label id="Address">@data.Address</label>
+                                                    </div>
+                                                </div>
+                                                @*<div class="row">
+                                                        <div class="col-md-6">
+                                                            <label>English Level</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>Expert</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label>Availability</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>6 months</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>Your Bio</label><br />
+                                                            <p>Your detail description</p>
+                                                        </div>
+                                                    </div>*@
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="UpdatePro" runat="server" tabindex="-1" role="dialog" aria-labelledby="UpdatePro"
+     aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content" style="border:1px solid gray;border-radius:10px;">
+            <div class="modal-header" >
+                <h5 class="modal-title" id="H1" style="font-weight:500;color:#1e90ff">Update Profile</h5>
+                <asp:LinkButton ID="btnUserModalClose" runat="server" aria-hidden="true" style="color:black;font-size:25px;cursor:pointer">
+                    &times;
+                </asp:LinkButton>
+            </div>
+            <div class="modal-body modal-body-sub">
+                @foreach (var data in Model.signup)
+                {
+                    if (data.UserId == Convert.ToInt32(Session["user_id"]))
+                    {
+                        <div class="row">
+                            <div class="col-md-12 modal_body_left modal_body_left1">
+                                <div class="sap_tabs">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="d-block"><b>Name</b></label>
+                                                <input type="text" hidden="hidden" id="userid" value="@data.UserId" />
+                                                <input type="text" class="form-control" placeholder="Name" id="Username" name="Username" value="@data.Username">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="d-block"><b>Email</b></label>
+                                                <input type="text" class="form-control" placeholder="Email" name="Email" id="EEmail" value="@data.Email" maxlength="25">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="d-block"><b>Contact</b></label>
+
+                                                <input type="text" class="form-control" placeholder="Contact" id="CContact" name="Contact" maxlength="25" value="@data.Contact">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="d-block"><b>CNIC</b></label>
+
+                                                <input type="text" class="form-control" placeholder="CNIC" name="CNIC" id="CCNIC" maxlength="25" value="@data.CNIC">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="d-block"><b>Address</b></label>
+
+                                                <input type="text" name="Address" id="AAddress" placeholder="Address" class="form-control" value="@data.Address" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="d-block"><b>DOB</b></label>
+                                                <input type="text" name="DOB" id="Datebirth" placeholder="Date of Birth" class="form-control" value="@data.DOB" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="d-block"><b>Gender</b></label>
+                                                <select class="form-control" name="DropDowngender" id="genderDrop">
+                                                    <option selected disabled>-- Select Gender --</option>
+                                                    <option @if (data.Gender == "Male") { @Html.Raw("selected") }>Male</option>
+                                                    <option @if (data.Gender == "Female") { @Html.Raw("selected") }>Female</option>
+                                                    <option @if (data.Gender == "Other") { @Html.Raw("selected")  }>Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="BtnUpdate" type="button" value="Update" class="btn btn-primary float-right" onclick="UpdateProfile()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ChangePassword" runat="server" tabindex="-1" role="dialog" aria-labelledby="ChangePassword"
+     aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content" style="border:1px solid gray;border-radius:10px;">
+            <div class="modal-header" >
+                <h5 class="modal-title" id="H1Dist" style="font-weight:500;color:#1e90ff">Change Password</h5>
+                <asp:LinkButton ID="btnPassModalClose" runat="server" aria-hidden="true" style="color:black;font-size:25px;cursor:pointer">
+                    &times;
+                </asp:LinkButton>
+            </div>
+            <div class="modal-body modal-body-sub">
+                <div class="row">
+                    <div class=" col-md-12">
+                        <div class="sap_tabs">
+
+                            @using (Html.BeginForm("AreaDistrict", "AdminPanel", FormMethod.Post))
+                            {
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @foreach (var data in Model.signup)
+                                            {
+                                                if (data.UserId == Convert.ToInt32(Session["user_id"]))
+                                                {
+                                                    <input type="hidden" id="UserrId" value="@data.UserId" />
+                                                }
+                                            }
+
+                                            <label class="d-block"><b>Old Password  </b></label>
+                                            <input type="text" required class="form-control input" placeholder="Old Password" name="oldpass" id="OlddPass" maxlength="25">
+                                        </div>
+                                    </div>
+                                    <div class=" col-md-6">
+                                        <div class="form-group">
+                                            <label class="d-block"><b>New Password  </b></label>
+                                            <input size="12" required class="form-control input" style="font-size:12px" placeholder="New Password" name="oldpass" id="NewdPass" type="password" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="d-block"><b>Confirm Password  </b></label>
+                                            <input class="form-control input" required placeholder="Confirm Password" name="ConfirmPass" id="ConfirmPass" type="password" id="oldpassword" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-30">
+                                        <input id="BtnChangePassword" type="button" value="Save" onclick="ChangePassword()" class="btn btn-primary btn-block">
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+@Scripts.Render("~/bundles/alertFile/alert")
+<script>
+
+    $('#btnUserModalClose').on('click', function () {
+        $('#UpdatePro').hide();
+        location.reload();
+    });
+    $('#btnPassModalClose').on('click', function () {
+        $('#ChangePassword').hide();
+        location.reload();
+    });
+    function UpdateProfile() {
+        //var userid = $('#userid').val();
+        //var username = $('#Username').val();
+        //var email = $('#Email').val();
+        //var contact = $('#Contact').val();
+        //var cnic = $('#CNIC').val();
+        //var address = $('#Address').val();
+        //var dob = $('#DOB').val();
+        var Userid = $('#userid').val();
+        var Username = $('#Username').val();
+        var Email = $('#EEmail').val();
+        var CNIC = $('#CCNIC').val();
+        var Contact = $('#CContact').val();
+        var Address = $('#AAddress').val();
+        var DOB = $('#Datebirth').val();
+        var gender = $("#genderDrop :selected").val();
+        $.ajax({
+            url: "/Customer/UpdateProfile",
+            type: "POST",
+            cache: false,
+            data: {
+                UserId: Userid,
+                Username: Username,
+                Email: Email,
+                Contact: Contact,
+                CNIC: CNIC,
+                DOB: DOB,
+                Gender: gender,
+                Address: Address
+            },
+            success: function (re) {
+                swal({
+                    title: "Good job!",
+                    text: "Successfully Updated!",
+                    icon: "success",
+                    button: true,
+
+                }).then((value) => {
+                    //swal("Reloading Informtion, Please wait...");
+                    location.reload();
+                });
+            }
+        });
+    }
+    function ChangePassword() {
+        var Useridd = $('#UserrId').val();
+        var newPass = $("#NewdPass").val();
+        var PassWord = $('#ConfirmPass').val();
+        if (newPass != PassWord) {
+            swal({
+                title: "Password Error!",
+                text: "Password and Confirm Password not matched",
+                icon: "warning",
+                button: true,
+
+            });
+            return;
+        }
+
+        $.ajax({
+            url: "/Customer/ChangePassword",
+            type: "POST",
+            cache: false,
+            data: {
+                UserId: Useridd,
+                Password: PassWord
+            },
+            success: function (re) {
+                swal({
+                    title: "Good job!",
+                    text: "Successfully Updated!",
+                    icon: "success",
+                    button: true,
+
+                }).then((value) => {
+                    //swal("Reloading Informtion, Please wait...");
+                    location.reload();
+                });
+            }
+        });
+    }
+    function openImageDialog() {
+        $("#ImageFile").click();
+    }
+</script>

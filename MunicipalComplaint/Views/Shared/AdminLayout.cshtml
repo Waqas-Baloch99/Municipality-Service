@@ -1,6 +1,6 @@
 ﻿
-@{
-
+@if (Session.Count<=0) {
+    Response.Redirect("/Customer/Home");
 }
 <!DOCTYPE html>
 <html>

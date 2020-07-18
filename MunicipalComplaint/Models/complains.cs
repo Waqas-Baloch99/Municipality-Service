@@ -20,6 +20,8 @@ namespace MunicipalComplaint.Models
         public int TownId { get; set; }
         public string createdat { get; set; } 
         public string ImagePath { get; set; }
+        public int Status { get; set; }
+        public int isvalid { get; set; }
         [NotMapped]
         public HttpPostedFileBase ImageFile { get; set; }
         public string closeDate { get; set; }

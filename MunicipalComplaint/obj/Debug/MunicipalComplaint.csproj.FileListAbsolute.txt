@@ -225,3 +225,5 @@ C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debu
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.csproj.GenerateResource.Cache
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.updComp.resources
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.csprojResolveAssemblyReference.cache
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.upd.resources
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.update.resources
