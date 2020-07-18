@@ -213,15 +213,15 @@ C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\bin\Micr
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\bin\Microsoft.AI.Web.xml
-C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.csprojResolveAssemblyReference.cache
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.dll
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.pdb
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\bin\itextsharp.dll
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\bin\itextsharp.xml
-C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.newDb.resources
-C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.csproj.GenerateResource.Cache
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\bin\itextsharp.dll
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\bin\itextsharp.xml
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.newDb.resources
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations._new.resources
-C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations._new.resources
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.firMig.resources
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.csproj.GenerateResource.Cache
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.updComp.resources
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.csprojResolveAssemblyReference.cache

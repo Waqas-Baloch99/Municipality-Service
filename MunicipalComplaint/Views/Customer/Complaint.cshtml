@@ -18,7 +18,27 @@
     </div>
 </section>
 <!-- End banner Area -->
+<section class="section-header">
+    @if (ViewData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @ViewData["Error"].ToString()
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Success"].ToString()
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
 
+</section>
 <div class="admission-form">
     <div class="row admission-box">
         <div class="col-md-11">
@@ -27,26 +47,26 @@
             <h3><p class="text-red">Note: Please Do Check Your Identity.</p></h3>
         </div>
         <div class="col-md-12">
-    @using (Html.BeginForm("AddComplaint", "Customer", FormMethod.Post, new { @class = "form-area contact-form" }))
+            @using (Html.BeginForm("Complaint", "Customer", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-area contact-form" }))
             {
-        <div class="row">
-            <div class="col-md-4">
-                <label for="fullname" class="">Full Name<span class="text-red">*</span></label>
-                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Your Full Name" maxlength="35" required>
-            </div>
-            <div class="col-md-4">
-                <label for="fathername">Father's Name<span class="text-red">*</span></label>
-                <input type="text" id="fathername" name="fathername" class="form-control" placeholder="Your Father's Name" maxlength="35" required>
-            </div>
-            <div class="col-md-4">
-                <label for="email">Gender<span class="text-red">*</span></label>
-                <select id="gender" name="gender" class="form-control" required>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Others">Others</option>
-                </select>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="fullname" class="">Full Name<span class="text-red">*</span></label>
+                        <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Your Full Name" maxlength="35" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fathername">Father's Name<span class="text-red">*</span></label>
+                        <input type="text" id="fathername" name="fathername" class="form-control" placeholder="Your Father's Name" maxlength="35" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="email">Gender<span class="text-red">*</span></label>
+                        <select id="gender" name="gender" class="form-control" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                </div>
 
                 <div class="row form-group">
                     <div class="col-md-4">
@@ -88,11 +108,11 @@
                 <div class="row form-group">
                     <div class="col-md-4">
                         <label for="address">Title<span class="text-red">*</span></label>
-                        <input type="text" id="title" name="title" class="form-control" placeholder="Complain Title" maxlength="105" required>
+                        <input type="text" id="title" name="Title" class="form-control" placeholder="Complain Title" maxlength="105" required>
                     </div>
                     <div class="col-md-4">
                         <label for="address">Complain Type<span class="text-red">*</span></label>
-                        <select class="form-control">
+                        <select class="form-control" name="ComplainType">
                             <option selected disabled>-- Select Complain Type --</option>
                             <option>Sanitation Services</option>
                             <option>Drinking Water</option>
@@ -104,56 +124,81 @@
                     </div>
                     <div class="col-md-4">
                         <label for="address">Description<span class="text-red">*</span></label>
-                        <input type="text" id="description" name="description" class="form-control" placeholder="Complain Description" maxlength="105" required>
+                        <input type="text" id="description" name="Description" class="form-control" placeholder="Complain Description" maxlength="105" required>
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-4">
                         <label for="address">Town<span class="text-red">*</span></label>
-                        <select class="form-control">
+                        <select class="form-control" name="TownId">
                             <option selected disabled>-- Select Town --</option>
-                            @foreach (var data in Model.ucs) {
+                            @foreach (var data in Model.ucs)
+                            {
                                 <option value="@data.UcId">@data.UCName</option>
                             }
-                            
+
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="address">Select Images<span class="text-red">*</span></label>
-                        <input  type="file" class="form-control"/>
-                    </div>
-                    </div>
-
-                        <hr />
-                        <div class="form-group row">
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-8">
-                                <p class="text-white bg-primary declaration-padding">
-                                    I declare that,<br>
-                                    I am applying in this class with the expressed consent of my parents/guardians. if, admitted, i shall observe rules of college and shall be liable to any penalty, including rustication/expulsion, in case of any violation.The particulars given by me in this form are correct to the best of my knowledge.
-                                </p>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="checkbox" id="chckbox">
-                                    <input type="checkbox" id="checkbox_dec" required>
-                                    <label for="checkbox_dec">I accept and confirm the mentioned terms and conditions</label><br>
-                                </div>
-                                <div style="margin-top:25px;">
-                                    <Button class="btn btn-danger" onclick="javascript:location.reload()">Cancel</Button>&nbsp;&nbsp;
-                                    <input id="btnsend" type="button" class="btn btn-primary" onclick="javascript:admissionRequest();" value="Submit">
-                                </div>
-                            </div>
-                        </div>
-                        }
+                        <input type="file" class="form-control" name="ImageFile" />
                     </div>
                 </div>
-            </div>
+
+                <hr />
+                <div class="form-group row">
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-8">
+                        <p class="text-white bg-primary declaration-padding">
+                            I declare that,<br>
+                            I am applying in this class with the expressed consent of my parents/guardians. if, admitted, i shall observe rules of college and shall be liable to any penalty, including rustication/expulsion, in case of any violation.The particulars given by me in this form are correct to the best of my knowledge.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox" id="chckbox">
+                            <input type="checkbox" id="checkbox_dec" required>
+                            <label for="checkbox_dec">I accept and confirm the mentioned terms and conditions</label><br>
+                        </div>
+                        <div style="margin-top:25px;">
+                            <Button class="btn btn-danger" onclick="javascript:location.reload()">Cancel</Button>&nbsp;&nbsp;
+                            <input id="btnsend" type="submit" class="btn btn-primary" value="Submit">
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+@Scripts.Render("~/bundles/alertFile/alert")
 <script>
-      $(document).ready(function(){
+    function cloSuc() {
+        $('#suc').alert('hide');
+    }
+    $(document).ready(function () {
+        if (@ViewData["Error"] != null) {
+            swal({
+                title: "Error!",
+                icon: "warning",
+                button: true,
+                dangerMode: true,
+
+            });
+        }
+               if (@TempData["Success"]!= null) {
+              swal({
+                  title: "Success!",
+                        text: "sSuccessfully Complaint!",
+                        icon: "success",
+                        button: true,
+
+
+                    });
+          }
          $("#checkbox_dec").click(function(){
             $("#checkbox_dec").toggleClass("checked");
-        });
+          });
 
         //Masking of Textfields
          $("#fathercnic").inputmask("99999-9999999-9");
