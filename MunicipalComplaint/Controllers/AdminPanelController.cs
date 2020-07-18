@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.ComponentModel.DataAnnotations;
 using MunicipalComplaint.Models;
 using MunicipalComplaint.ViewModel;
-using System.Data.Entity;
+using Rotativa;
 
 namespace MunicipalComplaint.Controllers
 {
@@ -381,6 +379,17 @@ namespace MunicipalComplaint.Controllers
 
         }
 
+        //PDF
+        public ActionResult GenerateEmployeesReport(int DistrictNames = 0)
+        {
+            var employees = _context.customer.Where(e => e.Type == "Employee" && e.DistrictId==DistrictNames).ToList();
+            return View(employees);
+        }
+        public ActionResult PrintAllReport(int DistrictNames)
+        {
+            var report = new ActionAsPdf("GenerateEmployeesReport",new { DistrictNames=DistrictNames });
+            return report;
+        }
         protected override void Dispose(bool disposing)
         {
             if (_context == null)
