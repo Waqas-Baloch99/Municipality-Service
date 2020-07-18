@@ -24,11 +24,17 @@ namespace MunicipalComplaint.Models
         public string Address { get; set; }
         [Required]
         public string Contact { get; set; }
+        
+        public string DOB { get; set; }
+        
+        public string Gender { get; set; }
         [Required]
         public string Password { get; set; }
         [Required]
-        public string Type { get; set; }
-        [Required]
+        public string Type { get; set; }        
+        public string Image { get; set; }
+        [NotMapped]
+        public HttpPostedFileWrapper ImageFile { get; set; }
         public int DistrictId { get; set; }
         public string Status { get; set; }
         public string createdat { get; set; }

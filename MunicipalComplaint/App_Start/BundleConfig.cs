@@ -74,9 +74,9 @@ namespace MunicipalComplaint
                       "~/Content/css/main.css",
                       "~/Content/css/nice-select.css"));
 
-            bundles.Add(new StyleBundle("~/Content/Customercss").Include(
-                 "~/Content/Customercss/slider.css"
-                
+            bundles.Add(new StyleBundle("~/Content/Customercss/css").Include(
+                 "~/Content/Customercss/slider.css",
+                 "~/Content/Customercss/profileStyle.css"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/AdminCss").Include(

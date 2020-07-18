@@ -168,6 +168,22 @@
     <Compile Include="Migrations\202007160521102_new.Designer.cs">
       <DependentUpon>202007160521102_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007171121437_Updated.cs" />
+    <Compile Include="Migrations\202007171121437_Updated.Designer.cs">
+      <DependentUpon>202007171121437_Updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007171209116_UsamaDatabase.cs" />
+    <Compile Include="Migrations\202007171209116_UsamaDatabase.Designer.cs">
+      <DependentUpon>202007171209116_UsamaDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007180814435_Updated Pro.cs" />
+    <Compile Include="Migrations\202007180814435_Updated Pro.Designer.cs">
+      <DependentUpon>202007180814435_Updated Pro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007180857254_ProfileUpdate.cs" />
+    <Compile Include="Migrations\202007180857254_ProfileUpdate.Designer.cs">
+      <DependentUpon>202007180857254_ProfileUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\ContactForm.cs" />
@@ -212,6 +228,7 @@
     <Content Include="Content\css\theme\pages.css" />
     <Content Include="Content\Customercss\bootstrap.css" />
     <Content Include="Content\Customercss\font-awesome.css" />
+    <Content Include="Content\Customercss\profileStyle.css" />
     <Content Include="Content\Customercss\Sidebarstyle.css" />
     <Content Include="Content\Customercss\slider.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
@@ -634,6 +651,7 @@
     <Content Include="Views\Customer\Contact.cshtml" />
     <Content Include="Views\Customer\Complaint.cshtml" />
     <Content Include="Views\Customer\ManageComplaint.cshtml" />
+    <Content Include="Views\Customer\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -667,6 +685,18 @@
     <EmbeddedResource Include="Migrations\202007160521102_new.resx">
       <DependentUpon>202007160521102_new.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007171121437_Updated.resx">
+      <DependentUpon>202007171121437_Updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007171209116_UsamaDatabase.resx">
+      <DependentUpon>202007171209116_UsamaDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007180814435_Updated Pro.resx">
+      <DependentUpon>202007180814435_Updated Pro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007180857254_ProfileUpdate.resx">
+      <DependentUpon>202007180857254_ProfileUpdate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -686,7 +716,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54704</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54704/</IISUrl>
+          <IISUrl>http://localhost:54290/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
