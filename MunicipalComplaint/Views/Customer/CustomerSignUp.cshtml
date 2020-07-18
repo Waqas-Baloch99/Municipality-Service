@@ -177,7 +177,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Contact" id="Contact" name="Contact" maxlength="25">
+                                    <input type="text" class="form-control" onkeyup="ContactValidation()" placeholder="Contact" id="Contact" name="Contact" maxlength="25">
 
                                 </div>
                             </div>
@@ -186,7 +186,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="CNIC" name="CNIC" id="CNIC" maxlength="25">
+                                    <input type="text" class="form-control" onkeyup="CNICValidation()" placeholder="CNIC" name="CNIC" id="CNIC" maxlength="25">
                                 </div>
                             </div>
 
@@ -303,7 +303,6 @@
 
     //End of Fill Tehsil Dropdown in UC form
     function sendForm() {
-        debugger
         var Username = $('#Username').val();
         var disId = $("#districtDrop :selected").val();
         var Email = $('#Email').val();
@@ -311,44 +310,102 @@
         var Contact = $('#Contact').val();
         var Password = $('#Password').val();
         var Address = $('#Address').val();
+        var cpass = $('#CPassword').val();
+        if (Username == '' || disId == '' || Email == '' || CNIC == '' || Contact == '' || Password == '' || Address == '') {
+          
+            swal({
+                title: "Error!",
+                text: "Please fill all the fields!",
+                icon: "warning",
 
-        $.ajax({
-            type: "POST",
-            url: "/Customer/CustomerSignUp",
-            //data: data,
-            data: {
-                Username: Username,
-                DistrictId: disId,
-                Contact: Contact,
-                Password: Password,
-                CNIC: CNIC,
-                Email: Email,
-                Address: Address
-            },
-            success: function (re) {
 
-                if (re == "done") {
-                    swal({
-                        title: "Good job!",
-                        text: "Successfully Registered!",
-                        icon: "success",
-                        
+            });
+        }
+        else {
+            if (cpass == Password) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Customer/CustomerSignUp",
+                    //data: data,
+                    data: {
+                        Username: Username,
+                        DistrictId: disId,
+                        Contact: Contact,
+                        Password: Password,
+                        CNIC: CNIC,
+                        Email: Email,
+                        Address: Address
+                    },
+                    success: function (re) {
 
-                    }).then((value) => {
-                        $('#Username').val('');
-                         $("#districtDrop").val();
-                        $('#Email').val('');
-                        $('#CNIC').val('');
-                        $('#Contact').val('');
-                        $('#Password').val('');
-                        $('#CPassword').val('');
-                        $('#Address').val('');
-                    });
+                        if (re == "done") {
+                            swal({
+                                title: "Good job!",
+                                text: "Successfully Registered!",
+                                icon: "success",
 
+
+                            }).then((value) => {
+                                $('#Username').val('');
+                                $("#districtDrop").val();
+                                $('#Email').val('');
+                                $('#CNIC').val('');
+                                $('#Contact').val('');
+                                $('#Password').val('');
+                                $('#CPassword').val('');
+                                $('#Address').val('');
+                            });
+
+                        }
+                    }
+                })
+            }
+            else {
+                swal({
+                    title: "Error!",
+                    text: "Password and Confirm Password not match!",
+                    icon: "warning",
+
+
+                });
+            }
+        }
+    }
+
+    function CNICValidation() {
+        var cnic = document.getElementById("CNIC").value;
+        var abc = cnic.replace(/-/g, "");
+        if (isNaN(abc)) {
+            alert("Enter Numbers Only");
+            document.getElementById("CNIC").value = "0";
+        }
+        else {
+            if (cnic.length == 5 || cnic.length == 13) {
+                cnic += "-";
+                document.getElementById("CNIC").value = cnic;
+            }
+        }
+    }
+
+    function ContactValidation() {
+        var contact = document.getElementById("Contact").value;
+        var abc = contact.replace(/-/g, "");
+        if (isNaN(abc)) {
+            alert("Enter Numbers Only");
+            document.getElementById("Contact").value = "0";
+        }
+        else {
+            if (contact.length == 4) {
+                if (contact < 0300 || contact > 0349) {
+                    alert("Not A Valid Code");
+                    document.getElementById("Contact").value = "0";
+                }
+            else {
+                    contact += "-";
+                    document.getElementById("Contact").value = contact;
                 }
             }
-        })
-
+        }
     }
 </script>
 

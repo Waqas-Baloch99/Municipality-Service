@@ -106,7 +106,6 @@
 
                             <li><a href="/Customer/Complaint">Register Complaint</a></li>
                             <li><a href="/Customer/ManageComplaint">Manage Complaint</a></li>
-                            <li><a href="/Customer/Profile">Profile</a></li>
                             <li>
                                 <select style="border:none" class="mt-1" id="logout">
                                     <option selected disabled>Hi ! @Session["name"]</option>
@@ -122,16 +121,6 @@
                         <li><a href="@Url.Action("CustomerSignUp", "Customer")">Sign Up</a></li>
                             }
                      
-
-                        <!--<li><a href="/Home/contact">Register</a></li>-->
-                        <!--   <li class="menu-has-children">
-           <a href="">Pages</a>
-           <ul>
-               <li><a href="blog-single.html">Blog Single</a></li>
-               <li><a href="elements.html">Elements</a></li>
-           </ul>
-       </li>
-    -->
                     </ul>
                 </nav><!-- #nav-menu-container -->
             </div>
@@ -210,7 +199,7 @@
     $('#logout').change(function () {
         var lo = $('#logout :selected').val();
         if (lo == "profile") {
-            location.reload();
+            location.href = "/Customer/Profile"; 
         }
         else if (lo=="logout") {
             $.ajax({

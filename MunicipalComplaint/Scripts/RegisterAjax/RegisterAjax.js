@@ -3,7 +3,7 @@
     });
 
     // Fill Tehsil Dropdown in UC form
-    $(document).ready(function () {
+$(document).ready(function () {
         $('#BtnUpdate').hide();
     $('#H2').hide();
         //Datatable
@@ -44,44 +44,7 @@
 
     });
     //End of Fill Tehsil Dropdown in UC form
-    function sendForm() {
-        var Username = $('#Username').val();
-        var disId = $("#districtDrop :selected").val();
-        var Email = $('#Email').val();
-        var CNIC = $('#CNIC').val();
-        var Contact = $('#Contact').val();
-        var Address = $('#Address').val();
-        var Type = $("#roleDrop :selected").val();
-
-        $.ajax({
-        type: "POST",
-            url: "/AdminPanel/Register",
-            //data: data,
-            data: {
-        Username: Username,
-                DistrictId: disId,
-                Contact: Contact,
-                CNIC: CNIC,
-                Email: Email,
-                Address: Address,
-                Type: Type
-            },
-            success: function (re) {
-
-        swal({
-            title: "Good job!",
-            text: "Successfully Inserted!",
-            icon: "success",
-            button: true,
-
-        }).then((value) => {
-            //swal("Reloading Informtion, Please wait...");
-            location.reload();
-        });
-    }
-        });
-
-    }
+   
     function updateuser(id) {
         $('#BtnRegister').hide();
     $('#BtnUpdate').show();

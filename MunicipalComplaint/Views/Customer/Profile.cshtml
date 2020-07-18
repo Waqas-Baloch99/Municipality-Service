@@ -268,12 +268,13 @@
                                             if (data.UserId == Convert.ToInt32(Session["user_id"]))
                                             {
                                                 <img id="imageupload" src="~/Content/Images/@data.Image" alt="" onclick="openImageDialog();"  />
+                                                <input type="hidden" value="@data.UserId" name="UserId" />
                                             }
                                         }
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-1" style="display:block;"> <i class="fa fa-upload"></i> Upload</button>
                                     <input type="file" id="ImageFile" value="Change Photo" name="ImageFile" style="display:none;" required/>
-                                    <input type="hidden" value="3" name="UserId" />
+                                   
                                 }
                                         
                             </div>
@@ -303,9 +304,6 @@
                             <div class="col-md-4">
                                 <div class="profile-work">
                                     <p style="color:#1390ff">Welcome to Municiple Complaint Cell!</p>
-                                    @*<a href="">Website Link</a><br />
-                                        <a href="">Bootsnipp Profile</a><br />
-                                        <a href="">Bootply Profile</a>*@
                                     <p>The system will  help you gain a better understanding of the behavior, actions, and interests of your municipility complains. </p>
                                     <a href="#ChangePassword" id="changePassword" data-target="#ChangePassword" class="btn btn-primary btn-sm" data-toggle="modal" style="color:white"><span><i class="fa fa-key"></i></span> Change Password</a>
                                 </div>
@@ -398,28 +396,7 @@
                                                         <label id="Address">@data.Address</label>
                                                     </div>
                                                 </div>
-                                                @*<div class="row">
-                                                        <div class="col-md-6">
-                                                            <label>English Level</label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <p>Expert</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label>Availability</label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <p>6 months</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <label>Your Bio</label><br />
-                                                            <p>Your detail description</p>
-                                                        </div>
-                                                    </div>*@
+                                              
                                             </div>
                                         </div>
                                     }
@@ -500,7 +477,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="d-block"><b>DOB</b></label>
-                                                <input type="text" name="DOB" id="Datebirth" placeholder="Date of Birth" class="form-control" value="@data.DOB" />
+                                                <input type="date" id="Datebirth" name="DOB" value="@data.DOB" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>

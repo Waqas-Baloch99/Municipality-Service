@@ -100,7 +100,7 @@
                                                     }
 
                                                 </td>
-                                                
+
                                             </tr>
                                         }
                                     </tbody>
@@ -173,13 +173,13 @@
                                             <label class="d-block"><b>Name</b></label>
                                             <input type="text" hidden="hidden" id="userid" />
                                             <input type="text" class="form-control" placeholder="Name" id="Username" name="Username" maxlength="25">
-                                            
+
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="d-block"><b>Email</b></label>
-                                            <input type="text" class="form-control" placeholder="Email"  name="Email" id="Email" maxlength="25">
+                                            <input type="email" class="form-control"  placeholder="Email" name="Email" id="Email" maxlength="25">
                                         </div>
                                     </div>
 
@@ -189,7 +189,7 @@
                                         <div class="form-group">
                                             <label class="d-block"><b>Contact</b></label>
 
-                                            <input type="text" class="form-control" placeholder="Contact" id="Contact" name="Contact" maxlength="25">
+                                            <input type="text" class="form-control" onkeyup="ContactValidation()" placeholder="Contact" id="Contact" name="Contact" maxlength="12">
 
                                         </div>
                                     </div>
@@ -197,7 +197,7 @@
                                         <div class="form-group">
                                             <label class="d-block"><b>CNIC</b></label>
 
-                                            <input type="text" class="form-control" placeholder="CNIC" name="CNIC" id="CNIC" maxlength="25">
+                                            <input type="text" class="form-control" onkeyup="CNICValidation()" placeholder="CNIC" name="CNIC" id="CNIC" maxlength="15">
                                         </div>
                                     </div>
 
@@ -229,30 +229,30 @@
 
 
                                 </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="d-block"><b>Address</b></label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="d-block"><b>Address</b></label>
 
-                                                <input type="text" name="Address" id="Address" placeholder="Address" class="form-control" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="d-block"><b>Role</b></label>
-                                                <select class="form-control" name="role" id="roleDrop">
-                                                    <option selected disabled>-- Select Role --</option>
-                                                    <option>Admin</option>
-                                                    <option>Employee</option>
-
-                                                </select>
-                                            </div>
+                                            <input type="text" name="Address" id="Address" placeholder="Address" class="form-control" />
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <input id="BtnRegister" name="BtnRegister" type="button" value="Register" onclick="sendForm()" class="btn float-right btn-primary">
-                                        <input id="BtnUpdate" type="button" value="Update" onclick="sendUpdateForm()" class="btn float-right btn-primary">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="d-block"><b>Role</b></label>
+                                            <select class="form-control" name="role" id="roleDrop">
+                                                <option selected disabled>-- Select Role --</option>
+                                                <option>Admin</option>
+                                                <option>Employee</option>
+
+                                            </select>
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <input id="BtnRegister" name="BtnRegister" type="button" value="Register" onclick="sendForm()" class="btn float-right btn-primary">
+                                    <input id="BtnUpdate" type="button" value="Update" onclick="sendUpdateForm()" class="btn float-right btn-primary">
+                                </div>
                             }
                         </div>
                     </div>
@@ -269,6 +269,101 @@
 <link href="~/Content/DataTable/dtb.css" rel="stylesheet" />
 @Scripts.Render("~/bundles/alertFile/alert")
 <script src="~/Scripts/RegisterAjax/RegisterAjax.js"></script>
+<script src="~/Scripts/jquery.inputmask.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#Contact').inputMask('999999999999');
+    });
+    function sendForm() {
+        var Username = $('#Username').val();
+        var disId = $("#districtDrop :selected").val();
+        var Email = $('#Email').val();
+        var CNIC = $('#CNIC').val();
+        var Contact = $('#Contact').val();
+        var Address = $('#Address').val();
+        var Type = $("#roleDrop :selected").val();
+        if (Username == '' || disId == '' || Email == '' || CNIC == '' || Contact == '' || Address == '' || Type == '') {
+            swal({
+                title: "Error!",
+                text: "Please fill all the fields!",
+                icon: "warning",
+
+            });
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/AdminPanel/Register",
+                //data: data,
+                data: {
+                    Username: Username,
+                    DistrictId: disId,
+                    Contact: Contact,
+                    CNIC: CNIC,
+                    Email: Email,
+                    Address: Address,
+                    Type: Type
+                },
+                success: function (re) {
+
+                    swal({
+                        title: "Good job!",
+                        text: "Successfully Inserted!",
+                        icon: "success",
+                        button: true,
+
+                    }).then((value) => {
+                        //swal("Reloading Informtion, Please wait...");
+                        location.reload();
+                    });
+                }
+            });
+        }
+
+    }
+
+    function CNICValidation() {
+        var cnic = document.getElementById("CNIC").value;
+        var abc = cnic.replace(/-/g, "");
+        if (isNaN(abc)) {
+            alert("Enter Numbers Only");
+            document.getElementById("CNIC").value = "0";
+        }
+        else {
+            if (cnic.length == 5 || cnic.length == 13) {
+                cnic += "-";
+                document.getElementById("CNIC").value = cnic;
+            }
+        }
+    }
+
+    function ContactValidation() {
+        var contact = document.getElementById("Contact").value;
+        var abc = contact.replace(/-/g, "");
+        if (isNaN(abc)) {
+            alert("Enter Numbers Only");
+            document.getElementById("Contact").value = "0";
+        }
+        else {
+            if (contact.length == 4) {
+                if (contact < 0300 || contact > 0349) {
+                    alert("Not A Valid Code");
+                    document.getElementById("Contact").value = "0";
+                }
+            else {
+                    contact += "-";
+                    document.getElementById("Contact").value = contact;
+                }
+            }
+        }
+    }
+
+
+    ///Email validity
+
+
+
+</script>
 
 
 

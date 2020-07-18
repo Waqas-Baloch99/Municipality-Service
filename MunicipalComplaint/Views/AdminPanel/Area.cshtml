@@ -592,4 +592,172 @@
         "info": true,
         "autoWidth": true,
     });
+
+    // Province Ajax Start
+    function sendProData() {
+        var proName = $('#pName').val();
+        if (proName == '') {
+            swal({
+                title: "Error!",
+                text: "Please fill required field!",
+                icon: "warning",
+                button: true,
+
+            })
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/AdminPanel/Area",
+                //data: data,
+                data: {
+                    ProvinceName: proName
+                },
+                success: function (re) {
+                    swal({
+                        title: "Good job!",
+                        text: "Successfully Inserted!",
+                        icon: "success",
+                        button: true,
+
+                    }).then((value) => {
+
+                        location.reload();
+                    });
+                }
+
+            })
+        }
+
+    }
+
+    //Province Ajax End
+
+    // District Ajax start
+
+    function send() {
+        debugger
+        var disName = $('#districtName').val();
+        var proId = $("#proI :selected").val();
+        if (disName == '' || proId == '') {
+            swal({
+                title: "Error!",
+                text: "Please fill required field!",
+                icon: "warning",
+                button: true,
+
+            });
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/AdminPanel/AreaDistrict",
+                //data: data,
+                data: {
+                    DistrictName: disName,
+                    ProvinceId: proId
+                },
+                success: function (re) {
+
+                    swal({
+                        title: "Good job!",
+                        text: "Successfully Inserted!",
+                        icon: "success",
+                        button: true,
+
+                    }).then((value) => {
+
+                        location.reload();
+                    });
+                }
+            })
+        }
+
+    }
+
+    //District Ajax End
+
+    //Tehsil Ajax Start
+    function sendTehsil() {
+        debugger
+        var tehName = $('#TehsilName').val();
+        var disId = $("#districtDrop :selected").val();
+        if (tehName == '' || disId == '') {
+
+            swal({
+                title: "Error!",
+                text: "Please fill required field!",
+                icon: "warning",
+                button: true,
+
+            });
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/AdminPanel/AreaTehsil",
+                //data: data,
+                data: {
+                    TehsilName: tehName,
+                    DistrictId: disId
+                },
+                success: function (re) {
+
+                    swal({
+                        title: "Good job!",
+                        text: "Successfully Inserted!",
+                        icon: "success",
+                        button: true,
+
+                    }).then((value) => {
+
+                        location.reload();
+                    });
+                }
+            })
+        }
+
+    }
+    //Tehsil Ajax End
+
+    //UC Ajax Start
+    function sendUC() {
+        debugger
+        var ucName = $('#UCName').val();
+        var tehId = $("#tehsilUcDrop :selected").val();
+        if (ucName == '' || tehId == '') {
+            swal({
+                title: "Error!",
+                text: "Please fill required field!",
+                icon: "warning",
+                button: true,
+
+            })
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/AdminPanel/AreaUC",
+                //data: data,
+                data: {
+                    UCName: ucName,
+                    TehsilId: tehId
+                },
+                success: function (re) {
+
+                    swal({
+                        title: "Good job!",
+                        text: "Successfully Inserted!",
+                        icon: "success",
+                        button: true,
+
+                    }).then((value) => {
+
+                        location.reload();
+                    });
+                }
+            })
+        }
+
+    }
 </script>

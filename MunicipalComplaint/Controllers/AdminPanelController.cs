@@ -131,6 +131,19 @@ namespace MunicipalComplaint.Controllers
             return Json("done");
 
         }
+        public ActionResult Dashboard()
+        {
+            List<CustomerSignup> cs = _context.customer.Where(x => x.Type == "Employee").ToList();
+            List<CustomerSignup> cse = _context.customer.Where(x => x.Type == "User").ToList();
+            List<complains> com = _context.compalin.ToList();
+            List<complains> comRe = _context.compalin.Where(x => x.Status == 1).ToList();
+            ViewData["Employee"] = cs.Count().ToString();
+            ViewData["Users"] = cse.Count().ToString();
+            ViewData["Complaim"] = com.Count().ToString();
+            ViewData["ResolveComp"] = comRe.Count().ToString();
+
+            return View();
+        }
         [HttpPost]
         public ActionResult AreaDistrict(City city)
         {

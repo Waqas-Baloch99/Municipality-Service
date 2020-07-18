@@ -88,131 +88,7 @@
 
     //End of Fill Tehsil Dropdown in UC form
 
-    // Province Ajax Start
-    function sendProData() {
-        var proName = $('#pName').val();
-        $.ajax({
-        type: "POST",
-            url: "/AdminPanel/Area",
-            //data: data,
-            data: {
-        ProvinceName: proName
-    },
-            success: function (re) {
-        swal({
-            title: "Good job!",
-            text: "Successfully Inserted!",
-            icon: "success",
-            button: true,
 
-        }).then((value) => {
-
-            location.reload();
-        });
-    }
-
-        })
-
-    }
-
-    //Province Ajax End
-
-    // District Ajax start
-
-    function send() {
-        debugger
-    var disName = $('#districtName').val();
-        var proId = $("#proI :selected").val();
-        console.log(proId);
-        $.ajax({
-        type: "POST",
-            url: "/AdminPanel/AreaDistrict",
-            //data: data,
-            data: {
-        DistrictName: disName,
-                ProvinceId: proId
-            },
-            success: function (re) {
-
-        swal({
-            title: "Good job!",
-            text: "Successfully Inserted!",
-            icon: "success",
-            button: true,
-
-        }).then((value) => {
-
-            location.reload();
-        });
-    }
-        })
-
-    }
-
-    //District Ajax End
-
-    //Tehsil Ajax Start
-    function sendTehsil() {
-        debugger
-    var tehName = $('#TehsilName').val();
-        var disId = $("#districtDrop :selected").val();
-
-        $.ajax({
-        type: "POST",
-            url: "/AdminPanel/AreaTehsil",
-            //data: data,
-            data: {
-        TehsilName: tehName,
-                DistrictId: disId
-            },
-            success: function (re) {
-
-        swal({
-            title: "Good job!",
-            text: "Successfully Inserted!",
-            icon: "success",
-            button: true,
-
-        }).then((value) => {
-
-            location.reload();
-        });
-    }
-        })
-
-    }
-    //Tehsil Ajax End
-
-    //UC Ajax Start
-    function sendUC() {
-        debugger
-    var ucName = $('#UCName').val();
-        var tehId = $("#tehsilUcDrop :selected").val();
-
-        $.ajax({
-        type: "POST",
-            url: "/AdminPanel/AreaUC",
-            //data: data,
-            data: {
-        UCName: ucName,
-                TehsilId: tehId
-            },
-            success: function (re) {
-
-        swal({
-            title: "Good job!",
-            text: "Successfully Inserted!",
-            icon: "success",
-            button: true,
-
-        }).then((value) => {
-
-            location.reload();
-        });
-    }
-        })
-
-    }
     //UC Ajax End
    // getProvince Data for Update
     function getProForUp(id) {
@@ -237,7 +113,7 @@
     }
 
     function updateProvince(){
-        var proName = $('#pName').val();
+        var proName = $s('#pName').val();
         var proId = $('#pId').val();
         $.ajax({
         type: "POST",

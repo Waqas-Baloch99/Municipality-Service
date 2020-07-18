@@ -126,7 +126,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="address">Complain Type<span class="text-red">*</span></label>
-                        <select class="form-control" name="ComplainType">
+                        <select class="form-control" name="ComplainType" required>
                             <option selected disabled>-- Select Complain Type --</option>
                             <option>Sanitation Services</option>
                             <option>Drinking Water</option>
@@ -144,7 +144,7 @@
                 <div class="row form-group">
                     <div class="col-md-4">
                         <label for="address">Town<span class="text-red">*</span></label>
-                        <select class="form-control" name="TownId">
+                        <select class="form-control" name="TownId" required>
                             <option selected disabled>-- Select Town --</option>
                             @foreach (var data in Model.ucs)
                             {
@@ -155,7 +155,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="address">Select Images<span class="text-red">*</span></label>
-                        <input type="file" class="form-control" name="ImageFile" />
+                        <input type="file" class="form-control" name="ImageFile" required/>
                     </div>
                 </div>
 

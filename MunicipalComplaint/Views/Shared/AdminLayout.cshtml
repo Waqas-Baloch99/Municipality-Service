@@ -1,5 +1,6 @@
 ﻿
-@if (Session.Count<=0) {
+@if (Session.Count <= 0)
+{
     Response.Redirect("/Customer/Home");
 }
 <!DOCTYPE html>
@@ -14,19 +15,20 @@
             height: 56px !important;
             width: 56px !important;
         }
+
         nav ul li select {
             color: white;
             background-color: #212330;
             transition: 0.5s ease-in-out;
         }
-        nav ul li select:hover {
-            color: white;
-          
-        }
-        nav ul li select option {
-            color: white;
 
-        }
+            nav ul li select:hover {
+                color: white;
+            }
+
+            nav ul li select option {
+                color: white;
+            }
     </style>
     <link href="~/Content/DataTable/dtb.css" rel="stylesheet" />
     @Styles.Render("~/Content/AdminCss")
@@ -67,10 +69,10 @@
                     <li class="dropdown">
                         <select style="border:none" class="mt-1" id="logout">
                             <option selected disabled class="d-lg-inline-block">Hi ! @Session["name"]</option>
-                            <option value="logout" >Logout</option>
+                            <option value="logout">Logout</option>
                         </select>
 
-                        
+
                     </li>
                 </ul>
             </nav>
@@ -96,34 +98,36 @@
                             <a href="/AdminPanel/Dashboard"><i class="fa fa-tachometer"></i><span>Dashboard</span></a>
                         </li>
                         <li class="menu-header">Components</li>
-                        @if (Session.Count>0) {
-                            if (Session["user_type"].ToString()=="Admin") {
+                        @if (Session.Count > 0)
+                        {
+                            if (Session["user_type"].ToString() == "Admin")
+                            {
 
 
-                            
 
-                        <li id="area">
-                            <a href="@Url.Action("Area","AdminPanel")"><i class="fa fa-plus-circle"></i><span>Add Area</span></a>
-                            @*<ul class="menu-dropdown">
-                                    <li><a href="/Cars/addCars"><i class="ion ion-ios-circle-outline"></i> Add New Car</a></li>
-                                    <li><a href="/Cars/SearchCar"><i class="ion ion-ios-circle-outline"></i> Search Cars</a></li>
 
-                                </ul>*@
-                        </li>
-                        <li id="register">
-                            <a href="@Url.Action("Register","AdminPanel")"><i class="fa fa-user-plus"></i><span>Registration</span></a>
-                            @*<ul class="menu-dropdown">
-                                    <li><a href="/Cars/addCars"><i class="ion ion-ios-circle-outline"></i> Add New Car</a></li>
-                                    <li><a href="/Cars/SearchCar"><i class="ion ion-ios-circle-outline"></i> Search Cars</a></li>
+                                <li id="area">
+                                    <a href="@Url.Action("Area","AdminPanel")"><i class="fa fa-plus-circle"></i><span>Add Area</span></a>
+                                    @*<ul class="menu-dropdown">
+                                            <li><a href="/Cars/addCars"><i class="ion ion-ios-circle-outline"></i> Add New Car</a></li>
+                                            <li><a href="/Cars/SearchCar"><i class="ion ion-ios-circle-outline"></i> Search Cars</a></li>
 
-                                </ul>*@
-                        </li>
-                        <li id="manageEmp">
-                            <a href="@Url.Action("ManageEmployee","AdminPanel")"><i class="fa fa-user"></i><span>Manage Employee</span></a>
-                        </li>
+                                        </ul>*@
+                                </li>
+                                <li id="register">
+                                    <a href="@Url.Action("Register","AdminPanel")"><i class="fa fa-user-plus"></i><span>Registration</span></a>
+                                    @*<ul class="menu-dropdown">
+                                            <li><a href="/Cars/addCars"><i class="ion ion-ios-circle-outline"></i> Add New Car</a></li>
+                                            <li><a href="/Cars/SearchCar"><i class="ion ion-ios-circle-outline"></i> Search Cars</a></li>
+
+                                        </ul>*@
+                                </li>
+                                <li id="manageEmp">
+                                    <a href="@Url.Action("ManageEmployee","AdminPanel")"><i class="fa fa-user"></i><span>Manage Employee</span></a>
+                                </li>
                             }
                         }
-                        
+
                     </ul>
                 </aside>
             </div>
