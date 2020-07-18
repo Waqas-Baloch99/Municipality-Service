@@ -30,6 +30,12 @@ namespace MunicipalComplaint.Controllers
             return View(vm);
         }
         [HttpPost]
+        public string Logout()
+        {
+            Session.RemoveAll();
+            return "logs";
+        }
+        [HttpPost]
         public ActionResult Register(CustomerSignup cus)
         {
             cus.Status = "Active";
@@ -62,7 +68,7 @@ namespace MunicipalComplaint.Controllers
         }
         [HttpPost]
         public ActionResult FillReport(int id) {
-            List<CustomerSignup> licus = _context.customer.Where(x => x.DistrictId == id).ToList();
+            List<CustomerSignup> licus = _context.customer.Where(x => x.DistrictId == id && x.Type=="Employee").ToList();
             return Json(licus);
         }
         [HttpPost]

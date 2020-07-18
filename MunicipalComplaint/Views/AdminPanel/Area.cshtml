@@ -179,11 +179,11 @@
                         </div>
                         <hr style="width: 70%;color: #3F52E3;background: #3F52E3;height: 2px;" />
                         @*UC*@
-                        <h3 class="text-center text-primary text-uppercase">Manage UC</h3>
+                        <h3 class="text-center text-primary text-uppercase">Manage Town</h3>
                         <div class="img-thumbnail p-3">
                             <div class="row ">
                                 <div class="offset-md-10 col-md-2 offset-6 col-sm-6">
-                                    <a href="#UC" data-target="#UC" class="btn btn-primary btn-sm" id="AddUcBtn" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add UC</a>
+                                    <a href="#UC" data-target="#UC" class="btn btn-primary btn-sm" id="AddUcBtn" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add Town</a>
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -195,7 +195,7 @@
                                                     Id
                                                 </th>
                                                 <th>
-                                                    UC
+                                                    Town
                                                 </th>
                                                 <th>
                                                     Tehsil
@@ -301,8 +301,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="offset-3 col-md-6">
-                                        <input type="button" value="Submit" class="btn btn-success btn-block" id="subProvince" onclick="sendProData()" />
-                                        <input type="button" value="Update" class="btn btn-success btn-block" id="upProvince" onclick="updateProvince()" />
+                                        <input type="button" value="Submit" class="btn btn-primary btn-block" id="subProvince" onclick="sendProData()" />
+                                        <input type="button" value="Update" class="btn btn-primary btn-block" id="upProvince" onclick="updateProvince()" />
                                     </div>
                                 </div>
 
@@ -362,8 +362,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="offset-3 col-md-6">
-                                        <input type="button" value="Submit" class="btn btn-success btn-block" onclick="send()" id="subDistrict" />
-                                        <input type="button" value="Update" class="btn btn-success btn-block" onclick="updateDistrict()" id="upDistrict" />
+                                        <input type="button" value="Submit" class="btn btn-primary btn-block" onclick="send()" id="subDistrict" />
+                                        <input type="button" value="Update" class="btn btn-primary btn-block" onclick="updateDistrict()" id="upDistrict" />
 
                                     </div>
                                 </div>
@@ -436,8 +436,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="offset-3 col-md-6">
-                                        <input type="button" value="Submit" class="btn btn-success btn-block" onclick="sendTehsil()" id="subTeh" />
-                                        <input type="button" value="Update" class="btn btn-success btn-block" onclick="UpdateTehsil()" id="upTeh" />
+                                        <input type="button" value="Submit" class="btn btn-primary btn-block" onclick="sendTehsil()" id="subTeh" />
+                                        <input type="button" value="Update" class="btn btn-primary btn-block" onclick="UpdateTehsil()" id="upTeh" />
 
                                     </div>
                                 </div>
@@ -459,8 +459,8 @@
     <div class="modal-dialog modal-md">
         <div class="modal-content" style="border:1px solid gray;border-radius:10px;">
             <div class="modal-header">
-                <h5 class="modal-title" id="H1Uc" style="font-weight:500;color:#1e90ff">Add UC</h5>
-                <h5 class="modal-title" id="H2Uc" style="font-weight:500;color:#1e90ff">Update UC</h5>
+                <h5 class="modal-title" id="H1Uc" style="font-weight:500;color:#1e90ff">Add Town</h5>
+                <h5 class="modal-title" id="H2Uc" style="font-weight:500;color:#1e90ff">Update Town</h5>
                 <asp:LinkButton ID="btnUcModalClose" runat="server" aria-hidden="true" style="color:black;font-size:25px;cursor:pointer">
                     &times;
                 </asp:LinkButton>
@@ -513,15 +513,15 @@
                                     <div class="offset-1 col-md-10">
                                         <div class="form-group">
                                             <input type="text" hidden id="txtUcId" />
-                                            <input type="text" name="UCName" placeholder="UC" class="form-control" id="UCName" />
+                                            <input type="text" name="UCName" placeholder="Town" class="form-control" id="UCName" />
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="row">
                                     <div class="offset-3 col-md-6">
-                                        <input type="button" value="Submit" id="subUc" class="btn btn-success btn-block" onclick="sendUC()" />
-                                        <input type="button" value="Update" id="upUc" class="btn btn-success btn-block" onclick="UpdateUC()" />
+                                        <input type="button" value="Submit" id="subUc" class="btn btn-primary btn-block" onclick="sendUC()" />
+                                        <input type="button" value="Update" id="upUc" class="btn btn-primary btn-block" onclick="UpdateUC()" />
 
                                     </div>
                                 </div>

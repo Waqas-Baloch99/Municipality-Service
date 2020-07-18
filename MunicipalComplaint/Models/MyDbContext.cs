@@ -13,6 +13,7 @@ namespace MunicipalComplaint.Models
         public DbSet<City> city { get; set; }
         public DbSet<Tehsil> tehsil { get; set; }
         public DbSet<UC> uc { get; set; }
+        public DbSet<complains> compalin { get; set; }
         public DbSet<ContactForm> ContactMessage { get; set; }
         public MyDbContext(): base("MunicipalDB")
         {

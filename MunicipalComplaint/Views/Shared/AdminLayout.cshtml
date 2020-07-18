@@ -14,6 +14,19 @@
             height: 56px !important;
             width: 56px !important;
         }
+        nav ul li select {
+            color: white;
+            background-color: #212330;
+            transition: 0.5s ease-in-out;
+        }
+        nav ul li select:hover {
+            color: white;
+          
+        }
+        nav ul li select option {
+            color: white;
+
+        }
     </style>
     <link href="~/Content/DataTable/dtb.css" rel="stylesheet" />
     @Styles.Render("~/Content/AdminCss")
@@ -52,19 +65,12 @@
                         </div>
                     </li>
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg" style="color:#ffffff">
-                            <i class="ion ion-android-person d-lg-none"></i>
-                            <div class="d-sm-none d-lg-inline-block">Hi,Hamza</div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <!-- <a href="profile.html" class="dropdown-item has-icon">
-                                 <i class="ion ion-android-person"></i> Profile
-                             </a>
-                                -->
-                            <a href="/AdminPanel/Logout" class="dropdown-item has-icon">
-                                <i class="ion ion-log-out"></i> Logout
-                            </a>
-                        </div>
+                        <select style="border:none" class="mt-1" id="logout">
+                            <option selected disabled class="d-lg-inline-block">Hi ! @Session["name"]</option>
+                            <option value="logout" >Logout</option>
+                        </select>
+
+                        
                     </li>
                 </ul>
             </nav>
@@ -78,9 +84,9 @@
                             <img alt="image" class="imgAvatar" src="~/Content/avatar-png-1.png" />
                         </div>
                         <div class="sidebar-user-details">
-                            <div class="user-name">Hamza</div>
+                            <div class="user-name">@Session["name"]</div>
                             <div class="user-role">
-                                Administrator
+                                @Session["user_type"]
                             </div>
                         </div>
                     </div>
@@ -90,6 +96,12 @@
                             <a href="/AdminPanel/Dashboard"><i class="fa fa-tachometer"></i><span>Dashboard</span></a>
                         </li>
                         <li class="menu-header">Components</li>
+                        @if (Session.Count>0) {
+                            if (Session["user_type"].ToString()=="Admin") {
+
+
+                            
+
                         <li id="area">
                             <a href="@Url.Action("Area","AdminPanel")"><i class="fa fa-plus-circle"></i><span>Add Area</span></a>
                             @*<ul class="menu-dropdown">
@@ -106,39 +118,12 @@
 
                                 </ul>*@
                         </li>
-                        <li>
+                        <li id="manageEmp">
                             <a href="@Url.Action("ManageEmployee","AdminPanel")"><i class="fa fa-user"></i><span>Manage Employee</span></a>
                         </li>
-                        @*  <li>
-                                <a href="" class="has-dropdown"><i class="ion ion-ios-albums-outline"></i><span>Driver Managment</span></a>
-                                <ul class="menu-dropdown">
-                                    <li><a href="/Driver/AddDriver"><i class="ion ion-ios-circle-outline"></i>Add Driver</a></li>
-                                    <li><a href="/Driver/ViewDriver"><i class="ion ion-ios-circle-outline"></i>View Driver</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="" class="has-dropdown"><i class="ion ion-ios-albums-outline"></i><span>Booking Managment</span></a>
-                                <ul class="menu-dropdown">
-                                    <li><a href="/Booking/Index"><i class="ion ion-ios-circle-outline"></i>Add Booking</a></li>
-                                    <li><a href="/Booking/ViewBooking"><i class="ion ion-ios-circle-outline"></i>View Bookings</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="" class="has-dropdown"><i class="ion ion-ios-albums-outline"></i><span>Expense Managment</span></a>
-                                <ul class="menu-dropdown">
-                                    <li><a href="/Expense/Index"><i class="ion ion-ios-circle-outline"></i>Add Expense</a></li>
-                                    <li><a href="/Expense/ViewExpense"><i class="ion ion-ios-circle-outline"></i>View Expense</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/AdminPanel/Message"><i class="ion ion-clipboard"></i><span>Messages</span></a>
-                            </li>
-                            <li>
-                                <a href="/Register/Index"><i class="ion ion-clipboard"></i><span>Register Account</span></a>
-                            </li>
-                            <li>
-                                <a href="/AdminPanel/Credits"><i class="ion ion-ios-information-outline"></i> Credits</a>
-                            </li>*@
+                            }
+                        }
+                        
                     </ul>
                 </aside>
             </div>
@@ -160,3 +145,28 @@
 @Scripts.Render("~/bundles/AdminJS")
 @RenderSection("scripts", required: false)
 <script src="~/Content/DataTable/dt.js"></script>
+<script>
+    $('#logout').change(function () {
+        var lo = $('#logout :selected').val();
+        if (lo == "profile") {
+            location.reload();
+        }
+        else if (lo == "logout") {
+            $.ajax({
+                url: "/Customer/Logout",
+                cache: false,
+                type: "POST",
+                //data: data,
+
+                success: function (re) {
+
+                    if (re == 'logs') {
+                        location.href = "/Customer/Home";
+                    }
+                }
+            });
+        }
+
+
+    })
+</script>
