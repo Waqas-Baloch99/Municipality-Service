@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.ComponentModel.DataAnnotations;
 using MunicipalComplaint.Models;
 using MunicipalComplaint.ViewModel;
-using System.Data.Entity;
+using Rotativa;
 
 namespace MunicipalComplaint.Controllers
 {
@@ -339,7 +337,6 @@ namespace MunicipalComplaint.Controllers
 
                     }
                 }
-
             }
             else
             {
@@ -383,7 +380,6 @@ namespace MunicipalComplaint.Controllers
         }
 
         [HttpPost]
-
         public ActionResult DelUc(int id)
         {
             UC ucc = _context.uc.SingleOrDefault(x => x.UcId == id);
@@ -393,7 +389,38 @@ namespace MunicipalComplaint.Controllers
 
 
         }
-
+ 
+        public ActionResult AdminComplain()
+        {
+            var complaints = _context.compalin.Where(c => c.isvalid == 0).ToList();
+            var district = _context.city.ToList();
+            ComplaintDistrict cd = new ComplaintDistrict
+            {
+                allcomplaints = complaints,
+                city =district
+            };
+            return View(cd);
+        }
+        [HttpPost]
+        public string UpdateComplaintStatus(int statuscmp,int id)
+        {
+            complains complaint = _context.compalin.Single(c => c.ComplainId == id);
+            complaint.isvalid = statuscmp;
+            TryUpdateModel(complaint);
+            _context.SaveChanges();
+            return "done";
+        }
+        //PDF
+        public ActionResult GenerateEmployeesReport(int DistrictNames = 0)
+        {
+            var employees = _context.customer.Where(e => e.Type == "Employee" && e.DistrictId==DistrictNames).ToList();
+            return View(employees);
+        }
+        public ActionResult PrintAllReport(int DistrictNames)
+        {
+            var report = new ActionAsPdf("GenerateEmployeesReport",new { DistrictNames=DistrictNames });
+            return report;
+        }
         protected override void Dispose(bool disposing)
         {
             if (_context == null)

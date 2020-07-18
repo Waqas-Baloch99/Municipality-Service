@@ -262,19 +262,23 @@
                             <div class="col-md-4">
                                 @using (Html.BeginForm("UploadImage", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                 {
-                                    <div class="profile-img">
-                                        @foreach (var data in Model.signup)
+                                <div class="profile-img">
+                                    @foreach (var data in Model.signup)
+                                    {
+                                        if (data.UserId == Convert.ToInt32(Session["user_id"]))
                                         {
                                             if (data.UserId == Convert.ToInt32(Session["user_id"]))
                                             {
                                                 <img id="imageupload" src="~/Content/Images/@data.Image" alt="" onclick="openImageDialog();"  />
                                                 <input type="hidden" value="@data.UserId" name="UserId" />
                                             }
+                                            <img id="imageupload" src="~/Content/Images/@data.Image" alt="Click to upload Image" onclick="openImageDialog();" />
+                                            <input type="hidden" value="@data.UserId" name="UserId" />
                                         }
-                                    </div>
+                                    }
+                                </div>
                                     <button type="submit" class="btn btn-primary mt-1" style="display:block;"> <i class="fa fa-upload"></i> Upload</button>
                                     <input type="file" id="ImageFile" value="Change Photo" name="ImageFile" style="display:none;" required/>
-                                   
                                 }
                                         
                             </div>
