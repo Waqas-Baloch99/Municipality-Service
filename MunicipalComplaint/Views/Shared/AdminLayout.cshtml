@@ -1,0 +1,172 @@
+﻿
+@if (Session.Count<=0) {
+    Response.Redirect("/Customer/Home");
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" name="viewport">
+    <title>Admin Panel</title>
+    <link rel="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" type="text/css" />
+    <style>
+        .imgAvatar {
+            height: 56px !important;
+            width: 56px !important;
+        }
+        nav ul li select {
+            color: white;
+            background-color: #212330;
+            transition: 0.5s ease-in-out;
+        }
+        nav ul li select:hover {
+            color: white;
+          
+        }
+        nav ul li select option {
+            color: white;
+
+        }
+    </style>
+    <link href="~/Content/DataTable/dtb.css" rel="stylesheet" />
+    @Styles.Render("~/Content/AdminCss")
+</head>
+<body>
+    <div id="app">
+        <div class="main-wrapper">
+            <div class="navbar-bg" style="background:#212330;height:60px"></div>
+            <nav class="navbar navbar-expand-lg main-navbar">
+                <form class="form-inline mr-auto">
+                    <ul class="navbar-nav mr-3">
+                        <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fa fa-bars" style="color:#ffffff"></i></a></li>
+                        <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="ion ion-search"></i></a></li>
+                    </ul>
+
+                </form>
+                <ul class="navbar-nav navbar-right">
+                    <li class="dropdown dropdown-list-toggle">
+                        <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="fa fa-bell" style="color:#ffffff"></i></a>
+                        <div class="dropdown-menu dropdown-list dropdown-menu-right">
+                            <div class="dropdown-header">
+                                Notifications
+                                <div class="float-right">
+                                    <a href="#">View All</a>
+                                </div>
+                            </div>
+                            <div class="dropdown-list-content">
+                                <a href="#" class="dropdown-item dropdown-item-unread">
+                                    <img alt="image" src=@Url.Content("~/Content/img/AdminPanel/avatar-1.jpeg") class="rounded-circle dropdown-item-img imgAvatar">
+                                    <div class="dropdown-item-desc">
+                                        <b>Kusnaedi</b> has moved task <b>Fix bug header</b> to <b>Done</b>
+                                        <div class="time">10 Hours Ago</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <select style="border:none" class="mt-1" id="logout">
+                            <option selected disabled class="d-lg-inline-block">Hi ! @Session["name"]</option>
+                            <option value="logout" >Logout</option>
+                        </select>
+
+                        
+                    </li>
+                </ul>
+            </nav>
+            <div class="main-sidebar">
+                <aside id="sidebar-wrapper">
+                    <div class="sidebar-brand">
+                        <a href="index.html">   Complaint Cell</a>
+                    </div>
+                    <div class="sidebar-user">
+                        <div class="sidebar-user-picture">
+                            <img alt="image" class="imgAvatar" src="~/Content/avatar-png-1.png" />
+                        </div>
+                        <div class="sidebar-user-details">
+                            <div class="user-name">@Session["name"]</div>
+                            <div class="user-role">
+                                @Session["user_type"]
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="sidebar-menu">
+                        <li class="menu-header">Dashboard</li>
+                        <li class="active">
+                            <a href="/AdminPanel/Dashboard"><i class="fa fa-tachometer"></i><span>Dashboard</span></a>
+                        </li>
+                        <li class="menu-header">Components</li>
+                        @if (Session.Count>0) {
+                            if (Session["user_type"].ToString()=="Admin") {
+
+
+                            
+
+                        <li id="area">
+                            <a href="@Url.Action("Area","AdminPanel")"><i class="fa fa-plus-circle"></i><span>Add Area</span></a>
+                            @*<ul class="menu-dropdown">
+                                    <li><a href="/Cars/addCars"><i class="ion ion-ios-circle-outline"></i> Add New Car</a></li>
+                                    <li><a href="/Cars/SearchCar"><i class="ion ion-ios-circle-outline"></i> Search Cars</a></li>
+
+                                </ul>*@
+                        </li>
+                        <li id="register">
+                            <a href="@Url.Action("Register","AdminPanel")"><i class="fa fa-user-plus"></i><span>Registration</span></a>
+                            @*<ul class="menu-dropdown">
+                                    <li><a href="/Cars/addCars"><i class="ion ion-ios-circle-outline"></i> Add New Car</a></li>
+                                    <li><a href="/Cars/SearchCar"><i class="ion ion-ios-circle-outline"></i> Search Cars</a></li>
+
+                                </ul>*@
+                        </li>
+                        <li id="manageEmp">
+                            <a href="@Url.Action("ManageEmployee","AdminPanel")"><i class="fa fa-user"></i><span>Manage Employee</span></a>
+                        </li>
+                            }
+                        }
+                        
+                    </ul>
+                </aside>
+            </div>
+            <div class="main-content">
+
+                @RenderBody()
+
+            </div>
+            <footer class="main-footer">
+                <div class="footer-left">
+                    Copyright &copy; 2020 <div class="bullet"></div>
+                </div>
+                <div class="footer-right"></div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
+@Scripts.Render("~/bundles/AdminJS")
+@RenderSection("scripts", required: false)
+<script src="~/Content/DataTable/dt.js"></script>
+<script>
+    $('#logout').change(function () {
+        var lo = $('#logout :selected').val();
+        if (lo == "profile") {
+            location.reload();
+        }
+        else if (lo == "logout") {
+            $.ajax({
+                url: "/Customer/Logout",
+                cache: false,
+                type: "POST",
+                //data: data,
+
+                success: function (re) {
+
+                    if (re == 'logs') {
+                        location.href = "/Customer/Home";
+                    }
+                }
+            });
+        }
+
+
+    })
+</script>

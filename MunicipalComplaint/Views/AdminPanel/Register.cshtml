@@ -1,0 +1,274 @@
+﻿@model MunicipalComplaint.ViewModel.viewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@* @Scripts.Render("~/bundles/AdminJS") *@
+<section class="section">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 col-sm-12  col-md-12  col-lg-12 col-xl-12 ">
+                <div class="card card-primary">
+                    <div class="card-primary">
+                        <h1 class="text-primary text-center text-uppercase">User Registration Form</h1>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="offset-8 offset-sm-8 col-sm-4 offset-md-10 col-md-2">
+                                <a href="#Register" id="usermodel" data-target="#Register" class="btn btn-primary btn-sm" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Register User</a>
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row" style="overflow:auto">
+                            <div class="col-sm-12 col-md-12">
+                                <table class="table table-hover table-bordered" id="usertbl">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Name
+                                            </th>
+                                            <th>
+                                                Email
+                                            </th>
+                                            <th>
+                                                CNIC
+                                            </th>
+                                            <th>
+                                                Contact
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                            <th>
+                                                District
+                                            </th>
+                                            <th>
+                                                Address
+                                            </th>
+                                            <th>
+                                                Update
+                                            </th>
+                                            <th>
+                                                Block/Unblock
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var data in Model.signup)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @data.Username
+                                                </td>
+                                                <td>
+                                                    @data.Email
+                                                </td>
+                                                <td>
+                                                    @data.CNIC
+                                                </td>
+                                                <td>
+                                                    @data.Contact
+                                                </td>
+                                                <td>
+                                                    @data.Status
+                                                </td>
+                                                <td>
+                                                    @foreach (var chkdist in Model.cities)
+                                                    {
+                                                        if (data.DistrictId == chkdist.DistrictId)
+                                                        {
+                                                            @chkdist.DistrictName
+                                                        }
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @data.Address
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary btn-sm" type="button" onclick="updateuser(@data.UserId)"><span><i class="fa fa-edit "></i></span></button>
+                                                </td>
+                                                <td>
+                                                    @if (data.Status == "Active")
+                                                    {
+                                                        <button class="btn btn-danger btn-sm" data-toggle="tooltip" title="Block User!" type="button" onclick="suspenduser(@data.UserId)"><span><i class="fa fa-ban "></i></span></button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button class="btn btn-success btn-sm" data-toggle="tooltip" title="UnBlock User!" type="button" onclick="unblockuser(@data.UserId)"><span><i class="fa fa-check-circle "></i></span></button>
+                                                    }
+
+                                                </td>
+                                                
+                                            </tr>
+                                        }
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>
+                                                Name
+                                            </th>
+                                            <th>
+                                                Email
+                                            </th>
+                                            <th>
+                                                CNIC
+                                            </th>
+                                            <th>
+                                                Contact
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                            <th>
+                                                District
+                                            </th>
+                                            <th>
+                                                Address
+                                            </th>
+                                            <th>
+                                                Update
+                                            </th>
+                                            <th>
+                                                Block/Unblock
+                                            </th>
+                                        </tr>
+
+                                    </tfoot>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+@*Register Model Start*@
+<div class="modal fade" id="Register" runat="server" tabindex="-1" role="dialog" aria-labelledby="Register"
+     aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content" style="border:1px solid gray;border-radius:10px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="H1" style="font-weight:500;color:#1e90ff">Register User</h5>
+                <h5 class="modal-title" id="H2" style="font-weight:500;color:#1e90ff">Update User</h5>
+                <asp:LinkButton ID="btnUserModalClose" runat="server" aria-hidden="true" style="color:black;font-size:25px;cursor:pointer">
+                    &times;
+                </asp:LinkButton>
+            </div>
+            <div class="modal-body modal-body-sub">
+                <div class="row">
+                    <div class="col-md-12 modal_body_left modal_body_left1">
+                        <div class="sap_tabs">
+                            @using (Html.BeginForm("Register", "AdminPanel", FormMethod.Post))
+                            {
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="d-block"><b>Name</b></label>
+                                            <input type="text" hidden="hidden" id="userid" />
+                                            <input type="text" class="form-control" placeholder="Name" id="Username" name="Username" maxlength="25">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="d-block"><b>Email</b></label>
+                                            <input type="text" class="form-control" placeholder="Email"  name="Email" id="Email" maxlength="25">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="d-block"><b>Contact</b></label>
+
+                                            <input type="text" class="form-control" placeholder="Contact" id="Contact" name="Contact" maxlength="25">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="d-block"><b>CNIC</b></label>
+
+                                            <input type="text" class="form-control" placeholder="CNIC" name="CNIC" id="CNIC" maxlength="25">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="d-block"><b>Province</b></label>
+
+                                            <select class="form-control" name="DropDownProvince" id="provinceDrop">
+                                                <option selected disabled>-- Select Province --</option>
+
+                                                @foreach (var data in Model.provinces)
+                                                {
+                                                    <option value="@data.ProvinceId">@data.ProvinceName</option>
+                                                }
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="d-block"><b>District</b></label>
+                                            <select class="form-control" name="District" id="districtDrop">
+                                                <option selected disabled>-- Select District --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="d-block"><b>Address</b></label>
+
+                                                <input type="text" name="Address" id="Address" placeholder="Address" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="d-block"><b>Role</b></label>
+                                                <select class="form-control" name="role" id="roleDrop">
+                                                    <option selected disabled>-- Select Role --</option>
+                                                    <option>Admin</option>
+                                                    <option>Employee</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="BtnRegister" name="BtnRegister" type="button" value="Register" onclick="sendForm()" class="btn float-right btn-primary">
+                                        <input id="BtnUpdate" type="button" value="Update" onclick="sendUpdateForm()" class="btn float-right btn-primary">
+                                    </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@*Register Model End*@
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Content/DataTable/dt.js"></script>
+<link href="~/Content/DataTable/dtb.css" rel="stylesheet" />
+@Scripts.Render("~/bundles/alertFile/alert")
+<script src="~/Scripts/RegisterAjax/RegisterAjax.js"></script>
+
+
+

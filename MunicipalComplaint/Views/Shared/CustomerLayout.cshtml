@@ -1,0 +1,234 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href=@Url.Content("~/Content/images/logo.png")>
+    <meta name="author" content="Zahid Ullah">
+    <meta name="description" content="Car Rental Webiste">
+    <meta name="keywords" content="Car Rental Rent a Car ">
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <title>@ViewBag.Title Munciple Complain Cell</title>
+    @Styles.Render("~/Content/css")
+    <style>
+        .abc {
+            font-style: inherit;
+        }
+
+        .home-about-area .home-about-right .primary-btn {
+            background: #1e90ff;
+            color: white;
+            border: 1px solid #1e90ff;
+        }
+
+        .home-about-area .home-about-right .primary-btn:hover {
+            background: transparent;
+            color: #1e90ff;
+            border-color: #1e90ff;
+        }
+
+        .callaction-btn {
+            background-color: #1e90ff;
+            color: white;
+            border: 1px solid transparent;
+        }
+
+            .callaction-btn:hover {
+                background-color: transparent;
+                border-color: #1e90ff;
+                color: #1e90ff;
+            }
+
+        nav ul li:hover {
+            background-color: #1e90ff;
+            transition: 0.5s ease-in-out;
+            border-radius: 5px;
+        }
+        nav ul li select:hover {
+            background-color: #1e90ff;
+            transition: 0.5s ease-in-out;
+            border-radius: 5px;
+        }
+        nav ul li select:hover>option {
+            background-color: black;
+            transition: 0.5s ease-in-out;
+            border-radius: 5px;
+        }
+        nav ul li select{
+            color:white;
+            background-color: black;
+            transition: 0.5s ease-in-out;
+            
+        }
+        nav ul li a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+        .primary-btn {
+            background-color: #1e90ff;
+        }
+
+            .primary-btn:hover {
+                color: #1e90ff;
+                background-color: transparent;
+                border-color: #1e90ff;
+            }
+    </style>
+</head>
+<body>
+    <header style="background-color:black;color:white;" id="header">
+        <div class="container">
+            <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo" class="row">
+                    <div class="col-md-3">
+                        <a href="index.html"><img src=@Url.Content("~/Content/Images/logo.png") alt="" title="" height="40" /></a>
+                    </div>
+                    <div class="col-md-9" style="padding-top:8px">
+                        <h4 style="color:white">Complaint Cell</h4>
+                    </div>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><a href="@Url.Action("Home","Customer")">Home</a></li>
+                        <li><a href="/Customer/About">About</a></li>
+                        <li><a href="/Customer/Services">Service</a></li>
+                        <li><a href="/Customer/Contact">Contact</a></li>
+                     @if (Session.Count>0) { 
+                            if (Session["user_type"].ToString() == "User")
+                            {
+
+
+                            <li><a href="/Customer/Complaint">Register Complaint</a></li>
+                            <li><a href="/Customer/ManageComplaint">Manage Complaint</a></li>
+                            <li><a href="/Customer/Profile">Profile</a></li>
+                            <li>
+                                <select style="border:none" class="mt-1" id="logout">
+                                    <option selected disabled>Hi ! @Session["name"]</option>
+                                    <option value="logout">logout</option>
+                                    <option value="profile">Profile</option>
+                                </select>
+                                    
+                            </li>
+                            }}
+                     else
+                     {
+                        <li><a href="@Url.Action("Login", "Customer")">Login</a></li>
+                        <li><a href="@Url.Action("CustomerSignUp", "Customer")">Sign Up</a></li>
+                            }
+                     
+
+                        <!--<li><a href="/Home/contact">Register</a></li>-->
+                        <!--   <li class="menu-has-children">
+           <a href="">Pages</a>
+           <ul>
+               <li><a href="blog-single.html">Blog Single</a></li>
+               <li><a href="elements.html">Elements</a></li>
+           </ul>
+       </li>
+    -->
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+            </div>
+        </div>
+    </header><!-- #header -->
+
+    @RenderBody();
+
+    <footer class="footer-area section-gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Quick links</h6>
+                        <ul>
+                            <li><a href="/Customer/Home">Home</a></li>
+                            <li><a href="/Customer/About">About</a></li>
+                            <li><a href="/Customer/Services">Service</a></li>
+                            <li><a href="/Customer/Contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Features</h6>
+                        <ul>
+                            <li><a href="#">Technical Support</a></li>
+                            <li><a href="#">Public Support</a></li>
+                            <li><a href="#">24/7 Service</a></li>
+                            <li><a href="#">Online Complaint</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Resources</h6>
+                        <ul>
+                            <li><a href="#">Online Complaints</a></li>
+                            <li><a href="#">Public</a></li>
+                            <li><a href="#">District Officers</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+                    <div class="single-footer-widget">
+                        <h6>Follow Us</h6>
+                        <p>Let us be social</p>
+                        <div class="footer-social d-flex align-items-center">
+                            <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+                            <a href="https://twitter.com/?lang=en"><i class="fa fa-twitter"></i></a>
+                            <a href="https://dribbble.com/"><i class="fa fa-dribbble"></i></a>
+                            <a href="https://www.behance.net/"><i class="fa fa-behance"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="mt-50 mx-auto footer-text col-lg-12">
+
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved |  Complaints  <i class="fa fa-heart-o" style="color:dodgerblue;" aria-hidden="true"></i> by <a href="" target="_blank">Municiple Complaint Cell</a>
+
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    @Scripts.Render("~/bundles/alljs")
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+<script>
+    $('#logout').change(function () {
+        var lo = $('#logout :selected').val();
+        if (lo == "profile") {
+            location.reload();
+        }
+        else if (lo=="logout") {
+            $.ajax({
+                url: "/Customer/Logout",
+                cache: false,
+                type: "POST",
+                //data: data,
+               
+                success: function (re) {
+
+                    if (re == 'logs') {
+                        location.href = "/Customer/Home";  
+                    }
+                }
+            });
+        }
+
+
+    })
+</script>
+

@@ -1,0 +1,283 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+<style>
+    .banner-area {
+        background: url('../../Content/Images/hhhhhhhhhhhh.jpg')  center;
+        background-size:cover;
+    }
+</style>
+<section class="banner-area relative" id="home" style="height:550px">
+    <div class="overlay overlay-bg" ></div>
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center ">
+            <div class="banner-content col-lg-7 col-md-6 ">
+                <h6 class="text-white ">
+                    It is the State which educates its citizens in civic virtue, gives them a consciousness of their mission and welds them into unity.
+                </h6>
+                <h2 class="text-white text-uppercase">
+                    Municipal Complaint Cell
+                </h2>
+                <p class="pt-20 pb-20 text-white">
+                    For Betterment of local governance, this portal is the solution to the problem faced by local public in lodging any kind of complain that directly falls under municipility services.
+                </p>
+                <a href="@Url.Action("Index","AdminPanel")" class="primary-btn text-uppercase">Register Complaints</a>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start feature Area -->
+<section class="feature-area section-gap" id="service">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 pb-40 header-text">
+                <h1>What Services we offer to our public</h1>
+                <p>
+                   We are here to help our people with full dedication.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-user"></span>Expert Team</h4>
+                    <p style="text-align:justify;">
+                        We have team available in different Districts of Pakistan. They are instructed to work with full dedication and resolve complaints ASAP.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-license"></span>Professional Service</h4>
+                    <p>
+                        <ul class="list-group-item">
+                            <li class="list">1. Quick Response</li>
+                            <li class="list">2. Fast Action</li>
+                            <li class="list">3. Public Satisfaction</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-phone"></span>Great Support</h4>
+                    <p style="text-align:justify;">
+                        For the support of our valuable public, our online portal will be availiable 24/7 to assist them and solve their grievance.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-apartment"></span>Sanitation Services</h4>
+                    <p>
+                        <ul class="list-group-item">
+                            <li class="list">1. Clean Drinking Water</li>
+                            <li class="list">2. Clean Streets</li>
+                            <li class="list">3. Adequate Treatment</li>
+                            <li class="list">4. Clean Environment</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-warning"></span>Drinking Water</h4>
+                    <p style="text-align:justify;">
+                        Clean Drinking water is our prime and important responsibilty and it is the core service under sanitaion category.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-warning"></span>Food Inspection</h4>
+                    <p style="text-align:justify;">
+                        Responsible for ensuring that commercial supply of meat, poultry, egg and other products is safe, wholesome, and correctly labeled and packaged.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-briefcase"></span>Schools</h4>
+                    <p>
+                        A school is an educational institution designed to provide learning spaces and learning environments for the teaching of students.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-pencil"></span>Police Department</h4>
+                    <p style="text-align:justify;">
+                        An organized civil force for maintaining order, preventing and detecting crime, and enforcing the laws.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-car"></span>Transportation</h4>
+                    <p style="text-align:justify;">
+                        Transport, or transportation, is the movement of humans and goods from one location to another. We facilitate public transport.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End feature Area -->
+<!-- Start home-about Area -->
+<section class="home-about-area" id="about">
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-6 no-padding home-about-left">
+                <img class="img-fluid"  src="~/Content/Images/minare pakistan.jpg" />
+            </div>
+            <div class="col-lg-6 no-padding home-about-right">
+                <h1>
+                    Offering Online Services <br>
+                    For Public Convenience
+                </h1>
+                <p>
+                    <span>The main purpose behind designing this portal is the convenience of public</span>
+                </p>
+                <p style="text-align:justify;">
+                    Beside convenience this portal offers a great way of doing work to both public servants and respective departments, also it will
+                    help top management to check performance of each district in a very efficient way. The top management can view pending and completed complaints of 
+                    each district just in a matter of seconds through our designed portal.
+                </p>
+                <a class="text-uppercase primary-btn" href="/Customer/Login">Register Complaint</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End home-about Area -->
+<section class="reviews-area section-gap" id="review">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 pb-40 header-text text-center">
+                <h1>Features that Made this Portal Unique</h1>
+                <p class="mb-10 text-center">
+                 Convenience, Performance, Dedication & Management
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="single-review">
+                    <h4>One of Its Kind</h4>
+                    <p>
+                        No proper solution in terms of efficiency or performance is provided before hence it is best of its kind.
+                    </p>
+                    <div class="star">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-review">
+                    <h4>Public Convenience</h4>
+                    <p>
+                        Public can lodge complaint easily just by registering and can track status of its complaints.
+                    </p>
+                    <div class="star">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-review">
+                    <h4>
+                        Designed for Local Bodies
+                    </h4>
+                    <p>
+                       One of its core function is that it is designed for local bodies not at national level like citizen portal application
+                    </p>
+                    <div class="star">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End reviews Area -->
+<!-- Start callaction Area -->
+<section class="callaction-area relative section-gap">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h1 class="text-white">Breif Introduction</h1>
+                <p>
+                    This Application will help the common people under the jurisdiction of a municipal corporation to register their
+                    grievances about day to day problems in their ward through a web application. It will provide a common man
+                    to deliver his complaints and problems to municipal authority as well as let the municipal authorities to address
+                    the problem in a short period of time. This application provides an interface to register one’s complained and
+                    follow it up. It provides a camera module which help clicking up a picture of any problem that people are facing
+                    and upload its image along with the complaint.
+                </p>
+                <a class="callaction-btn text-uppercase" href="/Customer/CustomerSignUp">Register Today</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End callaction Area -->
+<script>
+    function DateValidationStart() {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = mm + '/' + dd + '/' + yyyy;
+        var date1 = document.getElementById("datepicker").value;
+        if (date1 < today) {
+            alert("Please Select a Valid Date");
+            document.getElementById("datepicker").value = "";
+        }
+    }
+    function DateValidationEnd() {
+        var date1 = document.getElementById("datepicker").value;
+        var date2 = document.getElementById("datepicker2").value;
+        if (date2 < date1) {
+            alert("Please Select a Valid Date");
+            document.getElementById("datepicker2").value = "";
+            document.getElementById("days").value = "";
+        }
+        d1 = date1.substring(3, 5);
+        d2 = date2.substring(3, 5);
+        var date = d2 - d1;
+        if (date > 1) {
+            document.getElementById("days").value = date;
+        } else {
+            document.getElementById("days").value = "";
+        }
+    }
+</script>
+
+
+
+
+
+
