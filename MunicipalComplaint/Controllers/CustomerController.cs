@@ -35,13 +35,24 @@ namespace MunicipalComplaint.Controllers
             _context.SaveChanges();
             return View("Contact");
         }
+
+        [HttpPost]
+        public ActionResult Close(int id)
+        {
+           complains cus = _context.compalin.Single(x=>x.ComplainId==id);
+            cus.isvalid = 1;
+            TryUpdateModel(cus);
+            _context.SaveChanges();
+            return Json("done");
+        }
         [HttpGet]
         public ActionResult Complaint() {
             List<UC> u = _context.uc.ToList();
+            List<CustomerSignup> sig = _context.customer.ToList(); 
            
             viewModel vm = new viewModel
             {
-                
+                signup=sig,
                ucs=u
             };
             return View(vm);
@@ -52,6 +63,8 @@ namespace MunicipalComplaint.Controllers
             UC cm = _context.uc.Single(x=>x.UcId==comp.TownId);
             Tehsil te = _context.tehsil.Single(x=>x.TehsilId==cm.TehsilId);
             comp.DistrictId = te.DistrictId;
+            comp.isvalid = 0;
+            comp.Status = 0;
             comp.createdat= DateTime.Now.Date.ToString();
             comp.UserId = Convert.ToInt32(Session["user_id"]);
 
@@ -178,6 +191,67 @@ namespace MunicipalComplaint.Controllers
 
             }
             return "error";
+        }
+        [HttpGet]
+        public ActionResult Profile()
+        {
+            List<CustomerSignup> li = _context.customer.ToList();
+            List<City> cli = _context.city.ToList();
+            List<Province> pli = _context.province.ToList();
+            viewModel vm = new viewModel
+            {
+                signup = li,
+                cities = cli,
+                provinces = pli
+
+            };
+            return View(vm);
+
+        }
+        [HttpGet]
+        public ActionResult UpdatePro()
+        {
+            List<CustomerSignup> li = _context.customer.ToList();
+            List<City> cli = _context.city.ToList();
+            List<Province> pli = _context.province.ToList();
+            viewModel vm = new viewModel
+            {
+                signup = li,
+                cities = cli,
+                provinces = pli
+
+            };
+            return View(vm);
+
+        }
+        [HttpPost]
+        public ActionResult UpdateProfile(CustomerSignup cs)
+        {
+
+            CustomerSignup cus = _context.customer.Single(x => x.UserId == cs.UserId);
+            TryUpdateModel(cus);
+            _context.SaveChanges();
+            return Json("Done");
+        }
+        [HttpPost]
+        public ActionResult ChangePassword(CustomerSignup cs)
+        {
+            CustomerSignup cus = _context.customer.Single(x => x.UserId == cs.UserId);
+            TryUpdateModel(cus);
+            _context.SaveChanges();
+            return Json("done");
+        }
+        [HttpPost]
+        public ActionResult UploadImage(CustomerSignup cs)
+        {
+            CustomerSignup cus = _context.customer.Single(x => x.UserId == cs.UserId);
+            string filename = Path.GetFileName(cs.ImageFile.FileName);
+            string path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/Images/" + filename));
+            cs.ImageFile.SaveAs(path);
+            cus.Image = filename;
+            TryUpdateModel(cus);
+            _context.SaveChanges();
+            return RedirectToAction("Profile");
         }
         protected override void Dispose(bool disposing)
         {

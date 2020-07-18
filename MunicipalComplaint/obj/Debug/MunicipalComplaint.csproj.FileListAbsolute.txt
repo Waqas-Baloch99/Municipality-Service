@@ -221,6 +221,11 @@ C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debu
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.csproj.GenerateResource.Cache
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.updComp.resources
 C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.firMig.resources
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.updComp.resources
 C:\Users\badar\Desktop\MunicipalComplaint\MunicipalComplaint\bin\Rotativa.dll
+=======
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.upd.resources
+C:\Users\Dell.Com 786\Desktop\municipal-complaint-ii\MunicipalComplaint\obj\Debug\MunicipalComplaint.Migrations.update.resources
+>>>>>>> 9494de83f7fa44f7fe18a4b132f66a642304eba4

@@ -169,6 +169,14 @@
     <Compile Include="Migrations\202007180429192_updComp.Designer.cs">
       <DependentUpon>202007180429192_updComp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007181046128_upd.cs" />
+    <Compile Include="Migrations\202007181046128_upd.Designer.cs">
+      <DependentUpon>202007181046128_upd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007181151369_update.cs" />
+    <Compile Include="Migrations\202007181151369_update.Designer.cs">
+      <DependentUpon>202007181151369_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\complains.cs" />
@@ -642,8 +650,12 @@
     <Content Include="Views\Customer\Contact.cshtml" />
     <Content Include="Views\Customer\Complaint.cshtml" />
     <Content Include="Views\Customer\ManageComplaint.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\AdminPanel\GenerateEmployeesReport.cshtml" />
     <Content Include="Views\Shared\_Empty.cshtml" />
+=======
+    <Content Include="Views\Customer\Profile.cshtml" />
+>>>>>>> 9494de83f7fa44f7fe18a4b132f66a642304eba4
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -677,6 +689,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007180429192_updComp.resx">
       <DependentUpon>202007180429192_updComp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007181046128_upd.resx">
+      <DependentUpon>202007181046128_upd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007181151369_update.resx">
+      <DependentUpon>202007181151369_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
