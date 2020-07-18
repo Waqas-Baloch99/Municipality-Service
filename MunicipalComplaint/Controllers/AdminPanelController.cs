@@ -30,6 +30,12 @@ namespace MunicipalComplaint.Controllers
             return View(vm);
         }
         [HttpPost]
+        public string Logout()
+        {
+            Session.RemoveAll();
+            return "logs";
+        }
+        [HttpPost]
         public ActionResult Register(CustomerSignup cus)
         {
             cus.Status = "Active";

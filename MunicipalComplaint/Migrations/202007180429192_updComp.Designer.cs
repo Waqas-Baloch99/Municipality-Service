@@ -7,13 +7,13 @@ namespace MunicipalComplaint.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class complain : IMigrationMetadata
+    public sealed partial class updComp : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(complain));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updComp));
         
         string IMigrationMetadata.Id
         {
-            get { return "202007171303150_complain"; }
+            get { return "202007180429192_updComp"; }
         }
         
         string IMigrationMetadata.Source

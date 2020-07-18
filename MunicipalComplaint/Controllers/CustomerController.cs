@@ -2,6 +2,7 @@
 using MunicipalComplaint.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -37,17 +38,49 @@ namespace MunicipalComplaint.Controllers
         [HttpGet]
         public ActionResult Complaint() {
             List<UC> u = _context.uc.ToList();
+           
             viewModel vm = new viewModel
             {
+                
                ucs=u
             };
             return View(vm);
         }
-        public ActionResult ManageComplaint() => View();
         [HttpPost]
-        public ActionResult AddComplaint()
+        public ActionResult Complaint(complains comp)
         {
-            return View("Complaint");
+            UC cm = _context.uc.Single(x=>x.UcId==comp.TownId);
+            Tehsil te = _context.tehsil.Single(x=>x.TehsilId==cm.TehsilId);
+            comp.DistrictId = te.DistrictId;
+            comp.createdat= DateTime.Now.Date.ToString();
+            comp.UserId = Convert.ToInt32(Session["user_id"]);
+
+            string fileName = Path.GetFileName(comp.ImageFile.FileName);
+            string pat = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/Images/complainImg/" + fileName));
+            comp.ImageFile.SaveAs(pat);
+            comp.ImagePath = fileName;
+            try
+            {
+                _context.compalin.Add(comp);
+                _context.SaveChanges();
+                TempData["Success"] = "Complain Has been Register Successfully";
+                return RedirectToAction("Complaint");
+            }
+            catch (Exception ex)
+            {
+                ViewData["Error"] = "Error: Complain Can not Register due to Some Reason, Please Try Again";
+                return View("Complaint", comp);
+            }
+        }
+        public ActionResult ManageComplaint() {
+            List<complains> com = _context.compalin.ToList();
+            List<UC> u = _context.uc.ToList();
+            viewModel vm = new viewModel
+            {
+                ucs = u,
+                complaint = com
+            };
+            return View(vm);
         }
         public ActionResult CustomerSignUp()
         {
@@ -101,6 +134,7 @@ namespace MunicipalComplaint.Controllers
                 if (a[0].Type=="User") {
                     if (a[0].Status == "Active")
                     {
+                        Session["name"] = a[0].Username;
                         Session["user_type"]= a[0].Type;
                         Session["user_id"] = a[0].UserId;
                         return "user";
@@ -113,6 +147,7 @@ namespace MunicipalComplaint.Controllers
                 {
                     if (a[0].Status == "Active")
                     {
+                        Session["name"] = a[0].Username;
                         Session["user_type"] = a[0].Type;
                         Session["user_id"] = a[0].UserId;
 

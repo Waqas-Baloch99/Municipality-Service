@@ -3,7 +3,7 @@ namespace MunicipalComplaint.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class newDb : DbMigration
+    public partial class firMig : DbMigration
     {
         public override void Up()
         {
@@ -16,6 +16,35 @@ namespace MunicipalComplaint.Migrations
                         ProvinceId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.DistrictId);
+            
+            CreateTable(
+                "dbo.complains",
+                c => new
+                    {
+                        ComplainId = c.Int(nullable: false, identity: true),
+                        Title = c.String(nullable: false),
+                        ComplainType = c.String(),
+                        Description = c.String(),
+                        DistrictId = c.Int(nullable: false),
+                        TownId = c.Int(nullable: false),
+                        createdat = c.String(),
+                        closeDate = c.String(),
+                        UserId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ComplainId);
+            
+            CreateTable(
+                "dbo.ContactForms",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                        Email = c.String(nullable: false),
+                        Subject = c.String(nullable: false),
+                        Message = c.String(nullable: false),
+                        AddedOn = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.id);
             
             CreateTable(
                 "dbo.CustomerSignups",
@@ -75,6 +104,8 @@ namespace MunicipalComplaint.Migrations
             DropTable("dbo.Tehsils");
             DropTable("dbo.Provinces");
             DropTable("dbo.CustomerSignups");
+            DropTable("dbo.ContactForms");
+            DropTable("dbo.complains");
             DropTable("dbo.Cities");
         }
     }

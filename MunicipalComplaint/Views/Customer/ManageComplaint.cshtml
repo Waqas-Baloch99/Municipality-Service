@@ -1,4 +1,4 @@
-﻿
+﻿@model MunicipalComplaint.ViewModel.viewModel
 @{
     ViewBag.Title = "ManageComplaint";
     Layout = "~/Views/Shared/CustomerLayout.cshtml";
@@ -142,21 +142,29 @@
                     <table class="table table-hover table-bordered" id="manageComplain">
                         <thead>
                             <tr>
-                                <th>Subject</th>
-                                <th>Complain Type</th>
                                 <th>Title</th>
+                                <th>Complain Type</th>
                                 <th>Description</th>
                                 <th> Town</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Subject</td>
-                                <td>Complain Type</td>
-                                <td>Title</td>
-                                <td>Description</td>
-                                <td> Town</td>
-                            </tr>
+                           @foreach (var data in Model.complaint) {
+                               if (data.UserId==Convert.ToInt32(Session["user_id"])) { 
+                               <tr>
+                                   <td>@data.Title</td>
+                                   <td>@data.ComplainType</td>
+                                   <td>@data.Description</td>
+                                   @foreach (var u in Model.ucs) {
+                                       if (data.TownId==u.UcId) {
+                                           <td>@u.UCName</td>
+                                       }
+                                   }
+                                  
+
+                               </tr>
+                               }
+                           }
                         </tbody>
                     </table>
                 </div>

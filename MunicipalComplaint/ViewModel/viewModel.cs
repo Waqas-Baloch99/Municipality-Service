@@ -13,5 +13,6 @@ namespace MunicipalComplaint.ViewModel
         public List<City> cities { get; set; }
         public List<Tehsil> tehsiles { get; set; }
         public List<UC> ucs { get; set; }
+        public List<complains> complaint { get; set; }
     }
 }

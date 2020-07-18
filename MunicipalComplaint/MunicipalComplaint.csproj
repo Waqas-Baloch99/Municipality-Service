@@ -160,17 +160,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007151154518_newDb.cs" />
-    <Compile Include="Migrations\202007151154518_newDb.Designer.cs">
-      <DependentUpon>202007151154518_newDb.cs</DependentUpon>
+    <Compile Include="Migrations\202007180334491_firMig.cs" />
+    <Compile Include="Migrations\202007180334491_firMig.Designer.cs">
+      <DependentUpon>202007180334491_firMig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007160521102_new.cs" />
-    <Compile Include="Migrations\202007160521102_new.Designer.cs">
-      <DependentUpon>202007160521102_new.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007171303150_complain.cs" />
-    <Compile Include="Migrations\202007171303150_complain.Designer.cs">
-      <DependentUpon>202007171303150_complain.cs</DependentUpon>
+    <Compile Include="Migrations\202007180429192_updComp.cs" />
+    <Compile Include="Migrations\202007180429192_updComp.Designer.cs">
+      <DependentUpon>202007180429192_updComp.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
@@ -643,6 +639,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\complainImg\" />
     <Folder Include="ViewModal\" />
   </ItemGroup>
   <ItemGroup>
@@ -667,14 +664,11 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007151154518_newDb.resx">
-      <DependentUpon>202007151154518_newDb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007180334491_firMig.resx">
+      <DependentUpon>202007180334491_firMig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007160521102_new.resx">
-      <DependentUpon>202007160521102_new.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007171303150_complain.resx">
-      <DependentUpon>202007171303150_complain.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007180429192_updComp.resx">
+      <DependentUpon>202007180429192_updComp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

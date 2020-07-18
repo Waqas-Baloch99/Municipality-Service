@@ -99,24 +99,28 @@
                         <li><a href="/Customer/About">About</a></li>
                         <li><a href="/Customer/Services">Service</a></li>
                         <li><a href="/Customer/Contact">Contact</a></li>
-                        @if (Session.Count  > 0)
-                        {
+                     @if (Session.Count>0) { 
+                            if (Session["user_type"].ToString() == "User")
+                            {
+
+
                             <li><a href="/Customer/Complaint">Register Complaint</a></li>
                             <li><a href="/Customer/ManageComplaint">Manage Complaint</a></li>
                             <li>
                                 <select style="border:none" class="mt-1" id="logout">
-                                    <option selected disabled>Hello Hamza</option>
+                                    <option selected disabled>Hi ! @Session["name"]</option>
                                     <option value="logout">logout</option>
                                     <option value="profile">Profile</option>
                                 </select>
                                     
                             </li>
-                        }
-                       @if (Session.Count <= 0)
-                       {
+                            }}
+                     else
+                     {
                         <li><a href="@Url.Action("Login", "Customer")">Login</a></li>
                         <li><a href="@Url.Action("CustomerSignUp", "Customer")">Sign Up</a></li>
-                       }
+                            }
+                     
 
                         <!--<li><a href="/Home/contact">Register</a></li>-->
                         <!--   <li class="menu-has-children">
