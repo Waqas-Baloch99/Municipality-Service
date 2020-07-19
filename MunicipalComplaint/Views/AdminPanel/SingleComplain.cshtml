@@ -1,0 +1,119 @@
+﻿@model MunicipalComplaint.Models.SingleComplaintDetail
+@{
+    ViewBag.Title = "SingleComplain";
+    Layout = "~/Views/Shared/_Empty.cshtml";
+}
+
+<div class="row" style="padding:12px;">
+    <div class="col-md-2">
+        <img src="~/Content/Images/logo.png" height="100" width="100" />
+    </div>
+    <div class="col-md-5">
+        <h3 class="text-center text-primary">Complaint Detail</h3>
+    </div>
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr class="bg-dark text-white" style="background-color:dimgrey;color:white;">
+                <th>Attribute</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>Complaint ID</b></td>
+                <td><b> #@Model.complains.ComplainId</b></td>
+            </tr>
+            <tr>
+                <td><b>Complaint Type</b></td>
+                <td><b>@Model.complains.ComplainType</b></td>
+            </tr>
+            <tr>
+                <td><b>Complaint Title</b></td>
+                <td><b>@Model.complains.Title</b></td>
+            </tr>
+            <tr>
+                <td><b>Complaint Description</b></td>
+                <td><b>@Model.complains.Description</b></td>
+            </tr>
+            <tr>
+                <td><b>Complaint Initiated Date</b></td>
+                <td><b class="text-danger">@Model.complains.createdat (MM/DD/YYYY HH:MM:SSSS)</b></td>
+            </tr>
+            <tr>
+                <td><b>Complaint Initial Status</b></td>
+                @if (Model.complains.isvalid == 0)
+                {
+                    <td><b class="text-primary">Initiated</b></td>
+                }
+                else if (Model.complains.isvalid == 1)
+                {
+                    if (Model.complains.Status == 0)
+                    {
+                        <td><b class="text-success">Assigned</b></td>
+                    }
+                    else if (Model.complains.Status == 1)
+                    {
+                        <td><b class="text-warning">Closed <small>Feedback Pending</small></b></td>
+                    }
+                    else
+                    {
+                        <td><b class="text-success">Releif Granted</b></td>
+                    }
+                }
+                else
+                {
+                    <td><b class="text-danger">Rejected</b></td>
+                }
+            </tr>
+            @if (Model.complains.Status == 1 || Model.complains.Status == 2)
+            {
+                <tr>
+                    <td><b>Complain Close Date</b></td>
+                    <td><b>@Model.complains.closeDate</b></td>
+                </tr>
+            }
+            <tr>
+                <td><b>Complain District</b></td>
+                <td><b>@Model.city.DistrictName</b></td>
+            </tr>
+            <tr>
+                <td><b>Complainer Name</b></td>
+                <td><b>@Model.user.Username</b></td>
+            </tr>
+            <tr>
+                <td><b>Complainer Gender</b></td>
+                <td><b>@Model.user.Gender</b></td>
+            </tr>
+            <tr>
+                <td><b>Complainer Contact</b></td>
+                <td><b>@Model.user.Contact</b></td>
+            </tr>
+            <tr>
+                <td><b>Complainer Email</b></td>
+                <td><b>@Model.user.Email</b></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@if (Model.complains.Status == 1)
+{
+    <div class="row" style="width:100%;margin:12px;">
+        <div style="width:100%;">
+            <center><h2>Admin Comment</h2></center>
+            <p style="margin-top:10px;">
+                @Model.complains.AdminMessage
+            </p>
+        </div>
+    </div>
+}
+@if (Model.complains.Status == 2)
+{
+<div class="row" style="width:100%;margin:12px;">
+    <div style="width:100%;">
+        <center><h2>User Feedback</h2></center>
+        <p style="margin-top:10px;">
+            @Model.feedback.Description
+        </p>
+    </div>
+</div>
+}

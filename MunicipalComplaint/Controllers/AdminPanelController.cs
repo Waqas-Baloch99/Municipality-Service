@@ -410,7 +410,74 @@ namespace MunicipalComplaint.Controllers
             _context.SaveChanges();
             return "done";
         }
+
+        public ActionResult EmployeeManageComplaints(int? id = 0)
+        {
+            int id1 = Convert.ToInt32(Session["user_id"].ToString());
+            var user = _context.customer.SingleOrDefault(c => c.UserId == id1);
+            int distid = user.DistrictId;
+            var complains = _context.compalin.Where(c => c.isvalid == 1 && c.Status == id && c.DistrictId == distid).ToList();
+            return View(complains);
+        }
+        [HttpPost]
+        public string CloseComplaint(int compid, string comment)
+        {
+            var complaint = _context.compalin.Single(c => c.ComplainId == compid);
+            complaint.AdminMessage = comment;
+            complaint.closeDate = System.DateTime.Today.ToString("dd/MM/yyyy");
+            complaint.Status = 1;
+            TryUpdateModel(complaint);
+            _context.SaveChanges();
+
+            return "done";
+        }
+        public ActionResult PendingComplaints()
+        {
+            var complaints = _context.compalin.Where(c => c.isvalid == 1 && c.Status == 0).ToList();
+            var district = _context.city.ToList();
+            ComplaintDistrict cd = new ComplaintDistrict
+            {
+                allcomplaints = complaints,
+                city = district
+            };
+            return View(cd);
+        }
+        public ActionResult CompletedComplaints()
+        {
+            var complaints = _context.compalin.Where(c => c.isvalid == 1 && c.Status > 0).ToList();
+            var district = _context.city.ToList();
+            ComplaintDistrict cd = new ComplaintDistrict
+            {
+                allcomplaints = complaints,
+                city = district
+            };
+            return View(cd);
+        }
+
         //PDF
+
+        public ActionResult SingleComplain(int? id = 0)
+        {
+            var complaint = _context.compalin.Single(c => c.ComplainId == id);
+            int distid = complaint.DistrictId;
+            int userid = complaint.UserId;
+            var district = _context.city.SingleOrDefault(c => c.DistrictId == distid );
+            var user = _context.customer.SingleOrDefault(c => c.UserId == userid);
+            var feedback = _context.feedback.SingleOrDefault(f => f.complainID == id);
+            SingleComplaintDetail details = new SingleComplaintDetail
+            {
+                complains = complaint,
+                city = district,
+                user = user,
+                feedback =feedback
+            };
+            return View(details);
+        }
+        public ActionResult GenerateComplaintReport(int id)
+        {
+            var report = new ActionAsPdf("SingleComplain", new { id = id });
+            return report;
+        }
         public ActionResult GenerateEmployeesReport(int DistrictNames = 0)
         {
             var employees = _context.customer.Where(e => e.Type == "Employee" && e.DistrictId==DistrictNames).ToList();
