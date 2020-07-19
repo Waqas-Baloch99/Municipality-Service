@@ -50,7 +50,7 @@
                                             <td>@complains.createdat</td>
                                             <td><a href="~/Content/Images/complainImg/@complains.ImagePath" download="@complains.Title" class="btn btn-success btn-sm"><i class="fa fa-download"></i></a></td>
                                             <td>
-                                                <button class="btn btn-primary btn-sm" onclick="/AdminPanel/GenerateComplaintReport/@complains.ComplainId"><i class="fa fa-eye"></i></button>
+                                                <a class="btn btn-primary btn-sm" href="/AdminPanel/GenerateComplaintReport/@complains.ComplainId"><i class="fa fa-eye"></i></a>
                                                 <button class="btn btn-success btn-sm" onclick="changeValidity(1,@complains.ComplainId)">Accept</button>
                                                 <button class="btn btn-danger btn-sm mt-1" onclick="changeValidity(2,@complains.ComplainId)">Reject</button>
                                             </td>

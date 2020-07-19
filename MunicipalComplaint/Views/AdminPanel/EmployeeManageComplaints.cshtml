@@ -1,0 +1,182 @@
+﻿@model List<MunicipalComplaint.Models.complains>
+@{
+    ViewBag.Title = "EmployeeManageComplaints";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<section class="section">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 col-sm-12  col-md-12  col-lg-12 col-xl-12 ">
+                <div class="card card-primary">
+                    <div class="card-primary">
+                        <h1 class="text-primary text-center text-uppercase">Manage Complaints</h1>
+                    </div>
+
+                    <div class="card-body">
+                        <hr />
+                        <div class="row" style="overflow:auto">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="row">
+                                    <div class="col-lg-4 mb-5">
+                                        <select id="complaintstatus" name="complaintstatus" class="form-control" onchange="changeComplaintStatus();">
+                                            <option selected>Select Type</option>
+                                            <option value="0">Pending</option>
+                                            <option value="1">Completed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <table class="table table-hover table-bordered" id="tablecomplains">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Title</th>
+                                            <th>Description</th>
+                                            <th>Register Date</th>
+                                            <th>Atatched Files</th>
+                                            <th>Options</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="usertbl">
+                                        @if (Model != null)
+                                        {
+                                            foreach (var complains in Model)
+                                            {
+                                                <tr>
+                                                    <td>@complains.ComplainId</td>
+                                                    <td>@complains.Title</td>
+                                                    <td>@complains.Description</td>
+
+                                                    <td>@complains.createdat</td>
+                                                    <td><a href="~/Content/Images/complainImg/@complains.ImagePath" download="@complains.Title" class="btn btn-success btn-sm"><i class="fa fa-download"></i></a></td>
+                                                    <td>
+                                                        <a class="btn btn-primary btn-sm text-white" href="/AdminPanel/GenerateComplaintReport/@complains.ComplainId"><i class="fa fa-eye"></i></a>
+                                                        <button class="btn btn-info btn-sm mt-1" onclick="ReplyToComplaint(@complains.ComplainId);"> <i class="fa fa-reply"></i></button>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        }
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+@Scripts.Render("~/bundles/alertFile/alert")
+<script>
+    $(document).ready(function () {
+        //Datatable
+        $(".sidebar-menu .active").removeClass('active');
+        $('#employeemanage').addClass("active");
+        $('#tablecomplains').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            buttons: [{
+                extend: 'pdf',
+                title: 'Customized PDF Title',
+                filename: 'customized_pdf_file_name'
+            }, {
+                extend: 'excel',
+                title: 'Customized EXCEL Title',
+                filename: 'customized_excel_file_name'
+            }, {
+                extend: 'csv',
+                filename: 'customized_csv_file_name'
+            }]
+
+        });
+    });
+
+    function changeValidity(status, id) {
+        $.ajax({
+            type: "POST",
+            url: "/AdminPanel/UpdateComplaintStatus",
+            data: { statuscmp: status, id: id },
+            success: function (re) {
+                if (re == "done") {
+                    swal({
+                        title: "Successfull!",
+                        text: "Status of the complaint has been chnaged successfully",
+                        icon: "success",
+                        button: true,
+                    });
+                    location.href = "/AdminPanel/AdminComplain";
+                }
+            }
+
+        });
+    }
+    function changeComplaintStatus() {
+        if ($("#complaintstatus").val() == "0") {
+            location.href = "/AdminPanel/EmployeeManageComplaints/0";
+        } else {
+            location.href = "/AdminPanel/EmployeeManageComplaints/1";
+        }
+    }
+    function ReplyToComplaint(id) {
+        $("#opendialog").click();
+        $("#compId").val(id);
+        $("#exampleModalLabel").empty();
+        $("#exampleModalLabel").append("Comment and Close Complaint #"+id);
+    }
+    function addCommenttoComplaint() {
+        var compid = $("#compId").val();
+        var comment = $("#message").val();
+        $.ajax({
+            type: "POST",
+            url: "/AdminPanel/CloseComplaint",
+            data: { compid: compid, comment: comment },
+            success: function (re) {
+                if (re == "done") {
+                    swal({
+                        title: "Successfull!",
+                        text: "Status of the complaint has been chnaged successfully, Complaint is now closed",
+                        icon: "success",
+                        button: true,
+                    });
+                }
+            }
+
+        });
+    }
+</script>
+<!-- Button trigger modal -->
+<button id="opendialog" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="display:none;">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" id="compId" />
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+            </div>
+            <div class="modal-body">
+                <textarea id="message" class="form-control" placeholder="Enter Comment Here...."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addCommenttoComplaint();">Add Comment</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,6 +15,7 @@ namespace MunicipalComplaint.Models
         public DbSet<UC> uc { get; set; }
         public DbSet<complains> compalin { get; set; }
         public DbSet<ContactForm> ContactMessage { get; set; }
+        public DbSet<Feedback> feedback { get; set; }
         public MyDbContext(): base("MunicipalDB")
         {
 

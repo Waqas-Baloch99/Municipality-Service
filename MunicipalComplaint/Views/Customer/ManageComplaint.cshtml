@@ -16,188 +16,97 @@
 <!--Fontawesome CDN-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <!--Custom styles-->
-<style>
-    /* Made with love by Mutiullah Samim*/
 
-    html, body {
-        background-image: url('../../Content/img/back.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        height: 100%;
-        font-family: 'Numans', sans-serif;
-    }
-
-    .container {
-        height: 100%;
-        align-content: center;
-    }
-
-    .card {
-        height: 390px;
-        margin-top: auto;
-        margin-bottom: auto;
-        background-color: rgba(0,0,0,0.5) !important;
-    }
-
-    .social_icon span {
-        font-size: 60px;
-        margin-left: 10px;
-        color: #FFC312;
-    }
-
-        .social_icon span:hover {
-            color: white;
-            cursor: pointer;
-        }
-
-    .card-header h3, h4 {
-        color: white;
-        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-    }
-
-
-    .social_icon {
-        position: absolute;
-        right: 20px;
-        top: -45px;
-    }
-
-    .input-group-prepend span {
-        width: 50px;
-        background-color: #1e90ff;
-        color: white;
-        border: 0 !important;
-    }
-
-    input:focus {
-        outline: 0 0 0 0 !important;
-        box-shadow: 0 0 0 0 !important;
-    }
-
-    .remember {
-        color: white;
-    }
-
-        .remember input {
-            width: 20px;
-            height: 20px;
-            margin-left: 15px;
-            margin-right: 5px;
-        }
-
-    #sigin {
-        color: #1e90ff;
-    }
-
-    .login_btn {
-        color: white;
-        background-color: #1e90ff;
-        width: 100px;
-    }
-
-        .login_btn:hover {
-            color: black;
-            background-color: white;
-        }
-
-    #manageComplain thead {
-        background-color: gray;
-    }
-
-    #manageComplain th, td {
-        color: white;
-        text-align: center;
-    }
-
-    .links {
-        color: white;
-    }
-
-        .links a {
-            margin-left: 4px;
-        }
-
-    a {
-        text-decoration: none;
-    }
-
-        a:hover {
-            color: white;
-            text-decoration: none;
-        }
-</style>
-
-<div class="container">
-    <div class="d-flex justify-content-center h-100">
-        <div class="card col-10">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-lg-12 ">
-                        <center> <h3>Manage Complaint</h3></center>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-end social_icon">
-                    <!--    <span><i class="fab fa-facebook-square"></i></span>
+<div class="container m-5">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Rejected</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Completed</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="contact" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Pending</a>
+        </li>
+    </ul>
+    <div class="tab-content show active" id="myTabContent">
+        <div class="tab-pane fade " id="home-tab">
+            <div class="d-flex justify-content-center h-100">
+                <div class="card col-12">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-lg-12 ">
+                                <center> <h3>Manage Complaint</h3></center>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end social_icon">
+                            <!--    <span><i class="fab fa-facebook-square"></i></span>
                         <span><i class="fab fa-google-plus-square"></i></span>
                         <span><i class="fab fa-twitter-square"></i></span>
                         -->
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover table-bordered" id="manageComplain">
+                            <thead>
+                                <tr>
+                                    <th>ID#</th>
+                                    <th>Title</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                    <th>Town</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var data in Model.complaint)
+                                {
+                                    if (data.UserId == Convert.ToInt32(Session["user_id"]))
+                                    {
+                                        <tr>
+                                            <td>@data.ComplainId</td>
+                                            <td>@data.Title</td>
+                                            <td>@data.ComplainType</td>
+                                            <td>@data.Description</td>
+                                            @foreach (var u in Model.ucs)
+                                            {
+                                                if (data.TownId == u.UcId)
+                                                {
+                                                    <td>@u.UCName</td>
+                                                }
+                                            }
+                                            @if (@data.Status == 0)
+                                            {
+                                                <td>Pending</td>
+                                            }
+                                            else if (@data.Status == 1)
+                                            {
+                                                <td>Reject</td>
+                                            }
+                                            else if (@data.Status == 2)
+                                            {
+                                                <td>Accept</td>
+                                            }
+                                            <td>
+                                                <a class="btn btn-primary btn-sm" href="/AdminPanel/GenerateComplaintReport/@data.ComplainId"><span><i class="fa fa-eye "></i></span></a>
+
+                                            </td>
+
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
-            <div class="card-body">
-                <table class="table table-hover table-bordered" id="manageComplain">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Complain Type</th>
-                            <th>Description</th>
-                            <th> Town</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var data in Model.complaint)
-                        {
-                            if (data.UserId == Convert.ToInt32(Session["user_id"]))
-                            {
-                                <tr>
-                                    <td>@data.Title</td>
-                                    <td>@data.ComplainType</td>
-                                    <td>@data.Description</td>
-                                    @foreach (var u in Model.ucs)
-                                    {
-                                        if (data.TownId == u.UcId)
-                                        {
-                                            <td>@u.UCName</td>
-                                        }
-                                    }
-                                    @if(@data.Status==0){
-                                    <td>Pending</td>
-                                    }
-                                    else if (@data.Status == 1)
-                                    {
-                                        <td>Reject</td>
-                                    }
-                                    else if (@data.Status == 2)
-                                    {
-                                        <td>Accept</td>
-                                    }
-                                    <td>
-                                        <button class="btn btn-primary btn-sm" type="button" onclick="View(@data.ComplainId)"><span><i class="fa fa-eye "></i></span></button>
-                                        @if(data.isvalid==0){
-                                        <button class="btn btn-danger btn-sm" type="button" id="btnClose" onclick="Close(@data.ComplainId)"><span><i class="fa fa-trash "></i></span></button>
-                                        }
-                                    </td>
-
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
-            </div>
-
         </div>
+        <div class="tab-pane fade " id="profile-tab">b</div>
+        <div class="tab-pane fade" id="contact-tab" role="tabpanel">c</div>
     </div>
+   
 </div>
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Content/DataTable/dt.js"></script>
@@ -205,14 +114,7 @@
 @Scripts.Render("~/bundles/alertFile/alert")
 <script>
     $(document).ready(function () {
-        $('#manageComplain').DataTable({
-            "paging": true,
-            "lengthChange": true,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-            "autoWidth": true,
-        });
+      
     });
     function Close(id) {
         var id = id;
@@ -235,9 +137,20 @@
                     location.reload();
                     $('#btnClose').hide();
                 });
-              
+
 
             }
         })
     }
+
+    $("ul li  a").on("click", function () {
+        $("ul li .active").removeClass("active");
+        $(this).addClass("active");
+        var a = this.id;
+        a = a + "_tab";
+        $(".tab-content .active").removeClass("active");
+        $("#" + a).addClass("active");
+        console.log($("#" + a));
+    });
 </script>
+<script src="~/Scripts/bootstrap.min.js"></script>
