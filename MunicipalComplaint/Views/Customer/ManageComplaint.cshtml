@@ -16,105 +16,263 @@
 <!--Fontawesome CDN-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <!--Custom styles-->
+<link href="~/Content/tabAndPillStyle.css" rel="stylesheet" />
+@*<script src="~/Scripts/tabAndpills/jquery.js"></script>*@
 
-<div class="container m-5">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="home" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Rejected</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="profile" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Completed</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="contact" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Pending</a>
-        </li>
-    </ul>
-    <div class="tab-content show active" id="myTabContent">
-        <div class="tab-pane fade " id="home-tab">
-            <div class="d-flex justify-content-center h-100">
-                <div class="card col-12">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-lg-12 ">
-                                <center> <h3>Manage Complaint</h3></center>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end social_icon">
-                            <!--    <span><i class="fab fa-facebook-square"></i></span>
-                        <span><i class="fab fa-google-plus-square"></i></span>
-                        <span><i class="fab fa-twitter-square"></i></span>
-                        -->
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover table-bordered" id="manageComplain">
-                            <thead>
-                                <tr>
-                                    <th>ID#</th>
-                                    <th>Title</th>
-                                    <th>Type</th>
-                                    <th>Description</th>
-                                    <th>Town</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var data in Model.complaint)
-                                {
-                                    if (data.UserId == Convert.ToInt32(Session["user_id"]))
-                                    {
-                                        <tr>
-                                            <td>@data.ComplainId</td>
-                                            <td>@data.Title</td>
-                                            <td>@data.ComplainType</td>
-                                            <td>@data.Description</td>
-                                            @foreach (var u in Model.ucs)
-                                            {
-                                                if (data.TownId == u.UcId)
-                                                {
-                                                    <td>@u.UCName</td>
-                                                }
-                                            }
-                                            @if (@data.Status == 0)
-                                            {
-                                                <td>Pending</td>
-                                            }
-                                            else if (@data.Status == 1)
-                                            {
-                                                <td>Reject</td>
-                                            }
-                                            else if (@data.Status == 2)
-                                            {
-                                                <td>Accept</td>
-                                            }
-                                            <td>
-                                                <a class="btn btn-primary btn-sm" href="/AdminPanel/GenerateComplaintReport/@data.ComplainId"><span><i class="fa fa-eye "></i></span></a>
-
-                                            </td>
-
-                                        </tr>
-                                    }
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
+<div class="container m-5" style="position:relative;">
+    <!-- Modal -->
+    <div id="feedbackmodal" style="
+   position: absolute;
+    height: auto;
+    z-index: 1235;
+    width: 50%;
+    border-radius: 10px;
+    margin: auto;
+    left: 0px;
+    background-color:white;
+    padding:15px;
+    display:none;
+    right: 0px;"
+         >
+        <div class="row">
+          <div class="col-12">
+              <h3 id="examplemodallabel" class="text-center"></h3>
+          </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12">
+                <input type="hidden" id="compId" />
+                <center><textarea id="message" class="form-control" placeholder="Enter Comment Here...."></textarea></center>
             </div>
         </div>
-        <div class="tab-pane fade " id="profile-tab">b</div>
-        <div class="tab-pane fade" id="contact-tab" role="tabpanel">c</div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <center>
+                    <asp:LinkButton ID="myBtnClose" runat="server" aria-hidden="true" class="btn btn-secondary">
+                        Close
+                    </asp:LinkButton>
+
+                    <button type="button" class="btn btn-primary" onclick="addCommenttoComplaint();">Add Feedback</button>
+                </center>
+            </div>
+        </div>
     </div>
-   
+
+    
+    <div class="d-flex justify-content-center h-100">
+        <div class="card  offset-1 col-10">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-lg-12 ">
+                        <center> <h3>Manage Complaint</h3></center>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end social_icon">
+                    <!--    <span><i class="fab fa-facebook-square"></i></span>
+                    <span><i class="fab fa-google-plus-square"></i></span>
+                    <span><i class="fab fa-twitter-square"></i></span>
+                    -->
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 offset-md-3 col-md-6">
+                        <ul class="nav nav-tabs" id="myTab">
+                            <li class="active" id="p"><a data-toggle="tab"  >Pending</a></li>
+                            <li id="a"><a data-toggle="tab" >Completed</a></li>
+                            <li  id="d"><a data-toggle="tab">Closed</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @*<div class="tab-content mt-3">*@
+                            <div id="pending" >
+                                <table class="table table-hover table-bordered" id="manageComplain">
+                                    <thead>
+                                        <tr>
+                                            <th>ID#</th>
+                                            <th>Title</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                            <th>Town</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var data in Model.complaint)
+                                        {
+                                            if (data.UserId == Convert.ToInt32(Session["user_id"]))
+                                            {
+                                                if (data.Status==0 && data.isvalid==0) { 
+                                                <tr>
+                                                    <td>@data.ComplainId</td>
+                                                    <td>@data.Title</td>
+                                                    <td>@data.ComplainType</td>
+                                                    <td>@data.Description</td>
+                                                    @foreach (var u in Model.ucs)
+                                                    {
+                                                        if (data.TownId == u.UcId)
+                                                        {
+                                                            <td>@u.UCName</td>
+                                                        }
+                                                    }
+                                                  <td>Pending</td>
+                                                    <td>
+                                                        <a class="btn btn-primary btn-sm" href="/AdminPanel/GenerateComplaintReport/@data.ComplainId"><span><i class="fa fa-eye "></i></span></a>
+                                                        <button type="button" onclick="Close(@data.ComplainId)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></button>
+                                                    </td>
+
+                                                </tr>
+                                                }
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="assigned" >
+                                <table class="table table-hover table-bordered" id="manageComplain">
+                                    <thead>
+                                        <tr>
+                                            <th>ID#</th>
+                                            <th>Title</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                            <th>Town</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var data in Model.complaint)
+                                        {
+                                            if (data.UserId == Convert.ToInt32(Session["user_id"]))
+                                            {
+                                                if (data.Status>0 && data.isvalid==1) { 
+                                                <tr>
+                                                    <td>@data.ComplainId</td>
+                                                    <td>@data.Title</td>
+                                                    <td>@data.ComplainType</td>
+                                                    <td>@data.Description</td>
+                                                    @foreach (var u in Model.ucs)
+                                                    {
+                                                        if (data.TownId == u.UcId)
+                                                        {
+                                                            <td>@u.UCName</td>
+                                                        }
+                                                    }
+                                                    @if (data.Status == 1)
+                                                    {
+                                                        <td><b class="text-warning">Completed</b><small>(Feedback Pending)</small></td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td><b class="text-success">Relief Completed</b></td>
+                                                    }
+
+                                                    <td>
+
+                                                        <a class="btn btn-primary btn-sm" href="/AdminPanel/GenerateComplaintReport/@data.ComplainId"><span><i class="fa fa-eye "></i></span></a>
+                                                        @if(data.Status == 1)
+                                                        {
+                                                            <button class="btn btn-sm btn-info" onclick="ReplyToComplaint(@data.ComplainId)"> <i class="fa fa-reply-all"></i></button>
+                                                        }
+                                                    </td>
+
+                                                </tr>
+                                                }
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="delivered">
+                                <table class="table table-hover table-bordered" id="manageComplain">
+                                    <thead>
+                                        <tr>
+                                            <th>ID#</th>
+                                            <th>Title</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                            <th>Town</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var data in Model.complaint)
+                                        {
+                                            if (data.UserId == Convert.ToInt32(Session["user_id"]))
+                                            {
+                                                if (data.isvalid == 2)
+                                                {
+                                                    <tr>
+                                                        <td>@data.ComplainId</td>
+                                                        <td>@data.Title</td>
+                                                        <td>@data.ComplainType</td>
+                                                        <td>@data.Description</td>
+                                                        @foreach (var u in Model.ucs)
+                                                        {
+                                                            if (data.TownId == u.UcId)
+                                                            {
+                                                                <td>@u.UCName</td>
+                                                            }
+                                                        }
+                                                        <td><b class="text-danger">Closed</b></td>
+                                                        <td>
+                                                            <a class="btn btn-primary btn-sm" href="/AdminPanel/GenerateComplaintReport/@data.ComplainId"><span><i class="fa fa-eye "></i></span></a>
+
+                                                        </td>
+
+                                                    </tr>
+                                                }
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        @*</div>*@
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
 </div>
+<!-- Button trigger modal -->
+@*<button id="opendialog" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="display:none;">
+    Launch demo modal
+</button>*@
+<a href="#exampleModal" data-target="#exampleModal" class="btn btn-primary btn-sm" id="opendialog" style="display:none" data-toggle="modal"><span><i class="fa fa-plus-circle"></i></span> Add District</a>
+
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Content/DataTable/dt.js"></script>
 <link href="~/Content/DataTable/dtb.css" rel="stylesheet" />
+<script src="~/Scripts/tabAndpills/bootstrap.js"></script>
 @Scripts.Render("~/bundles/alertFile/alert")
 <script>
+    $('#a').click(function () {
+        $('#pending').hide();
+        $('#assigned').show();
+        $('#delivered').hide();
+    });
+    $('#p').click(function () {
+        $('#pending').show();
+        $('#assigned').hide();
+        $('#delivered').hide();
+    });
+    $('#d').click(function () {
+        $('#pending').hide();
+        $('#assigned').hide();
+        $('#delivered').show();;
+    });
     $(document).ready(function () {
-      
+        $('#pending').show();
+        $('#assigned').hide();
+        $('#delivered').hide();
     });
     function Close(id) {
         var id = id;
@@ -143,14 +301,36 @@
         })
     }
 
-    $("ul li  a").on("click", function () {
-        $("ul li .active").removeClass("active");
-        $(this).addClass("active");
-        var a = this.id;
-        a = a + "_tab";
-        $(".tab-content .active").removeClass("active");
-        $("#" + a).addClass("active");
-        console.log($("#" + a));
+    function addCommenttoComplaint() {
+        var compid = $("#compId").val();
+        var comment = $("#message").val();
+        $.ajax({
+            type: "POST",
+            url: "/Customer/FeedbackComplaint",
+            data: { compid: compid, comment: comment },
+            success: function (re) {
+                if (re == "done") {
+                    swal({
+                        title: "Successfull!",
+                        text: "Status of the complaint has been chnaged successfully, Complaint is now closed",
+                        icon: "success",
+                        button: true,
+                    }).then((value) => {
+                        location.reload();
+                    });;
+                }
+            }
+
+        });
+    }
+    $('#myBtnClose').on('click', function () {
+        $('#feedbackmodal').hide(1000);
     });
+
+    function ReplyToComplaint(id) {
+        $("#feedbackmodal").show("3000");
+        $("#compId").val(id);
+        $("#examplemodallabel").empty();
+        $("#examplemodallabel").append("add feedback to complaint #" + id);
+    }
 </script>
-<script src="~/Scripts/bootstrap.min.js"></script>

@@ -46,26 +46,6 @@
 
                 </form>
                 <ul class="navbar-nav navbar-right">
-                    <li class="dropdown dropdown-list-toggle">
-                        <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="fa fa-bell" style="color:#ffffff"></i></a>
-                        <div class="dropdown-menu dropdown-list dropdown-menu-right">
-                            <div class="dropdown-header">
-                                Notifications
-                                <div class="float-right">
-                                    <a href="#">View All</a>
-                                </div>
-                            </div>
-                            <div class="dropdown-list-content">
-                                <a href="#" class="dropdown-item dropdown-item-unread">
-                                    <img alt="image" src=@Url.Content("~/Content/img/AdminPanel/avatar-1.jpeg") class="rounded-circle dropdown-item-img imgAvatar">
-                                    <div class="dropdown-item-desc">
-                                        <b>Kusnaedi</b> has moved task <b>Fix bug header</b> to <b>Done</b>
-                                        <div class="time">10 Hours Ago</div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
                     <li class="dropdown">
                         <select style="border:none" class="mt-1" id="logout">
                             <option selected disabled class="d-lg-inline-block">Hi ! @Session["name"]</option>
@@ -134,7 +114,7 @@
                             @if (Session["user_type"].ToString() == "Employee")
                             {
                                 <li id="employeemanage">
-                                    <a href="@Url.Action("EmployeeManageComplaints","AdminPanel")"><i class="fa fa-user"></i><span>Manage Employee</span></a>
+                                    <a href="@Url.Action("EmployeeManageComplaints","AdminPanel")"><i class="fa fa-user"></i><span>Manage Complaint</span></a>
                                 </li>
                             }
                         }

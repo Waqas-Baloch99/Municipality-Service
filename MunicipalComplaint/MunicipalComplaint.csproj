@@ -185,6 +185,10 @@
     <Compile Include="Migrations\202007182313301_rasd.Designer.cs">
       <DependentUpon>202007182313301_rasd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007191050433_hasd.cs" />
+    <Compile Include="Migrations\202007191050433_hasd.Designer.cs">
+      <DependentUpon>202007191050433_hasd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\complains.cs" />
@@ -408,6 +412,7 @@
     <Content Include="Content\Images\Multan.jpg" />
     <Content Include="Content\sectionStyle.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\tabAndPillStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\18942381.jpg" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -636,6 +641,8 @@
     <Content Include="Scripts\RegisterAjax\RegisterAjax.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\tabAndpills\bootstrap.js" />
+    <Content Include="Scripts\tabAndpills\jquery.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -716,6 +723,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007182313301_rasd.resx">
       <DependentUpon>202007182313301_rasd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007191050433_hasd.resx">
+      <DependentUpon>202007191050433_hasd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -74,6 +74,34 @@
         </div>
     </div>
 </section>
+<!-- Button trigger modal -->
+<button id="opendialog" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="display:none;">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" id="compId" />
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+            </div>
+            <div class="modal-body">
+                <textarea id="message" class="form-control" placeholder="Enter Comment Here...."></textarea>
+            </div>
+            <div class="modal-footer">
+
+                <asp:LinkButton ID="myBtnClose" runat="server" aria-hidden="true" class="btn btn-secondary">
+                    Close
+                </asp:LinkButton>
+
+                <button type="button" class="btn btn-primary" onclick="addCommenttoComplaint();">Add Comment</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 @Scripts.Render("~/bundles/alertFile/alert")
 <script>
@@ -156,27 +184,7 @@
 
         });
     }
+    $('#myBtnClose').on('click', function () {
+        $('#exampleModal').modal('hide');
+    });
 </script>
-<!-- Button trigger modal -->
-<button id="opendialog" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="display:none;">
-    Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <input type="hidden" id="compId" />
-                <h5 class="modal-title" id="exampleModalLabel"></h5>
-            </div>
-            <div class="modal-body">
-                <textarea id="message" class="form-control" placeholder="Enter Comment Here...."></textarea>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="addCommenttoComplaint();">Add Comment</button>
-            </div>
-        </div>
-    </div>
-</div>

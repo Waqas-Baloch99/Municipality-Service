@@ -35,12 +35,26 @@ namespace MunicipalComplaint.Controllers
             _context.SaveChanges();
             return View("Contact");
         }
+        [HttpPost]
+        public ActionResult FeedbackComplaint(int compid,string comment) {
+            Feedback feed = new Feedback();
+            feed.complainID = compid;
+            feed.Description = comment;
+            _context.feedback.Add(feed);
+            _context.SaveChanges();
+
+            var complaint = _context.compalin.Single(c => c.ComplainId == compid);
+            complaint.Status = 2;
+            TryValidateModel(complaint);
+            _context.SaveChanges();
+            return Json("done");
+        }
 
         [HttpPost]
         public ActionResult Close(int id)
         {
            complains cus = _context.compalin.Single(x=>x.ComplainId==id);
-            cus.isvalid = 1;
+            cus.isvalid = 2;
             TryUpdateModel(cus);
             _context.SaveChanges();
             return Json("done");
